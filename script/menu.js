@@ -2,8 +2,8 @@
 * STEPANDO (Menu)                               *
 * Author: Sebastian Ríos Ernst                  *
 * Start date: 22/12/2012						*
-* Version date: 19/09/2013						*
-* Version:0.1.1									*
+* Version date: 03/11/2013                      *
+* Version:0.2.0                                 *
 *************************************************/
 
 //MENU CLASS
