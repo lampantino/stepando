@@ -1,0 +1,31 @@
+/************************************************
+* STEPANDO (Main)                               *
+* Author: Sebastian Ríos Ernst                  *
+* Start date: 22/12/2012						*
+* Version date: 19/09/2013						*
+* Version:0.1.1									*
+*************************************************/
+
+//MAIN
+
+//loader method loads the menu or a called sequence
+var loader = function() {
+    var args = location.search.substr(1).split('&');
+    if(args[1] === undefined) {
+        var activeMenu = new Menu(args[0]);
+        window.onload = function() {
+            activeMenu.start();
+		};
+        
+    } else {
+        var seqSrc = "sequences/" + args[0] + "/" + args[1] + "/sequence.js";
+        var seqFile = document.createElement('script');
+        seqFile.src = seqSrc;
+        document.getElementsByTagName('head')[0].appendChild(seqFile);
+        window.onload = function() {
+            activeScreen.start();
+		};
+    }
+};
+
+loader();

@@ -1,0 +1,11 @@
+var seq_es_JSON = [
+    { "category":"Ingeniería" , "title":"Calcular una viga de acero" , "adress":"science&vigaacero" },
+    { "category":"Matemáticas" , "title":"Suma 4 números" , "adress":"science&vigaacero" },
+    { "category":"Matemáticas" , "title":"Suma 5 números" , "adress":"science&vigaacero" }
+];
+
+var seq_en_JSON = [
+    { "category":"Engineering" , "title":"Calcular una viga de acero" , "adress":"science&vigaacero" },
+    { "category":"Mathematics" , "title":"Suma 4 números" , "adress":"science&vigaacero" },
+    { "category":"Mathematics" , "title":"Suma 5 números" , "adress":"science&vigaacero" }
+];

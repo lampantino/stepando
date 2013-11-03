@@ -1,0 +1,21 @@
+@media only screen and (max-device-width : 1023px) and (min-device-width : 320px) {
+    body        {
+                
+    }
+    
+    header      {
+                min-width:200px;
+                max-width:400px;
+    }
+    
+    section     {
+                min-width:200px;
+                max-width:400px;
+    
+    }
+    
+    section     {
+                min-width:400px;
+                max-width:600px;
+    }
+}

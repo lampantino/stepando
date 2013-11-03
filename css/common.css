@@ -1,0 +1,140 @@
+body        {
+            font-family:'caviar_dreamsregular', 'LiberationSansRegular';
+            background-color:gray;
+            color:gray;
+            margin: 0;
+}
+
+header      {
+            margin: 0 auto;
+            width: 100%;
+            height: 50px;
+            color:white;
+            font-size: 30pt;
+}
+
+.centered   {
+			text-align: center;
+}
+
+.textShadow     {
+            text-shadow: 2px 2px 5px black;
+            filter: dropshadow(color=black, offx=2, offy=2);
+}
+
+.boxShadow  {
+            -webkit-box-shadow: 2px 2px 5px 0 gray;
+            box-shadow: 2px 2px 5px 0 gray;
+}
+
+section     {
+            margin: 0 auto;
+            padding-bottom:5px;
+            width: 100%;
+			background-color: white;
+}
+
+#steps      {
+            margin-bottom: 15px;
+} 
+
+.step       {
+            position:relative;
+            top:10px;
+            margin: 10px 10px 0 10px;
+            padding:5px;
+}
+
+.question   {
+            font-size: 16pt;
+            font-weight: bold;
+}
+
+#buttons    {
+            width: 100%;
+            margin:2px 0;
+}
+
+.button     {
+            position:relative;
+            background-color:white;
+            color:gray;
+            border: 3px solid gray;
+            width: 70px;
+            height: 20px;
+            font-size: 10pt;
+            font-weight: bold;
+            margin: 1px;
+}
+
+.littleButton  {
+            width: 20px;
+}
+
+.rounded    {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+}
+
+.answer     {
+            border: 3px solid gray;
+            margin: 3px 4px;
+            text-align: center;
+}
+
+.alert      {
+            background-color:white;
+            color:red;
+            border: 3px solid red;
+            margin: 3px 4px;
+            padding: 2px 10px;
+}
+
+input       {
+            border:none;
+			background:transparent;
+			color:gray;
+			font-size: 12pt;
+			width: 98%;
+			margin:1px 0;
+            }
+
+select      {
+            border:none;
+			background:transparent;
+			color:black;
+			width: 98%;
+			margin-bottom:2px;
+            }
+
+a:link, a:active, a:visited, a:hover {
+			text-decoration:none;
+			color:white;
+			font-weight:bold;
+}
+
+a.gray:link, a.gray:active, a.gray:visited, a.gray:hover {
+			text-decoration:none;
+			color:gray;
+			font-weight:bold;
+}
+
+ul          {
+            margin:0;
+            line-height:1.1;
+}
+
+.result     {
+            background-color:gray;
+            color:white;
+            margin: 3px 4px 7px 4px;
+            padding: 5px 10px;
+}
+
+footer      {
+            margin: 5px auto 0 auto;
+            width: 100%;
+            height: 50px;
+            color:white;
+            font-size: 12pt;
+}

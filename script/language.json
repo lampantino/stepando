@@ -1,0 +1,325 @@
+var button_Author_JSON = {
+    "en":"author",
+    "es":"autor",
+    "gl":"autor",
+    "eu":"autor",
+    "ct":"autor",
+    "de":"verfasser",
+    "pt":"author",
+    "it":"author",
+    "fr":"author",
+    "ru":"author",
+    "zh":"author",
+};
+
+var button_Donate_JSON = {
+    "en":"donate",
+    "es":"donativo",
+    "gl":"donativo",
+    "eu":"donativo",
+    "ct":"donativo",
+    "de":"donate",
+    "pt":"donate",
+    "it":"donate",
+    "fr":"donate",
+    "ru":"donate",
+    "zh":"donate",
+};
+
+var button_Share_JSON = {
+    "en":"share",
+    "es":"comparte",
+    "gl":"comparte",
+    "eu":"comparte",
+    "ct":"comparte",
+    "de":"teilen",
+    "pt":"share",
+    "it":"share",
+    "fr":"share",
+    "ru":"share",
+    "zh":"share",
+};
+
+var button_Info_JSON = {
+    "en":"info",
+    "es":"info",
+    "gl":"info",
+    "eu":"info",
+    "ct":"info",
+    "de":"info",
+    "pt":"info",
+    "it":"info",
+    "fr":"info",
+    "ru":"info",
+    "zh":"info",
+};
+
+var button_Next_JSON = {
+    "en":"next",
+    "es":"siguiente",
+    "gl":"seguinte",
+    "eu":"siguiente",
+    "ct":"siguiente",
+    "de":"nächsten",
+    "pt":"next",
+    "it":"next",
+    "fr":"next",
+    "ru":"next",
+    "zh":"next",
+};
+
+var button_Update_JSON = {
+    "en":"update",
+    "es":"modificar",
+    "gl":"modificar",
+    "eu":"modificar",
+    "ct":"modificar",
+    "de":"update",
+    "pt":"update",
+    "it":"update",
+    "fr":"update",
+    "ru":"update",
+    "zh":"update",
+};
+
+var button_Print_JSON = {
+    "en":"print",
+    "es":"imprimir",
+    "gl":"imprimir",
+    "eu":"imprimir",
+    "ct":"imprimir",
+    "de":"print",
+    "pt":"print",
+    "it":"print",
+    "fr":"print",
+    "ru":"print",
+    "zh":"print",
+};
+
+var button_Contact_JSON = {
+    "en":"contact",
+    "es":"contacto",
+    "gl":"contacto",
+    "eu":"contacto",
+    "ct":"contacto",
+    "de":"contact",
+    "pt":"contact",
+    "it":"contact",
+    "fr":"contact",
+    "ru":"contact",
+    "zh":"contact",
+};
+
+var button_About_JSON = {
+    "en":"about",
+    "es":"acerca de",
+    "gl":"acerca de",
+    "eu":"acerca de",
+    "ct":"acerca de",
+    "de":"about",
+    "pt":"about",
+    "it":"about",
+    "fr":"about",
+    "ru":"about",
+    "zh":"about",
+};
+
+var button_License_JSON = {
+    "en":"license",
+    "es":"licencia",
+    "gl":"licencia",
+    "eu":"licencia",
+    "ct":"licencia",
+    "de":"license",
+    "pt":"license",
+    "it":"license",
+    "fr":"license",
+    "ru":"license",
+    "zh":"license",
+};
+
+
+
+var text_Language_JSON = {
+    "en":"Select a language",
+    "es":"Seleccione un idioma",
+    "gl":"Seleccione un idioma",
+    "eu":"Seleccione un idioma",
+    "ct":"Seleccione un idioma",
+    "de":"Select a language",
+    "pt":"Select a language",
+    "it":"Select a language",
+    "fr":"Select a language",
+    "ru":"Select a language",
+    "zh":"Select a language",
+};
+
+var text_Categories_JSON = {
+    "en":"Categories",
+    "es":"Categorías",
+    "gl":"Categorías",
+    "eu":"Categorías",
+    "ct":"Categorías",
+    "de":"Categories",
+    "pt":"Categories",
+    "it":"Categories",
+    "fr":"Categories",
+    "ru":"Categories",
+    "zh":"Categories",
+};
+
+var text_Author_JSON = {
+    "en":"A sequence by",
+    "es":"Una sequencia de",
+    "gl":"Unha sequencia de",
+    "eu":"Una sequencia de",
+    "ct":"Una sequencia de",
+    "de":"A sequence by",
+    "pt":"A sequence by",
+    "it":"A sequence by",
+    "fr":"A sequence by",
+    "ru":"A sequence by",
+    "zh":"A sequence by",
+};
+
+var text_Update_JSON = {
+    "en":"Last update",
+    "es":"Última actualización",
+    "gl":"Última actualización",
+    "eu":"Última actualización",
+    "ct":"Última actualización",
+    "de":"Last update",
+    "pt":"Last update",
+    "it":"Last update",
+    "fr":"Last update",
+    "ru":"Last update",
+    "zh":"Last update",
+};
+
+var text_Donation_JSON = {
+    "en":"Make a donation for the author to continue to update this sequence or doing something new.",
+    "es":"Haga un donativo para que el autor siga actualizando esta secuencia o haciendo alguna nueva.",
+    "gl":"Faga un donativo para que o autor siga actualizando esta secuencia ou facendo algunha nova.",
+    "eu":"Haga un donativo para que el autor siga actualizando esta secuencia o haciendo alguna nueva.",
+    "ct":"Haga un donativo para que el autor siga actualizando esta secuencia o haciendo alguna nueva.",
+    "de":"Make a donation for the author to continue to update this sequence or doing something new.",
+    "pt":"Make a donation for the author to continue to update this sequence or doing something new.",
+    "it":"Make a donation for the author to continue to update this sequence or doing something new.",
+    "fr":"Make a donation for the author to continue to update this sequence or doing something new.",
+    "ru":"Make a donation for the author to continue to update this sequence or doing something new.",
+    "zh":"Make a donation for the author to continue to update this sequence or doing something new.",
+};
+
+var text_Answer_JSON = {
+    "en":"Enter your answer",
+    "es":"Introduzca su respuesta",
+    "gl":"Introduza a súa resposta",
+    "eu":"Introduzca su respuesta",
+    "ct":"Introduzca su respuesta",
+    "de":"Enter your answer",
+    "pt":"Enter your answer",
+    "it":"Enter your answer",
+    "fr":"Enter your answer",
+    "ru":"Enter your answer",
+    "zh":"Enter your answer",
+};
+
+var text_Result_JSON = {
+    "en":"The result is",
+    "es":"El resultado es",
+    "gl":"O resultado é",
+    "eu":"El resultado es",
+    "ct":"El resultado es",
+    "de":"The result is",
+    "pt":"The result is",
+    "it":"The result is",
+    "fr":"The result is",
+    "ru":"The result is",
+    "zh":"The result is",
+};
+
+
+
+var alert_Empty_JSON = {
+    "en":"You must enter some answer",
+    "es":"Ha de introducir algún dato",
+    "gl":"Ten que introducir algún dato",
+    "eu":"Ha de introducir algún dato",
+    "ct":"Ha de introducir algún dato",
+    "de":"You must enter some answer",
+    "pt":"You must enter some answer",
+    "it":"You must enter some answer",
+    "fr":"You must enter some answer",
+    "ru":"You must enter some answer",
+    "zh":"You must enter some answer",
+};
+
+var alert_Text_JSON = {
+    "en":"Answer is not valid. Text expected",
+    "es":"Respuesta no válida. Se esperaba un texto",
+    "gl":"Resposta non válida. Esperábase un texto",
+    "eu":"Respuesta no válida. Se esperaba un texto",
+    "ct":"Respuesta no válida. Se esperaba un texto",
+    "de":"Answer is not valid. Text expected",
+    "pt":"Answer is not valid. Text expected",
+    "it":"Answer is not valid. Text expected",
+    "fr":"Answer is not valid. Text expected",
+    "ru":"Answer is not valid. Text expected",
+    "zh":"Answer is not valid. Text expected",
+};
+
+var alert_Integer_JSON = {
+    "en":"Answer is not valid. Integer expected",
+    "es":"Respuesta no válida. Se esperaba un número entero",
+    "gl":"Resposta non válida. Esperábase un número enteiro",
+    "eu":"Respuesta no válida. Se esperaba un número entero",
+    "ct":"Respuesta no válida. Se esperaba un número entero",
+    "de":"Answer is not valid. Integer expected",
+    "pt":"Answer is not valid. Integer expected",
+    "it":"Answer is not valid. Integer expected",
+    "fr":"Answer is not valid. Integer expected",
+    "ru":"Answer is not valid. Integer expected",
+    "zh":"Answer is not valid. Integer expected",
+};
+
+var alert_Float_JSON = {
+    "en":"Answer is not valid. Float number expected",
+    "es":"Respuesta no válida. Se esperaba un número real",
+    "gl":"Resposta non válida. Esperábase un número real",
+    "eu":"Respuesta no válida. Se esperaba un número real",
+    "ct":"Respuesta no válida. Se esperaba un número real",
+    "de":"Answer is not valid. Float number expected",
+    "pt":"Answer is not valid. Float number expected",
+    "it":"Answer is not valid. Float number expected",
+    "fr":"Answer is not valid. Float number expected",
+    "ru":"Answer is not valid. Float number expected",
+    "zh":"Answer is not valid. Float number expected",
+};
+
+var alert_Email_JSON = {
+    "en":"Answer is not valid. Email expected",
+    "es":"Respuesta no válida. Se esperaba un email",
+    "gl":"Resposta non válida. Esperábase un email",
+    "eu":"Respuesta no válida. Se esperaba un email",
+    "ct":"Respuesta no válida. Se esperaba un email",
+    "de":"Answer is not valid. Email expected",
+    "pt":"Answer is not valid. Email expected",
+    "it":"Answer is not valid. Email expected",
+    "fr":"Answer is not valid. Email expected",
+    "ru":"Answer is not valid. Email expected",
+    "zh":"Answer is not valid. Email expected",
+};
+
+var alert_Url_JSON = {
+    "en":"Answer is not valid. URL expected",
+    "es":"Respuesta no válida. Se esperaba una URL",
+    "gl":"Resposta non válida. Esperábase unha URL",
+    "eu":"Respuesta no válida. Se esperaba una URL",
+    "ct":"Respuesta no válida. Se esperaba una URL",
+    "de":"Answer is not valid. URL expected",
+    "pt":"Answer is not valid. URL expected",
+    "it":"Answer is not valid. URL expected",
+    "fr":"Answer is not valid. URL expected",
+    "ru":"Answer is not valid. URL expected",
+    "zh":"Answer is not valid. URL expected",
+};
