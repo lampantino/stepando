@@ -1,0 +1,4 @@
+stepando
+========
+
+Little sequence calculator
