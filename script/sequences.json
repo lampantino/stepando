@@ -1,11 +1,47 @@
+var seq_en_JSON = [
+    { "category":"Engineering" , "title":"Calcular una viga de acero" , "adress":"science&vigaacero" },
+    { "category":"Mathematics" , "title":"Suma 4 números" , "adress":"science&vigaacero" },
+    { "category":"Mathematics" , "title":"Suma 5 números" , "adress":"science&vigaacero" }
+];
+
 var seq_es_JSON = [
     { "category":"Ingeniería" , "title":"Calcular una viga de acero" , "adress":"science&vigaacero" },
     { "category":"Matemáticas" , "title":"Suma 4 números" , "adress":"science&vigaacero" },
     { "category":"Matemáticas" , "title":"Suma 5 números" , "adress":"science&vigaacero" }
 ];
 
-var seq_en_JSON = [
-    { "category":"Engineering" , "title":"Calcular una viga de acero" , "adress":"science&vigaacero" },
-    { "category":"Mathematics" , "title":"Suma 4 números" , "adress":"science&vigaacero" },
-    { "category":"Mathematics" , "title":"Suma 5 números" , "adress":"science&vigaacero" }
+var seq_gl_JSON = [
+    { "category":"" , "title":"" , "adress":"" },
+];
+
+var seq_eu_JSON = [
+    { "category":"" , "title":"" , "adress":"" },
+];
+
+var seq_ct_JSON = [
+    { "category":"" , "title":"" , "adress":"" },
+];
+
+var seq_de_JSON = [
+    { "category":"" , "title":"" , "adress":"" },
+];
+
+var seq_it_JSON = [
+    { "category":"" , "title":"" , "adress":"" },
+];
+
+var seq_pt_JSON = [
+    { "category":"" , "title":"" , "adress":"" },
+];
+
+var seq_fr_JSON = [
+    { "category":"" , "title":"" , "adress":"" },
+];
+
+var seq_ru_JSON = [
+    { "category":"" , "title":"" , "adress":"" },
+];
+
+var seq_zh_JSON = [
+    { "category":"" , "title":"" , "adress":"" },
 ];

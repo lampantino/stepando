@@ -66,7 +66,11 @@ var Menu = function(currentLanguage) {
     var printCategories = function() {
         var screenContent = '';
         screenContent += '<div class="step rounded boxShadow">';
-		screenContent += '<span class=question>'+ text_Categories +'</span>';
+        if(sequences_Categories[0] === '') {
+            screenContent += '<span class=question>Sorry. No sequences available</span>';
+        } else {
+            screenContent += '<span class=question>'+ text_Categories +'</span>';
+        }
 		var category = '';
 		for(var i = 0; i < sequences_Categories.length; i++) {
             if(sequences_Categories[i] != category) {
