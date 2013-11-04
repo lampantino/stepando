@@ -51,6 +51,8 @@ var Screen = function() {
         var version = activeSequence.getSeqData('version');
         var date = activeSequence.getSeqData('date');
         var btc = activeSequence.getSeqData('donate')[0];
+        var flattr = activeSequence.getSeqData('donate')[1];
+        var gittip = activeSequence.getSeqData('donate')[2];
         
 		var screenContent = '';
 		screenContent += '<div class="step rounded boxShadow">';
@@ -68,8 +70,8 @@ var Screen = function() {
         screenContent += '<div id="info_donate" class="rounded boxShadow result" style="display:none;">';
         screenContent += '<span>'+ text_Donation +'</span>';
         screenContent += '<table id=buttons><tr>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);"><div id="infoButton_gittip" class="button rounded centered boxShadow">gittip</div></a></td>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);"><div id="infoButton_flattr"  class="button rounded centered boxShadow">flattr</div></a></td>';
+        screenContent += '<td style="float:right;"><a href="'+ gittip +'" target="_blank"><div id="infoButton_gittip" class="button rounded centered boxShadow">gittip</div></a></td>';
+        screenContent += '<td style="float:right;"><a href="'+ flattr +'" target="_blank"><div id="infoButton_flattr"  class="button rounded centered boxShadow">flattr</div></a></td>';
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'bitcoin\')"><div id="infoButton_bitcoin" class="button rounded centered boxShadow">bitcoin</div></a></td>';
         screenContent += '</tr></table>';
         screenContent += '<div id="info_bitcoin" style="display:none;"><a href="bitcoin:'+ btc +'" target="_blank">'+ btc +'</a> (<a href="http://chart.apis.google.com/chart?chs=300x300&cht=qr&chl='+ btc +'&choe=UTF-8" target="_blank">qr code</a>)</div>';
@@ -89,6 +91,21 @@ var Screen = function() {
         screenContent += '</div>';
         screenContent += '<div id=steps></div>';
 		document.getElementById('sequence').innerHTML = screenContent;
+		if(btc === '') {
+            document.getElementById('infoButton_bitcoin').style.display = 'none';
+        }
+        if(flattr === '') {
+            document.getElementById('infoButton_flattr').style.display = 'none';
+        }
+        if(gittip === '') {
+            document.getElementById('infoButton_gittip').style.display = 'none';
+        }
+        if(btc === '' && flattr === '' && gittip === '') {
+            document.getElementById('infoButton_donate').style.display = 'none';
+        }
+        document.getElementById('shareButton_gplus').style.display = 'none';
+        document.getElementById('shareButton_twitter').style.display = 'none';
+        document.getElementById('shareButton_facebook').style.display = 'none';
 		document.querySelector('footer').style.display = 'none';
 		addDivs();
         printStep();

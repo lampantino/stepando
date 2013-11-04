@@ -7,7 +7,7 @@ createSequence (
 	'sre.quereck@gmail.com',                            //Sequence author email
 	'0.1',												//Sequence last version
 	'11/09/2013',										//Sequence last review date
-	['1NYcpukkrV6UywyJkggWkv7FwhDhijtM1C','',''],       //Sequence donation adresses
+	['1NYcpukkrV6UywyJkggWkv7FwhDhijtM1C','https://flattr.com/submit/auto?user_id=lampantino&url=https%3A%2F%2Fc9.io%2Flampantino%2Fstepando%2Fworkspace%2Findex.html%3Fengineering%26vigaacero','https://www.gittip.com/lampantino'],       //Sequence donation adresses
 	'Estos resultados son orientativos y únicamente útiles para un predimensionado' //Sequence result information
 );
 
