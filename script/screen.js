@@ -24,6 +24,7 @@ var Screen = function () {
     var text_Author;
     var text_Update;
     var text_Donation;
+    var text_Iframe;
     var text_Answer;
     var text_Result;
     var alert_Empty;
@@ -80,16 +81,17 @@ var Screen = function () {
         //share info
         screenContent += '<div id="info_share" class="rounded boxShadow result" style="display:none;">';
         screenContent += '<table id=buttons><tr>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'iframe\')"><div id="shareButton_iframe" class="button rounded centered boxShadow">iframe</div></a></td>';
+        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'iframe\')"><div id="infoButton_iframe" class="button rounded centered boxShadow">iframe</div></a></td>';
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick=""><div id="shareButton_gplus" class="button rounded centered boxShadow">google+</div></a></td>';
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick=""><div id="shareButton_twitter" class="button rounded centered boxShadow">twitter</div></a></td>';
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick=""><div id="shareButton_facebook" class="button rounded centered boxShadow">facebook</div></a></td>';
         screenContent += '</tr></table>';
         //share->iframe info
-        screenContent += '<div id="info_iframe" class="rounded boxShadow result" style="display:none;">';
-        screenContent += '<p>eoeo</p>';
+        screenContent += '<div id="info_iframe" class="rounded boxShadow result" style="display: none;position:relative;top:-10px;background:none;">';
+        screenContent += '<span style="margin-bottom:5px;">' + text_Iframe + '</span>';
+        screenContent += '<input class="iframe" type="text" id="iframe_code">';
         screenContent += '</div>';
-        
+
         screenContent += '</div>';
         //sequence info
         screenContent += '<div id="info_sequence" class="rounded boxShadow result" style="display:none;">' + info + '</div>';
@@ -112,6 +114,9 @@ var Screen = function () {
         document.getElementById('shareButton_gplus').style.display = 'none';
         document.getElementById('shareButton_twitter').style.display = 'none';
         document.getElementById('shareButton_facebook').style.display = 'none';
+
+        var url = window.location.href;
+        document.getElementById('iframe_code').value = '<iframe src="' + url + '" style="border:none;width:200px;height:400px;"></iframe>';
         document.querySelector('footer').style.display = 'none';
         addDivs();
         printStep();
@@ -129,6 +134,7 @@ var Screen = function () {
         eval('text_Author = text_Author_JSON.' + language);
         eval('text_Update = text_Update_JSON.' + language);
         eval('text_Donation = text_Donation_JSON.' + language);
+        eval('text_Iframe = text_Iframe_JSON.' + language);
         eval('text_Answer = text_Answer_JSON.' + language);
         eval('text_Result = text_Result_JSON.' + language);
         eval('alert_Empty = alert_Empty_JSON.' + language);

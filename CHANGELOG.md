@@ -8,12 +8,12 @@ vers 0.2.0 (03/11/13)
 	-First stable version.
 
 Modificaciones restantes:
+-problema boton next android
 -comentarios en secuencias.
 -comentarios en menu.
 -compartir facebook.
 -compartir twitter.
 -compartir google+.
--compartir iframe.
 -donativo flattr.
 -donativo gittip.
 -página licencia.

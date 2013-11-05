@@ -210,6 +210,20 @@ var text_Donation_JSON = {
     "zh": "Make a donation for the author to continue to update this sequence or doing something new.",
 };
 
+var text_Iframe_JSON = {
+    "en": "Insert this code in your website:",
+    "es": "Inserte este código en su web:",
+    "gl": "Inserte este código en su web:",
+    "eu": "Inserte este código en su web:",
+    "ct": "Inserte este código en su web:",
+    "de": "Insert this code in your website:",
+    "pt": "Insert this code in your website:",
+    "it": "Insert this code in your website:",
+    "fr": "Insert this code in your website:",
+    "ru": "Insert this code in your website:",
+    "zh": "Insert this code in your website:",
+}
+
 var text_Answer_JSON = {
     "en": "Enter your answer",
     "es": "Introduzca su respuesta",

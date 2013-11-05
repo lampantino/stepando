@@ -7,9 +7,9 @@ body {
 header {
     margin: 0 auto;
     width: 100%;
-    height: 50px;
+    height: 40px;
     color: white;
-    font-size: 30pt;
+    font-size: 25pt;
 }
 .centered {
     text-align: center;
@@ -38,23 +38,24 @@ section {
     padding: 5px;
 }
 .question {
-    font-size: 16pt;
+    font-size: 12pt;
     font-weight: bold;
 }
 #buttons {
     width: 100%;
-    margin: 2px 0;
+    margin: 1px 0;
 }
 .button {
     position: relative;
     background-color: white;
     color: gray;
     border: 3px solid gray;
-    width: 70px;
+    width: 65px;
     height: 20px;
     font-size: 10pt;
     font-weight: bold;
     margin: 1px;
+    padding-top:2px;
 }
 .littleButton {
     width: 20px;
@@ -77,17 +78,19 @@ section {
 }
 input {
     border: none;
-    background: transparent;
     color: gray;
-    font-size: 12pt;
-    width: 98%;
-    margin: 1px 0;
+    font-size: 10pt;
+    width: 96%;
+    margin: 2px 0;
+}
+input.iframe {
+    width: 100%;
 }
 select {
     border: none;
     background: transparent;
     color: black;
-    width: 98%;
+    width: 96%;
     margin-bottom: 2px;
 }
 a:link, a:active, a:visited, a:hover {
@@ -115,5 +118,5 @@ footer {
     width: 100%;
     height: 50px;
     color: white;
-    font-size: 12pt;
+    font-size: 10pt;
 }
