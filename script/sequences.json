@@ -12,6 +12,11 @@ var seq_es_JSON = [
         "title": "Calcular una viga de acero",
         "adress": "engineering&vigaacero"
     },
+    {
+        "category": "Ingeniería",
+        "title": "Conversor de unidades",
+        "adress": "engineering&conversor"
+    },
 ];
 
 var seq_gl_JSON = [

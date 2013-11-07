@@ -41,7 +41,16 @@ var Sequence = function (language, title, info, author, email, version, date, do
     this.getStepByNum = function (number) {
         return steps[number];
     };
-
+    
+    //public method getStepNumByRef returns the step position in the steps array
+    this.getStepNumByRef = function (ref) {
+        for(var i=0; i<steps.length; i++) {
+            if(steps[i].getStepData('reference') === ref) {
+                return i
+            }
+        }
+    };
+    
     //public method addResult defines the sequence result from given data
     this.addResult = function (result) {
         seqResult = result;

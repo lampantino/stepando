@@ -53,6 +53,11 @@ var Step = function (ref, question, type, option, next, info) {
     this.setStepAnswer = function (answer) {
         stepAnswer = answer;
     };
+    
+    //public method setNextStep modifies the step target
+    this.setNextStep = function (step) {
+        stepNext = step;
+    };
 };
 
 //addStep method that adds a step to the step array
@@ -65,3 +70,9 @@ var getAnswer = function (ref) {
     var step = activeSequence.getStepByRef(ref);
     return step.getStepData('answer');
 };
+
+//setNextStep function defines the next step from the current step
+//var setNextStep = function(ref,next) {
+//    var step = activeSequence.getStepByRef(ref);
+//    step.setNextStep(next);
+//};

@@ -88,7 +88,7 @@ var Screen = function () {
         screenContent += '</tr></table>';
         //share->iframe info
         screenContent += '<div id="info_iframe" class="rounded boxShadow result" style="display: none;position:relative;top:-10px;background:none;">';
-        screenContent += '<span style="margin-bottom:5px;">' + text_Iframe + '</span>';
+        screenContent += '<span style="line-height: 2;">' + text_Iframe + '</span>';
         screenContent += '<input class="iframe" type="text" id="iframe_code">';
         screenContent += '</div>';
 
@@ -295,7 +295,7 @@ var Screen = function () {
         var answer = document.getElementById('answer_' + ref).value;
         if (!isNaN(answer)) {
             answer = parseFloat(answer);
-        } //converts numbers entered has string to real numbers
+        } //converts numbers entered as string to real numbers
         var type = currentStep.getStepData('type').toLowerCase();
         var option = currentStep.getStepData('option').toString().toLowerCase();
         var stepAlert = checkAnswer(answer, type, option);
@@ -321,6 +321,23 @@ var Screen = function () {
         if (stepAlert === '') {
             tempStep.setStepAnswer(answer);
             document.getElementById("alert_" + ref).style.display = 'none';
+            
+            var nextStep = tempStep.getStepData('next');
+            if(nextStep === '') {   //if there is no nextStep then execute the function
+                var reference = tempStep.getStepData('reference');
+                eval('nextStep = '+ reference +'_nextStep()');
+                currentStep = activeSequence.getStepByRef(nextStep);
+                //this code hides the rest of the steps after updating the answer
+                var totalSteps = activeSequence.getSeqData('steps').length;
+                stepCount = activeSequence.getStepNumByRef(ref)+1;
+                for(var i=stepCount; i<totalSteps; i++) {
+                    document.getElementById('step' + i).style.display = 'none';
+                }
+                printStep();
+                document.getElementById('result').style.display = 'none';
+                activeSequence.addResult(undefined);
+            }
+            
         } else {
             document.getElementById('alert_' + ref).innerHTML = stepAlert;
             document.getElementById("alert_" + ref).style.display = 'block';
@@ -337,7 +354,12 @@ var Screen = function () {
             activeSequence.addResult(sequenceResult());
             printResult();
         } else {
-            currentStep = activeSequence.getStepByRef(currentStep.getStepData('next'));
+            var nextStep = currentStep.getStepData('next');
+            if(nextStep === '') {   //if there is no nextStep then execute the function
+                var reference = currentStep.getStepData('reference');
+                eval('nextStep = '+ reference +'_nextStep()');
+            }
+            currentStep = activeSequence.getStepByRef(nextStep);
             stepCount++;
             printStep();
         }
