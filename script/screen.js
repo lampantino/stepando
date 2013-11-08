@@ -39,7 +39,7 @@ var Screen = function () {
     this.start = function () {
         currentStep = activeSequence.getStepByNum(0);
         stepCount = 0;
-
+        var url = window.location.href;
         var language = activeSequence.getSeqData('language');
         translate(language);
         var activeFooter = new Footer(language);
@@ -81,13 +81,14 @@ var Screen = function () {
         //share info
         screenContent += '<div id="info_share" class="rounded boxShadow result" style="display:none;">';
         screenContent += '<table id=buttons><tr>';
+
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'iframe\')"><div id="infoButton_iframe" class="button rounded centered boxShadow">iframe</div></a></td>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick=""><div id="shareButton_gplus" class="button rounded centered boxShadow">google+</div></a></td>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick=""><div id="shareButton_twitter" class="button rounded centered boxShadow">twitter</div></a></td>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick=""><div id="shareButton_facebook" class="button rounded centered boxShadow">facebook</div></a></td>';
+        screenContent += '<td style="float:right;"><a href="https://plus.google.com/share?url=' + url + '" target="_blank"><div id="shareButton_gplus" class="button rounded centered boxShadow">google+</div></a></td>';
+        screenContent += '<td style="float:right;"><a href="https://twitter.com/intent/tweet?original_referer=' + url + '&text=Utilidad%20interesante%20&url=' + url + '" target="_blank"><div id="shareButton_twitter" class="button rounded centered boxShadow">twitter</div></a></td>';
+        screenContent += '<td style="float:right;"><a href="https://www.facebook.com/sharer/sharer.php?u=' + url + '" target="_blank"><div id="shareButton_facebook" class="button rounded centered boxShadow">facebook</div></a></td>';
         screenContent += '</tr></table>';
         //share->iframe info
-        screenContent += '<div id="info_iframe" class="rounded boxShadow result" style="display: none;position:relative;top:-10px;background:none;">';
+        screenContent += '<div id="info_iframe" class="rounded boxShadow result" style="display:none;position:relative;top:-10px;background:none;">';
         screenContent += '<span style="line-height: 2;">' + text_Iframe + '</span>';
         screenContent += '<input class="iframe" type="text" id="iframe_code">';
         screenContent += '</div>';
@@ -111,11 +112,7 @@ var Screen = function () {
         if (btc === '' && flattr === '' && gittip === '') {
             document.getElementById('infoButton_donate').style.display = 'none';
         }
-        document.getElementById('shareButton_gplus').style.display = 'none';
-        document.getElementById('shareButton_twitter').style.display = 'none';
-        document.getElementById('shareButton_facebook').style.display = 'none';
 
-        var url = window.location.href;
         document.getElementById('iframe_code').value = '<iframe src="' + url + '" style="border:none;width:200px;height:400px;"></iframe>';
         document.querySelector('footer').style.display = 'none';
         addDivs();
@@ -226,8 +223,11 @@ var Screen = function () {
         if (event.keyCode == 13 || event.keyCode == 9) {
             if (document.getElementById('nextStepButton_' + ref).style.display == 'block') {
                 this.getStepAnswer(ref);
+                var nextStepRef = activeSequence.getStepByRef(ref).getStepData('next');
+                document.getElementById('answer_' + nextStepRef).focus();
             } else {
                 this.updateStepAnswer(ref);
+                document.getElementById('answer_' + ref).focus();
             }
         }
     };
@@ -321,23 +321,23 @@ var Screen = function () {
         if (stepAlert === '') {
             tempStep.setStepAnswer(answer);
             document.getElementById("alert_" + ref).style.display = 'none';
-            
+
             var nextStep = tempStep.getStepData('next');
-            if(nextStep === '') {   //if there is no nextStep then execute the function
+            if (nextStep === '') { //if there is no nextStep then execute the function
                 var reference = tempStep.getStepData('reference');
-                eval('nextStep = '+ reference +'_nextStep()');
+                eval('nextStep = ' + reference + '_nextStep()');
                 currentStep = activeSequence.getStepByRef(nextStep);
                 //this code hides the rest of the steps after updating the answer
                 var totalSteps = activeSequence.getSeqData('steps').length;
-                stepCount = activeSequence.getStepNumByRef(ref)+1;
-                for(var i=stepCount; i<totalSteps; i++) {
+                stepCount = activeSequence.getStepNumByRef(ref) + 1;
+                for (var i = stepCount; i < totalSteps; i++) {
                     document.getElementById('step' + i).style.display = 'none';
                 }
                 printStep();
                 document.getElementById('result').style.display = 'none';
                 activeSequence.addResult(undefined);
             }
-            
+
         } else {
             document.getElementById('alert_' + ref).innerHTML = stepAlert;
             document.getElementById("alert_" + ref).style.display = 'block';
@@ -355,9 +355,10 @@ var Screen = function () {
             printResult();
         } else {
             var nextStep = currentStep.getStepData('next');
-            if(nextStep === '') {   //if there is no nextStep then execute the function
+            if (nextStep === '') { //if there is no nextStep then execute the function
                 var reference = currentStep.getStepData('reference');
-                eval('nextStep = '+ reference +'_nextStep()');
+                eval('nextStep = ' + reference + '_nextStep()');
+                //currentStep.setNextStep(nextStep);
             }
             currentStep = activeSequence.getStepByRef(nextStep);
             stepCount++;

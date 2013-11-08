@@ -15,6 +15,7 @@ Modificaciones restantes:
 -compartir twitter.
 -compartir google+.
 -donativo flattr.
+-donativo paypal.
 -donativo gittip.
 -página licencia.
 -página acerca de.

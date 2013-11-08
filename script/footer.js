@@ -15,6 +15,7 @@ var Footer = function (currentLanguage) {
     var button_Contact;
     var button_About;
     var button_License;
+    var url_license;
 
     //methods
     //public method that prints the footer
@@ -27,7 +28,7 @@ var Footer = function (currentLanguage) {
         screenContent += '<td style="float:left;">© 2013 stepando</td>';
         screenContent += '<td style="float:right; margin-left:10px;"><a href="contact.html" target="_blank">' + button_Contact + '</a></td>';
         screenContent += '<td style="float:right; margin-left:10px;"><a href="about.html" target="_blank">' + button_About + '</a></td>';
-        screenContent += '<td style="float:right; margin-left:10px;"><a href="license.html" target="_blank">' + button_License + '</a></td>';
+        screenContent += '<td style="float:right; margin-left:10px;"><a href="'+ url_license +'" target="_blank">' + button_License + '</a></td>';
         screenContent += '</tr>';
         screenContent += '</table>';
         document.querySelector('footer').innerHTML = screenContent;
@@ -38,5 +39,46 @@ var Footer = function (currentLanguage) {
         eval('button_Contact = button_Contact_JSON.' + language);
         eval('button_About = button_About_JSON.' + language);
         eval('button_License = button_License_JSON.' + language);
+        
+        var license = function(language) {
+            var url = '';
+            switch(language) {
+                    case 'en':
+                        url = 'http://www.gnu.org/licenses/gpl-3.0-standalone.html';
+                        break;
+                    case 'es':
+                        url = 'http://hjmacho.github.io/translation_GPLv3_to_spanish/';
+                        break;
+                    case 'gl':
+                        url = 'http://www.mancomun.org/GPL3_GL/gpl_gl_v3.html';
+                        break;
+                    case 'eu':
+                        url = 'http://hjmacho.github.io/translation_GPLv3_to_spanish/';
+                        break;
+                    case 'ct':
+                        url = 'http://hjmacho.github.io/translation_GPLv3_to_spanish/';
+                        break;
+                    case 'de':
+                        url = 'http://www.gnu.de/documents/gpl-3.0.de.html';
+                        break;
+                    case 'pt':
+                        url = 'http://www.gnu.org/licenses/gpl-3.0-standalone.html';
+                        break;
+                    case 'it':
+                        url = 'http://katolaz.homeunix.net/gplv3/gplv3-it-final.html';
+                        break;
+                    case 'fr':
+                        url = 'http://www.rodage.org/gpl-3.0.fr.txt';
+                        break;
+                    case 'ru':
+                        url = 'http://rusgpl.ru/rusgpl.html';
+                        break;
+                    case 'zh':
+                        url = 'http://www.chinasona.org/gnu/gnuv3-tc.html';
+                        break;
+            }
+            return url;
+        }
+        url_license = license(language);
     };
 };
