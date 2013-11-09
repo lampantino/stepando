@@ -107,7 +107,7 @@ var Menu = function (currentLanguage) {
                 category = sequences_Categories[i];
             }
         }
-        screenContent += '<br></div><br>';
+        screenContent += '</div>';
         document.getElementById('categories').innerHTML = screenContent;
     };
 };

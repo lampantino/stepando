@@ -14,6 +14,7 @@ var loader = function () {
     if (args[1] === undefined) {
         var activeMenu = new Menu(args[0]);
         window.onload = function () {
+            document.getElementById('sequence').style.display = 'none';
             activeMenu.start();
         };
 
@@ -23,6 +24,7 @@ var loader = function () {
         seqFile.src = seqSrc;
         document.getElementsByTagName('head')[0].appendChild(seqFile);
         window.onload = function () {
+            document.getElementById('menu').style.display = 'none';
             activeScreen.start();
         };
     }

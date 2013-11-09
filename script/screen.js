@@ -27,7 +27,6 @@ var Screen = function () {
     var text_Iframe;
     var text_Answer;
     var text_Result;
-    var alert_Empty;
     var alert_Text;
     var alert_Integer;
     var alert_Float;
@@ -40,6 +39,8 @@ var Screen = function () {
         currentStep = activeSequence.getStepByNum(0);
         stepCount = 0;
         var url = window.location.href;
+        var urlPercent = encodeURIComponent(url);
+
         var language = activeSequence.getSeqData('language');
         translate(language);
         var activeFooter = new Footer(language);
@@ -54,7 +55,8 @@ var Screen = function () {
         var btc = activeSequence.getSeqData('donate')[0];
         var flattr = activeSequence.getSeqData('donate')[1];
         var gittip = activeSequence.getSeqData('donate')[2];
-
+        var paypal = activeSequence.getSeqData('donate')[3];
+        
         var screenContent = '';
         screenContent += '<div class="step rounded boxShadow">';
         screenContent += '<span class=question>' + title + '</span>';
@@ -71,8 +73,13 @@ var Screen = function () {
         screenContent += '<div id="info_donate" class="rounded boxShadow result" style="display:none;">';
         screenContent += '<span>' + text_Donation + '</span>';
         screenContent += '<table id=buttons><tr>';
-        screenContent += '<td style="float:right;"><a href="' + gittip + '" target="_blank"><div id="infoButton_gittip" class="button rounded centered boxShadow">gittip</div></a></td>';
-        screenContent += '<td style="float:right;"><a href="' + flattr + '" target="_blank"><div id="infoButton_flattr"  class="button rounded centered boxShadow">flattr</div></a></td>';
+        //donation->paypal button
+        screenContent += '<td style="float:right;"><a href="' + paypal + '" target="_blank"><div id="infoButton_paypal" class="button rounded centered boxShadow">paypal</div></a></td>';
+        //donation->gittip button
+        screenContent += '<td style="float:right;"><a href="https://www.gittip.com/' + gittip + '" target="_blank"><div id="infoButton_gittip" class="button rounded centered boxShadow">gittip</div></a></td>';
+        //donation->paypal button
+        screenContent += '<td style="float:right;"><a href="https://flattr.com/submit/auto?user_id=' + flattr + '&url='+urlPercent+'" target="_blank"><div id="infoButton_flattr"  class="button rounded centered boxShadow">flattr</div></a></td>';
+        //donation->bitcoin button
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'bitcoin\')"><div id="infoButton_bitcoin" class="button rounded centered boxShadow">bitcoin</div></a></td>';
         screenContent += '</tr></table>';
         //donation->bitcoin info
@@ -81,16 +88,21 @@ var Screen = function () {
         //share info
         screenContent += '<div id="info_share" class="rounded boxShadow result" style="display:none;">';
         screenContent += '<table id=buttons><tr>';
-
+        //share->email button
+        screenContent += '<td style="float:right;"><a href="mailto:?subject='+title+'&body='+url+'"><div id="infoButton_email" class="button rounded centered boxShadow" style="display:none;">email</div></a></td>';
+        //share->iframe button
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'iframe\')"><div id="infoButton_iframe" class="button rounded centered boxShadow">iframe</div></a></td>';
+        //share->googleplus button
         screenContent += '<td style="float:right;"><a href="https://plus.google.com/share?url=' + url + '" target="_blank"><div id="shareButton_gplus" class="button rounded centered boxShadow">google+</div></a></td>';
-        screenContent += '<td style="float:right;"><a href="https://twitter.com/intent/tweet?original_referer=' + url + '&text=Utilidad%20interesante%20&url=' + url + '" target="_blank"><div id="shareButton_twitter" class="button rounded centered boxShadow">twitter</div></a></td>';
+        //share->twitter button
+        screenContent += '<td style="float:right;"><a href="https://twitter.com/intent/tweet?original_referer=' + url + '&text='+title+'&url=' + url + '&via=stepando.com" target="_blank"><div id="shareButton_twitter" class="button rounded centered boxShadow">twitter</div></a></td>';
+        //share->facebook button        
         screenContent += '<td style="float:right;"><a href="https://www.facebook.com/sharer/sharer.php?u=' + url + '" target="_blank"><div id="shareButton_facebook" class="button rounded centered boxShadow">facebook</div></a></td>';
         screenContent += '</tr></table>';
         //share->iframe info
         screenContent += '<div id="info_iframe" class="rounded boxShadow result" style="display:none;position:relative;top:-10px;background:none;">';
         screenContent += '<span style="line-height: 2;">' + text_Iframe + '</span>';
-        screenContent += '<input class="iframe" type="text" id="iframe_code">';
+        screenContent += '<textarea class="iframe" rows="2" style="width:100%;"><iframe src="' + url + '" style="border:none;width:200px;height:400px;"></iframe></textarea>';
         screenContent += '</div>';
 
         screenContent += '</div>';
@@ -109,11 +121,12 @@ var Screen = function () {
         if (gittip === '') {
             document.getElementById('infoButton_gittip').style.display = 'none';
         }
-        if (btc === '' && flattr === '' && gittip === '') {
+        if (paypal === '') {
+            document.getElementById('infoButton_paypal').style.display = 'none';
+        }
+        if (btc === '' && flattr === '' && gittip === '' && paypal === '') {
             document.getElementById('infoButton_donate').style.display = 'none';
         }
-
-        document.getElementById('iframe_code').value = '<iframe src="' + url + '" style="border:none;width:200px;height:400px;"></iframe>';
         document.querySelector('footer').style.display = 'none';
         addDivs();
         printStep();
@@ -134,7 +147,6 @@ var Screen = function () {
         eval('text_Iframe = text_Iframe_JSON.' + language);
         eval('text_Answer = text_Answer_JSON.' + language);
         eval('text_Result = text_Result_JSON.' + language);
-        eval('alert_Empty = alert_Empty_JSON.' + language);
         eval('alert_Text = alert_Text_JSON.' + language);
         eval('alert_Integer = alert_Integer_JSON.' + language);
         eval('alert_Float = alert_Float_JSON.' + language);
@@ -177,7 +189,7 @@ var Screen = function () {
         var info = currentStep.getStepData('info');
 
         var screenContent = '';
-        screenContent += '<span class=question>' + question + '</span>';
+        screenContent += '<span id="question_' + ref + '" class=question>' + question + '</span>';
 
         screenContent += '<div class="rounded boxShadow answer">';
         if (type === 'input') {
@@ -223,11 +235,13 @@ var Screen = function () {
         if (event.keyCode == 13 || event.keyCode == 9) {
             if (document.getElementById('nextStepButton_' + ref).style.display == 'block') {
                 this.getStepAnswer(ref);
-                var nextStepRef = activeSequence.getStepByRef(ref).getStepData('next');
-                document.getElementById('answer_' + nextStepRef).focus();
+                /*if(event.keyCode == 9) {
+                    var nextStepRef = activeSequence.getStepByRef(currentStep.getStepData('next'));
+                    document.getElementById('infoButton_' + ref).focus();
+                }*/
+
             } else {
                 this.updateStepAnswer(ref);
-                document.getElementById('answer_' + ref).focus();
             }
         }
     };
@@ -268,19 +282,16 @@ var Screen = function () {
 
     //private function that returns an alert
     var checkAnswer = function (answer, type, option) {
-        if (answer === '') {
-            return alert_Empty;
-        }
         if (type === 'input') {
-            if (option === 'string' && !isNaN(answer)) {
+            if (option === 'string' && (!isNaN(answer) || answer == '')) {
                 return alert_Text;
-            } else if (option === 'integer' && (isNaN(answer) || +answer % 1 !== 0)) {
+            } else if (option === 'integer' && (isNaN(answer) || +answer % 1 !== 0 || answer == '')) {
                 return alert_Integer;
-            } else if (option === 'float' && isNaN(answer)) {
+            } else if (option === 'float' && (isNaN(answer) || answer == '')) {
                 return alert_Float;
-            } else if (option === 'email' && !checkPattern(answer, /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,4}$/)) {
+            } else if (option === 'email' && (!checkPattern(answer, /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,4}$/) || answer == '')) {
                 return alert_Email;
-            } else if (option === 'url' && !checkPattern(answer, /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/)) {
+            } else if (option === 'url' && (!checkPattern(answer, /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/) || answer == '')) {
                 return alert_Url;
             } else {
                 return '';
@@ -293,21 +304,21 @@ var Screen = function () {
     //public method that gets the entered step answer
     this.getStepAnswer = function (ref) {
         var answer = document.getElementById('answer_' + ref).value;
-        if (!isNaN(answer)) {
-            answer = parseFloat(answer);
-        } //converts numbers entered as string to real numbers
         var type = currentStep.getStepData('type').toLowerCase();
         var option = currentStep.getStepData('option').toString().toLowerCase();
+        if (option === 'integer' || option === 'float') {
+            answer = parseFloat(answer);
+        } //converts numbers entered as string to real numbers
         var stepAlert = checkAnswer(answer, type, option);
         if (stepAlert === '') {
             currentStep.setStepAnswer(answer);
-            document.getElementById("alert_" + ref).style.display = 'none';
-            document.getElementById("nextStepButton_" + ref).style.display = 'none';
-            document.getElementById("updateStepButton_" + ref).style.display = 'block';
+            document.getElementById('alert_' + ref).style.display = 'none';
+            document.getElementById('nextStepButton_' + ref).style.display = 'none';
+            document.getElementById('updateStepButton_' + ref).style.display = 'block';
             findNextStep();
         } else {
             document.getElementById('alert_' + ref).innerHTML = stepAlert;
-            document.getElementById("alert_" + ref).style.display = 'block';
+            document.getElementById('alert_' + ref).style.display = 'block';
         }
     };
 
@@ -317,10 +328,13 @@ var Screen = function () {
         var answer = document.getElementById('answer_' + ref).value;
         var type = tempStep.getStepData('type').toLowerCase();
         var option = tempStep.getStepData('option').toString().toLowerCase();
+        if (option === 'integer' || option === 'float') {
+            answer = parseFloat(answer);
+        } //converts numbers entered as string to real numbers
         var stepAlert = checkAnswer(answer, type, option);
         if (stepAlert === '') {
             tempStep.setStepAnswer(answer);
-            document.getElementById("alert_" + ref).style.display = 'none';
+            document.getElementById('alert_' + ref).style.display = 'none';
 
             var nextStep = tempStep.getStepData('next');
             if (nextStep === '') { //if there is no nextStep then execute the function
@@ -340,7 +354,7 @@ var Screen = function () {
 
         } else {
             document.getElementById('alert_' + ref).innerHTML = stepAlert;
-            document.getElementById("alert_" + ref).style.display = 'block';
+            document.getElementById('alert_' + ref).style.display = 'block';
         }
         if (typeof activeSequence.getSeqData('result') !== 'undefined') {
             activeSequence.addResult(sequenceResult());
@@ -358,7 +372,6 @@ var Screen = function () {
             if (nextStep === '') { //if there is no nextStep then execute the function
                 var reference = currentStep.getStepData('reference');
                 eval('nextStep = ' + reference + '_nextStep()');
-                //currentStep.setNextStep(nextStep);
             }
             currentStep = activeSequence.getStepByRef(nextStep);
             stepCount++;

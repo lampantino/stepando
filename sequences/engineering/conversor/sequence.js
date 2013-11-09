@@ -7,7 +7,7 @@ createSequence(
     'sre.quereck@gmail.com', //Sequence author email
     '0.1', //Sequence last version
     '06/11/2013', //Sequence last review date
- ['12Kaia98xJdD3u683jEpgkm6JGtkBkATcw', '', 'https://www.gittip.com/lampantino'], //Sequence donation adresses
+ ['12Kaia98xJdD3u683jEpgkm6JGtkBkATcw', 'lampantino', 'lampantino','https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sre%2equereck%40gmail%2ecom&lc=ES&item_name=Stepando&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest'], //Sequence donation adresses
     'Información obtenida de la <a href="http://es.wikipedia.org/wiki/Conversi%C3%B3n_de_unidades" target="_blank">Wikipedia</a>' //Sequence result information
 );
 
@@ -43,6 +43,7 @@ var formatText = function (text) {
     return text.toLowerCase();
 }
 
+//XXX_nextStep method is used to define multiple targets for one step
 var magnitud_nextStep = function () {
     var magnitud = getAnswer('magnitud');
     magnitud = formatText(magnitud);

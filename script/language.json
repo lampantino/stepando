@@ -197,17 +197,17 @@ var text_Update_JSON = {
 };
 
 var text_Donation_JSON = {
-    "en": "Make a donation for the author to continue to update this sequence or doing something new.",
-    "es": "Haga un donativo para que el autor siga actualizando esta secuencia o haciendo alguna nueva.",
-    "gl": "Faga un donativo para que o autor siga actualizando esta secuencia ou facendo algunha nova.",
-    "eu": "Haga un donativo para que el autor siga actualizando esta secuencia o haciendo alguna nueva.",
-    "ct": "Haga un donativo para que el autor siga actualizando esta secuencia o haciendo alguna nueva.",
-    "de": "Make a donation for the author to continue to update this sequence or doing something new.",
-    "pt": "Make a donation for the author to continue to update this sequence or doing something new.",
-    "it": "Make a donation for the author to continue to update this sequence or doing something new.",
-    "fr": "Make a donation for the author to continue to update this sequence or doing something new.",
-    "ru": "Make a donation for the author to continue to update this sequence or doing something new.",
-    "zh": "Make a donation for the author to continue to update this sequence or doing something new.",
+    "en": "Make a donation to the author to continue updating this sequence or doing something new.",
+    "es": "Haga un donativo al autor para que siga actualizando esta secuencia o haciendo alguna nueva.",
+    "gl": "Faga un donativo ó autor para que siga actualizando esta secuencia ou facendo algunha nova.",
+    "eu": "Haga un donativo al autor para que siga actualizando esta secuencia o haciendo alguna nueva.",
+    "ct": "Haga un donativo al autor para que siga actualizando esta secuencia o haciendo alguna nueva.",
+    "de": "Make a donation to the author to continue updating this sequence or doing something new.",
+    "pt": "Make a donation to the author to continue updating this sequence or doing something new.",
+    "it": "Make a donation to the author to continue updating this sequence or doing something new.",
+    "fr": "Make a donation to the author to continue updating this sequence or doing something new.",
+    "ru": "Make a donation to the author to continue updating this sequence or doing something new.",
+    "zh": "Make a donation to the author to continue updating this sequence or doing something new.",
 };
 
 var text_Iframe_JSON = {
@@ -253,20 +253,6 @@ var text_Result_JSON = {
 };
 
 
-
-var alert_Empty_JSON = {
-    "en": "You must enter some answer",
-    "es": "Ha de introducir algún dato",
-    "gl": "Ten que introducir algún dato",
-    "eu": "Ha de introducir algún dato",
-    "ct": "Ha de introducir algún dato",
-    "de": "You must enter some answer",
-    "pt": "You must enter some answer",
-    "it": "You must enter some answer",
-    "fr": "You must enter some answer",
-    "ru": "You must enter some answer",
-    "zh": "You must enter some answer",
-};
 
 var alert_Text_JSON = {
     "en": "Answer is not valid. Text expected",
