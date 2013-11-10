@@ -12,10 +12,11 @@ Modificaciones restantes:
 -comentarios en secuencias.
 -comentarios en menu.
 -compartir email.
--donativo flattr.
--donativo paypal.
+-resolver mejor donativo bitcoin.
+-enlace roto en donativo flattr.
 -mejorar página licencia.
 -página acerca de.
 -página contacto.
 -secuencia conversor.
+-secuencia conversor ferrados.
 -...

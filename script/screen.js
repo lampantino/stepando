@@ -47,6 +47,7 @@ var Screen = function () {
         activeFooter.start();
 
         var title = activeSequence.getSeqData('title');
+        var titlePercent = encodeURIComponent(title);
         var info = activeSequence.getSeqData('info');
         var author = activeSequence.getSeqData('author');
         var email = activeSequence.getSeqData('email');
@@ -56,7 +57,7 @@ var Screen = function () {
         var flattr = activeSequence.getSeqData('donate')[1];
         var gittip = activeSequence.getSeqData('donate')[2];
         var paypal = activeSequence.getSeqData('donate')[3];
-        
+
         var screenContent = '';
         screenContent += '<div class="step rounded boxShadow">';
         screenContent += '<span class=question>' + title + '</span>';
@@ -68,17 +69,17 @@ var Screen = function () {
         screenContent += '</tr></table>';
 
         //author info
-        screenContent += '<div id="info_author" class="rounded boxShadow result" style="display:none;"><span>' + text_Author + ': <a href="mailto:' + email + '" target="_blank">' + author + '</a></span><span><br>' + text_Update + ': <b>' + date + '</b> (vers. ' + version + ')</span></div>';
+        screenContent += '<div id="info_author" class="rounded boxShadow info" style="display:none;"><span>' + text_Author + ': <a href="mailto:' + email + '" target="_blank">' + author + '</a></span><span><br>' + text_Update + ': <b>' + date + '</b> (vers. ' + version + ')</span></div>';
         //donation info
-        screenContent += '<div id="info_donate" class="rounded boxShadow result" style="display:none;">';
+        screenContent += '<div id="info_donate" class="rounded boxShadow info" style="display:none;">';
         screenContent += '<span>' + text_Donation + '</span>';
         screenContent += '<table id=buttons><tr>';
         //donation->paypal button
         screenContent += '<td style="float:right;"><a href="' + paypal + '" target="_blank"><div id="infoButton_paypal" class="button rounded centered boxShadow">paypal</div></a></td>';
         //donation->gittip button
         screenContent += '<td style="float:right;"><a href="https://www.gittip.com/' + gittip + '" target="_blank"><div id="infoButton_gittip" class="button rounded centered boxShadow">gittip</div></a></td>';
-        //donation->paypal button
-        screenContent += '<td style="float:right;"><a href="https://flattr.com/submit/auto?user_id=' + flattr + '&url='+urlPercent+'" target="_blank"><div id="infoButton_flattr"  class="button rounded centered boxShadow">flattr</div></a></td>';
+        //donation->flattr button
+        screenContent += '<td style="float:right;"><a href="https://flattr.com/submit/auto?user_id=' + flattr + '&url=' + url + '&title=' + titlePercent + '" target="_blank"><div id="infoButton_flattr" class="button rounded centered boxShadow">flattr</div></a></td>';
         //donation->bitcoin button
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'bitcoin\')"><div id="infoButton_bitcoin" class="button rounded centered boxShadow">bitcoin</div></a></td>';
         screenContent += '</tr></table>';
@@ -86,32 +87,34 @@ var Screen = function () {
         screenContent += '<div id="info_bitcoin" style="display:none;"><a href="bitcoin:' + btc + '" target="_blank">' + btc + '</a> (<a href="http://chart.apis.google.com/chart?chs=300x300&cht=qr&chl=' + btc + '&choe=UTF-8" target="_blank">qr code</a>)</div>';
         screenContent += '</div>';
         //share info
-        screenContent += '<div id="info_share" class="rounded boxShadow result" style="display:none;">';
+        screenContent += '<div id="info_share" class="rounded boxShadow info" style="display:none;">';
         screenContent += '<table id=buttons><tr>';
         //share->email button
-        screenContent += '<td style="float:right;"><a href="mailto:?subject='+title+'&body='+url+'"><div id="infoButton_email" class="button rounded centered boxShadow" style="display:none;">email</div></a></td>';
+        var bodyContent = '<a href=\'' + urlPercent + '\'>' + title + '</a>';
+        screenContent += '<td style="float:right;"><a href="mailto:?subject=' + title + '&body=' + bodyContent + '"><div id="infoButton_email" class="button rounded centered boxShadow">email</div></a></td>';
         //share->iframe button
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'iframe\')"><div id="infoButton_iframe" class="button rounded centered boxShadow">iframe</div></a></td>';
         //share->googleplus button
         screenContent += '<td style="float:right;"><a href="https://plus.google.com/share?url=' + url + '" target="_blank"><div id="shareButton_gplus" class="button rounded centered boxShadow">google+</div></a></td>';
         //share->twitter button
-        screenContent += '<td style="float:right;"><a href="https://twitter.com/intent/tweet?original_referer=' + url + '&text='+title+'&url=' + url + '&via=stepando.com" target="_blank"><div id="shareButton_twitter" class="button rounded centered boxShadow">twitter</div></a></td>';
+        screenContent += '<td style="float:right;"><a href="https://twitter.com/intent/tweet?original_referer=' + url + '&text=' + title + '&url=' + url + '&via=stepando.com" target="_blank"><div id="shareButton_twitter" class="button rounded centered boxShadow">twitter</div></a></td>';
         //share->facebook button        
         screenContent += '<td style="float:right;"><a href="https://www.facebook.com/sharer/sharer.php?u=' + url + '" target="_blank"><div id="shareButton_facebook" class="button rounded centered boxShadow">facebook</div></a></td>';
         screenContent += '</tr></table>';
         //share->iframe info
-        screenContent += '<div id="info_iframe" class="rounded boxShadow result" style="display:none;position:relative;top:-10px;background:none;">';
+        screenContent += '<div id="info_iframe" class="rounded boxShadow info" style="display:none;position:relative;top:-10px;background:none;">';
         screenContent += '<span style="line-height: 2;">' + text_Iframe + '</span>';
-        screenContent += '<textarea class="iframe" rows="2" style="width:100%;"><iframe src="' + url + '" style="border:none;width:200px;height:400px;"></iframe></textarea>';
+        screenContent += '<textarea class="iframe" rows="2" style="width:100%;"><iframe src="' + url + '" style="border:none;width:200px;height:400px;overflow-x:hidden;"></iframe></textarea>';
         screenContent += '</div>';
 
         screenContent += '</div>';
         //sequence info
-        screenContent += '<div id="info_sequence" class="rounded boxShadow result" style="display:none;">' + info + '</div>';
+        screenContent += '<div id="info_sequence" class="rounded boxShadow info" style="display:none;">' + info + '</div>';
 
         screenContent += '</div>';
         screenContent += '<div id=steps></div>';
         document.getElementById('sequence').innerHTML = screenContent;
+        //hides the empty donation buttons 
         if (btc === '') {
             document.getElementById('infoButton_bitcoin').style.display = 'none';
         }
@@ -222,7 +225,7 @@ var Screen = function () {
         screenContent += '<td style="float:left;"><a href="javascript:void(0);" id="nextStepButton_' + ref + '" onclick="activeScreen.getStepAnswer(\'' + ref + '\')" style="display:block;"><div class="button rounded centered boxShadow">' + button_Next + '</div></a><a href="javascript:void(0);" id="updateStepButton_' + ref + '" onclick="activeScreen.updateStepAnswer(\'' + ref + '\')" style="display:none;"><div class="button rounded centered boxShadow">' + button_Update + '</div></a></td>';
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'' + ref + '\')"><div id="infoButton_' + ref + '" class="button rounded centered boxShadow">' + button_Info + '</div></a></td>';
         screenContent += '</tr></table>';
-        screenContent += '<div id="info_' + ref + '" class="rounded boxShadow result" style="display:none;">' + info + '</div>';
+        screenContent += '<div id="info_' + ref + '" class="rounded boxShadow info" style="display:none;">' + info + '</div>';
         screenContent += '<div id="alert_' + ref + '" class="rounded boxShadow alert" style="display:none;"></div>';
         document.getElementById('step' + stepCount).innerHTML = screenContent;
         document.getElementById('step' + stepCount).style.display = 'block';
@@ -258,13 +261,13 @@ var Screen = function () {
 
         var screenContent = '';
         screenContent += '<span class=question>' + text_Result + ':</span>';
-        screenContent += '<div class="rounded boxShadow result">' + result + '</div>';
+        screenContent += '<div class="rounded boxShadow info result">' + result + '</div>';
 
         screenContent += '<table id=buttons><tr>';
         screenContent += '<td style="float:left;"><a href="javascript:void(0);" onclick="window.print()"><div id="print" class="button rounded centered boxShadow">' + button_Print + '</div></a></td>';
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'result\')"><div id="infoButton_result" class="button rounded centered boxShadow">' + button_Info + '</div></a></td>';
         screenContent += '</tr></table>';
-        screenContent += '<div id="info_result" class="rounded boxShadow result" style="display:none;">' + resultInfo + '</div>';
+        screenContent += '<div id="info_result" class="rounded boxShadow info" style="display:none;">' + resultInfo + '</div>';
         document.getElementById('result').innerHTML = screenContent;
         document.getElementById('result').style.display = 'block';
         document.querySelector('footer').style.display = 'block';
