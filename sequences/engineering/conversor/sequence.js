@@ -3,7 +3,7 @@ createSequence(
     'es', //Sequence language
     'Conversor de unidades', //Sequence title
     'Convierte el valor introducido a distintas unidades', //Sequence info
-    'Sebastian Ríos Ernst', //Sequence author
+    'Lampantino', //Sequence author
     'sre.quereck@gmail.com', //Sequence author email
     '0.1', //Sequence last version
     '06/11/2013', //Sequence last review date
@@ -11,13 +11,16 @@ createSequence(
     'Información obtenida de la <a href="http://es.wikipedia.org/wiki/Conversi%C3%B3n_de_unidades" target="_blank">Wikipedia</a>' //Sequence result information
 );
 
-var magnitudes = ['Longitud', 'Superficie', 'Presión'];
+var magnitudes = ['Longitud', 'Superficie', 'Volumen', 'Presión'];
 
 var longitud_unidades = ['km', 'hm', 'dam', 'm (S.I.)', 'dm', 'cm', 'mm', 'um', 'nm', 'angstron', 'legua', 'milla', 'milla náutica', 'braza', 'yarda', 'pie', 'pulgada', 'parsec', 'año luz', 'unidad astronómica'];
 var longitud_conversion = [1000, 100, 10, 1, 0.1, 0.01, 0.001, 1e-6, 1e-9, 1e-10, 4828.03, 1609.34, 1852, 1.8288, 0.91, 0.3048, 0.0254, 3.09e+16, 9.46e+15, 1.5e+11];
 
 var superficie_unidades = ['km²', 'hectárea', 'área', 'm² (S.I.)', 'dm²', 'cm²', 'mm²', 'milla²', 'acre', 'yarda²', 'pie²', 'pulgada²'];
 var superficie_conversion = [1000000, 10000, 100, 1, 0.01, 0.0001, 0.000001, 2589987.83, 4046.8544812, 0.8361273924, 0.0929030436, 0.00064516];
+
+var volumen_unidades = ['km³', 'hm³', 'dam³', 'm³ (S.I.)', 'dm³', 'cm³', 'mm³', 'litro', 'dl', 'ml'];
+var volumen_conversion = [ 1e+9, 1e+6, 1e+3, 1, 1e-3, 1e-6, 1e-9, 1e-3, 1e-4, 1e-5, 1e-6];
 
 var presion_unidades = ['KN/m²', 'N/m²', 'N/cm²', 'N/mm²', 'MPa', 'kPa', 'hPa', 'Pa (S.I.)', 'Bar', 'kgf/m²', 'kgf/cm²', 'milibar', 'atmósfera física', 'atmósfera técnica', 'psi', 'mmHg', 'mca'];
 var presion_conversion = [0.001, 1, 0.0001, 1e-6, 1000000, 1000, 100, 1, 100000, 9.806652, 98066.52, 100, 101325, 98066.52, 6894.76, 133.32, 9806.65];
@@ -86,6 +89,26 @@ addStep(
     'Seleccione la unidad a la que convertir el valor introducido', //Step question
     'Select', //Step type
     superficie_unidades, //Step option
+    'valor', //Next step
+    'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
+);
+
+//addStep methods creates new steps and adds them to the sequence
+addStep(
+    'volumen', //Step reference
+    'Seleccione la unidad en la que va a introducir el valor', //Step question
+    'Select', //Step type
+    volumen_unidades, //Step option
+    'volumen_final', //Next step
+    'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
+);
+
+//addStep methods creates new steps and adds them to the sequence
+addStep(
+    'volumen_final', //Step reference
+    'Seleccione la unidad a la que convertir el valor introducido', //Step question
+    'Select', //Step type
+    volumen_unidades, //Step option
     'valor', //Next step
     'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
 );

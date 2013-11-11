@@ -1,6 +1,6 @@
 /************************************************
  * STEPANDO (Screen)                            *
- * Author: Sebastian Ríos Ernst                 *
+ * Author: Lampantino                           *
  * Start date: 22/12/2012						*
  * Version date: 03/11/2013                     *
  * Version:0.2.0                                *
@@ -90,8 +90,7 @@ var Screen = function () {
         screenContent += '<div id="info_share" class="rounded boxShadow info" style="display:none;">';
         screenContent += '<table id=buttons><tr>';
         //share->email button
-        var bodyContent = '<a href=\'' + urlPercent + '\'>' + title + '</a>';
-        screenContent += '<td style="float:right;"><a href="mailto:?subject=' + title + '&body=' + bodyContent + '"><div id="infoButton_email" class="button rounded centered boxShadow">email</div></a></td>';
+        screenContent += '<td style="float:right;"><a href="mailto:?subject=' + title + '&body=Stepando%20-%20' + titlePercent + ':%0D%0A' + urlPercent + '"><div id="infoButton_email" class="button rounded centered boxShadow">email</div></a></td>';
         //share->iframe button
         screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'iframe\')"><div id="infoButton_iframe" class="button rounded centered boxShadow">iframe</div></a></td>';
         //share->googleplus button

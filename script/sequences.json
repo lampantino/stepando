@@ -21,9 +21,9 @@ var seq_es_JSON = [
 
 var seq_gl_JSON = [
     {
-        "category": "",
-        "title": "",
-        "adress": ""
+        "category": "Enxeñería",
+        "title": "Conversor de unidades tradicionais de superficie de Galicia",
+        "adress": "engineering&unidadestradicionais"
     },
 ];
 

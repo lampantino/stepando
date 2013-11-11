@@ -1,6 +1,6 @@
 /************************************************
  * STEPANDO (Footer)                            *
- * Author: Sebastian Ríos Ernst                 *
+ * Author: Lampantino                           *
  * Start date: 22/12/2012						*
  * Version date: 03/11/2013                     *
  * Version:0.2.0                                *
