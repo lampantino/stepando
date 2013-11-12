@@ -16,8 +16,8 @@ var magnitudes = ['Longitud', 'Superficie', 'Volumen', 'Presión'];
 var longitud_unidades = ['km', 'hm', 'dam', 'm (S.I.)', 'dm', 'cm', 'mm', 'um', 'nm', 'angstron', 'legua', 'milla', 'milla náutica', 'braza', 'yarda', 'pie', 'pulgada', 'parsec', 'año luz', 'unidad astronómica'];
 var longitud_conversion = [1000, 100, 10, 1, 0.1, 0.01, 0.001, 1e-6, 1e-9, 1e-10, 4828.03, 1609.34, 1852, 1.8288, 0.91, 0.3048, 0.0254, 3.09e+16, 9.46e+15, 1.5e+11];
 
-var superficie_unidades = ['km²', 'hectárea', 'área', 'm² (S.I.)', 'dm²', 'cm²', 'mm²', 'milla²', 'acre', 'yarda²', 'pie²', 'pulgada²'];
-var superficie_conversion = [1000000, 10000, 100, 1, 0.01, 0.0001, 0.000001, 2589987.83, 4046.8544812, 0.8361273924, 0.0929030436, 0.00064516];
+var superficie_unidades = ['km²', 'hectárea', 'área', 'centiárea', 'm² (S.I.)', 'dm²', 'cm²', 'mm²', 'milla²', 'acre', 'yarda²', 'pie²', 'pulgada²'];
+var superficie_conversion = [1000000, 10000, 100, 1, 1, 0.01, 0.0001, 0.000001, 2589987.83, 4046.8544812, 0.8361273924, 0.0929030436, 0.00064516];
 
 var volumen_unidades = ['km³', 'hm³', 'dam³', 'm³ (S.I.)', 'dm³', 'cm³', 'mm³', 'litro', 'dl', 'ml'];
 var volumen_conversion = [ 1e+9, 1e+6, 1e+3, 1, 1e-3, 1e-6, 1e-9, 1e-3, 1e-4, 1e-5, 1e-6];
