@@ -40,14 +40,50 @@ var estadal = [5.28, 4.44, 4.36, 6.39, 4.36, 5.48, 5.36, 5.48, 4.44, 4.36, 4.36,
 var vara = [0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70
 ];
 
-var posicion;
+var posicion_inicial;
+var posicion_final;
 
-var superficie_unidades = ['fanega', 'ferrado', 'tega', 'cunca', 'cuartillo', 'estadl', 'vara', 'km²', 'hectárea', 'área', 'centiárea', 'm² (S.I.)', 'dm²', 'cm²', 'mm²', 'milla²', 'acre', 'yarda²', 'pie²', 'polgada² (galega)', 'polgada² (inglesa)' ];
+var superficie_unidades = ['fanega', 'ferrado', 'tega', 'cunca', 'cuartillo', 'estadal', 'vara', 'km²', 'hectárea', 'área', 'centiárea', 'm² (S.I.)', 'dm²', 'cm²', 'mm²', 'milla²', 'acre', 'yarda²', 'pie²', 'polgada² (galega)', 'polgada² (inglesa)'];
 var superficie_conversion = [1, 1, 1, 1, 1, 1, 1, 1000000, 10000, 100, 1, 1, 0.01, 0.0001, 0.000001, 2589987.83, 4046.8544812, 0.8361273924, 0.0929030436, 0.00054289, 0.00064516];
+
+
+
+
+//PASOS
 
 //addStep methods creates new steps and adds them to the sequence
 addStep(
-    'provincia', //Step reference
+    'valor', //Step reference
+    'Introduza o valor a convertir', //Step question
+    'Input', //Step type
+    'Float', //Step option
+    'superficie_inicial', //Next step
+    'Introduza un número' //Step info
+);
+
+//addStep methods creates new steps and adds them to the sequence
+addStep(
+    'superficie_inicial', //Step reference
+    'Seleccione a unidade do valor introducido', //Step question
+    'Select', //Step type
+    superficie_unidades, //Step option
+    '', //Next step
+    'O resultado convertirá o valor á unidade seleccionada' //Step info
+);
+
+//XXX_nextStep method is used to define multiple targets for one step
+var superficie_inicial_nextStep = function () {
+    var unidade = getAnswer('superficie_inicial');
+    if (unidade === 'fanega' || unidade === 'ferrado' || unidade === 'tega' || unidade === 'cunca' || unidade === 'cuartillo' || unidade === 'estadal' || unidade === 'vara') {
+        return 'provincia_inicial';
+    } else {
+        return 'superficie_final';
+    }
+};
+
+//addStep methods creates new steps and adds them to the sequence
+addStep(
+    'provincia_inicial', //Step reference
     'Seleccione a provincia', //Step question
     'Select', //Step type
     provincias, //Step option
@@ -57,7 +93,7 @@ addStep(
 
 //addStep methods creates new steps and adds them to the sequence
 addStep(
-    'concellosCoruna', //Step reference
+    'concellosCoruna_inicial', //Step reference
     'Seleccione o concello', //Step question
     'Select', //Step type
     coruna_concellos, //Step option
@@ -67,7 +103,7 @@ addStep(
 
 //addStep methods creates new steps and adds them to the sequence
 addStep(
-    'concellosLugo', //Step reference
+    'concellosLugo_inicial', //Step reference
     'Seleccione o concello', //Step question
     'Select', //Step type
     lugo_concellos, //Step option
@@ -77,7 +113,7 @@ addStep(
 
 //addStep methods creates new steps and adds them to the sequence
 addStep(
-    'concellosPontevedra', //Step reference
+    'concellosPontevedra_inicial', //Step reference
     'Seleccione o concello', //Step question
     'Select', //Step type
     pontevedra_concellos, //Step option
@@ -85,119 +121,209 @@ addStep(
     'Seleccione o concello ó que pertence a localidade na que quere consultar a medida' //Step info
 );
 
-var formatText = function (text) {
-    var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç";
-    var to = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc";
-    for (var i = 0; i < from.length; i++) {
-        var char_from = from.charAt(i);
-        var char_to = to.charAt(i);
-        eval('text = text.replace(/' + char_from + '/g, "' + char_to + '")');
-    }
-    return text.toLowerCase();
-}
-
 //XXX_nextStep method is used to define multiple targets for one step
-var provincia_nextStep = function () {
-    var provincia = getAnswer('provincia');
+var provincia_inicial_nextStep = function () {
+    var provincia = getAnswer('provincia_inicial');
     var nextStep;
     switch (provincia) {
     case 'A Coruña':
-        nextStep = 'concellosCoruna';
+        nextStep = 'concellosCoruna_inicial';
         break;
     case 'Lugo':
-        nextStep = 'concellosLugo';
+        nextStep = 'concellosLugo_inicial';
         break;
     case 'Ourense':
-        nextStep = 'superficie';
-        posicion = 158;
+        nextStep = 'superficie_final';
+        posicion_inicial = 158;
         break;
     case 'Pontevedra':
-        nextStep = 'concellosPontevedra';
+        nextStep = 'concellosPontevedra_inicial';
         break;
     }
     return nextStep;
 };
 
 //XXX_nextStep method is used to define multiple targets for one step
-var concellosCoruna_nextStep = function () {
-    var concellosCoruna = getAnswer('concellosCoruna');
+var concellosCoruna_inicial_nextStep = function () {
+    var concellosCoruna = getAnswer('concellosCoruna_inicial');
     for (var i = 0; i < coruna_concellos.length; i++) {
         if (concellosCoruna === coruna_concellos[i]) {
-            posicion = i + 159;
+            posicion_inicial = i + 159;
         }
     }
-    return 'superficie';
+    return 'superficie_final';
 };
 
 //XXX_nextStep method is used to define multiple targets for one step
-var concellosLugo_nextStep = function () {
-    var concellosLugo = getAnswer('concellosLugo');
+var concellosLugo_inicial_nextStep = function () {
+    var concellosLugo = getAnswer('concellosLugo_inicial');
     for (var i = 0; i < lugo_concellos.length; i++) {
         if (concellosLugo === lugo_concellos[i]) {
-            posicion = i + 93;
+            posicion_inicial = i + 93;
         }
     }
-    return 'superficie';
+    return 'superficie_final';
 };
 
 //XXX_nextStep method is used to define multiple targets for one step
-var concellosPontevedra_nextStep = function () {
-    var concellosPontevedra = getAnswer('concellosPontevedra');
+var concellosPontevedra_inicial_nextStep = function () {
+    var concellosPontevedra = getAnswer('concellosPontevedra_inicial');
     for (var i = 0; i < pontevedra_concellos.length; i++) {
         if (concellosPontevedra === pontevedra_concellos[i]) {
-            posicion = i;
+            posicion_inicial = i;
         }
     }
-    return 'superficie';
+    return 'superficie_final';
 };
 
-//addStep methods creates new steps and adds them to the sequence
-addStep(
-    'superficie', //Step reference
-    'Seleccione a unidade na que vai a introducir o valor a convertir', //Step question
-    'Select', //Step type
-    superficie_unidades, //Step option
-    'superficie_final', //Next step
-    'O resultado convertirá o valor á unidade seleccionada' //Step info
-);
+
+
+
+
+
+
 
 //addStep methods creates new steps and adds them to the sequence
 addStep(
     'superficie_final', //Step reference
-    'Seleccione a unidade na que quere convertir o valor introducido', //Step question
+    'Seleccione a unidade á que quere convertir o valor introducido', //Step question
     'Select', //Step type
     superficie_unidades, //Step option
-    'valor', //Next step
+    '', //Next step
     'O resultado convertirá o valor á unidade seleccionada' //Step info
+);
+
+//XXX_nextStep method is used to define multiple targets for one step
+var superficie_final_nextStep = function () {
+    var unidade = getAnswer('superficie_final');
+    if (unidade === 'fanega' || unidade === 'ferrado' || unidade === 'tega' || unidade === 'cunca' || unidade === 'cuartillo' || unidade === 'estadal' || unidade === 'vara') {
+        return 'provincia_final';
+    } else {
+        return 'result';
+    }
+};
+
+//addStep methods creates new steps and adds them to the sequence
+addStep(
+    'provincia_final', //Step reference
+    'Seleccione a provincia', //Step question
+    'Select', //Step type
+    provincias, //Step option
+    '', //Next step
+    'Seleccione a provincia á que pertence a localidade na que quere consultar a medida' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
 addStep(
-    'valor', //Step reference
-    'Introduza o valor a convertir', //Step question
-    'Input', //Step type
-    'Float', //Step option
-    'result', //Next step
-    'Introduza un número' //Step info
+    'concellosCoruna_final', //Step reference
+    'Seleccione o concello', //Step question
+    'Select', //Step type
+    coruna_concellos, //Step option
+    '', //Next step
+    'Seleccione o concello ó que pertence a localidade na que quere consultar a medida' //Step info
 );
+
+//addStep methods creates new steps and adds them to the sequence
+addStep(
+    'concellosLugo_final', //Step reference
+    'Seleccione o concello', //Step question
+    'Select', //Step type
+    lugo_concellos, //Step option
+    '', //Next step
+    'Seleccione o concello ó que pertence a localidade na que quere consultar a medida' //Step info
+);
+
+//addStep methods creates new steps and adds them to the sequence
+addStep(
+    'concellosPontevedra_final', //Step reference
+    'Seleccione o concello', //Step question
+    'Select', //Step type
+    pontevedra_concellos, //Step option
+    '', //Next step
+    'Seleccione o concello ó que pertence a localidade na que quere consultar a medida' //Step info
+);
+
+//XXX_nextStep method is used to define multiple targets for one step
+var provincia_final_nextStep = function () {
+    var provincia = getAnswer('provincia_final');
+    var nextStep;
+    switch (provincia) {
+    case 'A Coruña':
+        nextStep = 'concellosCoruna_final';
+        break;
+    case 'Lugo':
+        nextStep = 'concellosLugo_final';
+        break;
+    case 'Ourense':
+        nextStep = 'result';
+        posicion_final = 158;
+        break;
+    case 'Pontevedra':
+        nextStep = 'concellosPontevedra_final';
+        break;
+    }
+    return nextStep;
+};
+
+//XXX_nextStep method is used to define multiple targets for one step
+var concellosCoruna_final_nextStep = function () {
+    var concellosCoruna = getAnswer('concellosCoruna_final');
+    for (var i = 0; i < coruna_concellos.length; i++) {
+        if (concellosCoruna === coruna_concellos[i]) {
+            posicion_final = i + 159;
+        }
+    }
+    return 'result';
+};
+
+//XXX_nextStep method is used to define multiple targets for one step
+var concellosLugo_final_nextStep = function () {
+    var concellosLugo = getAnswer('concellosLugo_final');
+    for (var i = 0; i < lugo_concellos.length; i++) {
+        if (concellosLugo === lugo_concellos[i]) {
+            posicion_final = i + 93;
+        }
+    }
+    return 'result';
+};
+
+//XXX_nextStep method is used to define multiple targets for one step
+var concellosPontevedra_final_nextStep = function () {
+    var concellosPontevedra = getAnswer('concellosPontevedra_final');
+    for (var i = 0; i < pontevedra_concellos.length; i++) {
+        if (concellosPontevedra === pontevedra_concellos[i]) {
+            posicion_final = i;
+        }
+    }
+    return 'result';
+};
+
+
+
+
+
+
 
 //sequenceResult function contains the sequence logic and returns the result
 function sequenceResult() {
-    var unidad_inicial;
-    var unidad_final;
+    var unidade_inicial = getAnswer('superficie_inicial');
+    var unidade_final = getAnswer('superficie_final');
     var valor_inicial = getAnswer('valor');
     var valor_final;
 
-    var unidad_patron = [];
-    var conversion_patron = [];
-    var resultado_conversion = [];
-
     var resultado = '';
 
-    eval('unidad_patron = ' + magnitud + '_unidades');
-    eval('conversion_patron = ' + magnitud + '_conversion');
+    var getFactor = function (unidade) {
 
-    var getFactor = function (unidad, unidades, conversiones) {
+        if (unidade === 'fanega' || unidade === 'ferrado' || unidade === 'tega' || unidade === 'cunca' || unidade === 'cuartillo' || unidade === 'estadal' || unidade === 'vara') {
+        /********************/
+
+
+
+        } else {
+            return 'superficie_final';
+        }
+
         for (var i = 0; i < unidades.length; i++) {
             if (unidad === unidades[i]) {
                 return conversiones[i];
