@@ -366,7 +366,21 @@ var Screen = function () {
 
     //private method that modifies the currentStep and the stepCount variables
     var findNextStep = function () {
-        if (currentStep.getStepData('next') == 'result') {
+        var nextStep = currentStep.getStepData('next');
+        if (nextStep === '') { //if there is no nextStep then execute the function
+            var reference = currentStep.getStepData('reference');
+            eval('nextStep = ' + reference + '_nextStep()');
+        }
+        if (nextStep === 'result') {
+            activeSequence.addResult(sequenceResult());
+            printResult();
+        } else {
+            currentStep = activeSequence.getStepByRef(nextStep);
+            stepCount++;
+            printStep();
+        }
+
+        /*if (currentStep.getStepData('next') == 'result') {
             activeSequence.addResult(sequenceResult());
             printResult();
         } else {
@@ -378,7 +392,7 @@ var Screen = function () {
             currentStep = activeSequence.getStepByRef(nextStep);
             stepCount++;
             printStep();
-        }
+        }*/
     };
 };
 

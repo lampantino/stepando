@@ -8,6 +8,7 @@ vers 0.2.0 (03/11/13)
 	-First stable version.
 
 Modificaciones restantes:
+-error: cambio tamaño letra en versión móvil.
 -error: boton next android (tab).
 -comentarios en secuencias.
 -comentarios en menu.

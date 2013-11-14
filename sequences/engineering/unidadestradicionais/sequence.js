@@ -7,7 +7,7 @@ createSequence(
     'sre.quereck@gmail.com', //Sequence author email
     '0.1', //Sequence last version
     '11/11/2013', //Sequence last review date
- ['12Kaia98xJdD3u683jEpgkm6JGtkBkATcw', 'lampantino', 'lampantino', 'https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sre%2equereck%40gmail%2ecom&lc=ES&item_name=Stepando&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest'], //Sequence donation adresses
+ ['18JBKuM7LuMbLXDPctYkyk34Jpm74KenKa', 'lampantino', 'lampantino', 'https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sre%2equereck%40gmail%2ecom&lc=ES&item_name=Stepando&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest'], //Sequence donation adresses
     'Información obtida de <a href="http://www.mftopografia.com/f02_unidades.php" target="_blank">MF Topografía</a>' //Sequence result information
 );
 
@@ -45,7 +45,6 @@ var posicion_final;
 
 var superficie_unidades = ['fanega', 'ferrado', 'tega', 'cunca', 'cuartillo', 'estadal', 'vara', 'km²', 'hectárea', 'área', 'centiárea', 'm² (S.I.)', 'dm²', 'cm²', 'mm²', 'milla²', 'acre', 'yarda²', 'pie²', 'polgada² (galega)', 'polgada² (inglesa)'];
 var superficie_conversion = [1, 1, 1, 1, 1, 1, 1, 1000000, 10000, 100, 1, 1, 0.01, 0.0001, 0.000001, 2589987.83, 4046.8544812, 0.8361273924, 0.0929030436, 0.00054289, 0.00064516];
-
 
 
 
@@ -148,7 +147,7 @@ var concellosCoruna_inicial_nextStep = function () {
     var concellosCoruna = getAnswer('concellosCoruna_inicial');
     for (var i = 0; i < coruna_concellos.length; i++) {
         if (concellosCoruna === coruna_concellos[i]) {
-            posicion_inicial = i + 159;
+            posicion_inicial = i;
         }
     }
     return 'superficie_final';
@@ -170,12 +169,11 @@ var concellosPontevedra_inicial_nextStep = function () {
     var concellosPontevedra = getAnswer('concellosPontevedra_inicial');
     for (var i = 0; i < pontevedra_concellos.length; i++) {
         if (concellosPontevedra === pontevedra_concellos[i]) {
-            posicion_inicial = i;
+            posicion_inicial = i+159;
         }
     }
     return 'superficie_final';
 };
-
 
 
 
@@ -270,7 +268,7 @@ var concellosCoruna_final_nextStep = function () {
     var concellosCoruna = getAnswer('concellosCoruna_final');
     for (var i = 0; i < coruna_concellos.length; i++) {
         if (concellosCoruna === coruna_concellos[i]) {
-            posicion_final = i + 159;
+            posicion_final = i;
         }
     }
     return 'result';
@@ -292,7 +290,7 @@ var concellosPontevedra_final_nextStep = function () {
     var concellosPontevedra = getAnswer('concellosPontevedra_final');
     for (var i = 0; i < pontevedra_concellos.length; i++) {
         if (concellosPontevedra === pontevedra_concellos[i]) {
-            posicion_final = i;
+            posicion_final = i+159;
         }
     }
     return 'result';
@@ -301,39 +299,77 @@ var concellosPontevedra_final_nextStep = function () {
 
 
 
-
-
-
 //sequenceResult function contains the sequence logic and returns the result
 function sequenceResult() {
     var unidade_inicial = getAnswer('superficie_inicial');
+    var provincia_inicial = getAnswer('provincia_inicial');
+    
     var unidade_final = getAnswer('superficie_final');
     var valor_inicial = getAnswer('valor');
     var valor_final;
 
     var resultado = '';
-
-    var getFactor = function (unidade) {
-
-        if (unidade === 'fanega' || unidade === 'ferrado' || unidade === 'tega' || unidade === 'cunca' || unidade === 'cuartillo' || unidade === 'estadal' || unidade === 'vara') {
-        /********************/
-
-
-
-        } else {
-            return 'superficie_final';
+    
+    alert(posicion_inicial+'->'+posicion_final);
+    
+    var getConcello = function(posicion) {
+        var concello;
+        switch(posicion) {
+                case posicion < 93:
+                    concello = coruna_concellos[posicion] + '(A Coruña)';
+                    break;
+                case posicion >= 93 && posicion < 158:
+                    alert(lugo_concellos[posicion-93]);
+                    concello = lugo_concellos[posicion-93] + '(Lugo)';
+                    break;
+                case posicion = 158:
+                    concello = '(Ourense)';
+                    break;
+                case posicion > 158:
+                    concello = pontevedra_concellos[posicion-158]  + '(Pontevedra)';
+                    break;
         }
-
-        for (var i = 0; i < unidades.length; i++) {
-            if (unidad === unidades[i]) {
-                return conversiones[i];
+        return concello;
+    };
+    
+    
+    
+    var getFactor = function (unidade, posicion) {
+        var factor;
+        switch (unidade) {
+        case 'fanega':
+            factor = fanega[posicion];
+            break;
+        case 'ferrado':
+            factor = ferrado[posicion];
+            break;
+        case 'tega':
+            factor = tega[posicion];
+            break;
+        case 'cunca':
+            factor = cunca[posicion];
+            break;
+        case 'cuartillo':
+            factor = cuartillo[posicion];
+            break;
+        case 'estadal':
+            factor = estadal[posicion];
+            break;
+        case 'vara':
+            factor = vara[posicion];
+            break;
+        default:
+            for (var i = 0; i < superficie_unidades.length; i++) {
+                if (unidade === superficie_unidades[i]) {
+                    factor = superficie_conversion[i];
+                }
             }
         }
+        return factor;
     };
 
-    var factor_inicial = getFactor(unidad_inicial, unidad_patron, conversion_patron);
-    var factor_final = getFactor(unidad_final, unidad_patron, conversion_patron);
-
+    var factor_inicial = getFactor(unidade_inicial, posicion_inicial);
+    var factor_final = getFactor(unidade_final, posicion_final);
     valor_final = valor_inicial * factor_inicial / factor_final;
 
     var formatNumber = function (number) {
@@ -348,7 +384,7 @@ function sequenceResult() {
     valor_inicial = formatNumber(parseFloat(valor_inicial));
     valor_final = formatNumber(parseFloat(valor_final));
 
-    resultado += valor_inicial + ' ' + unidad_inicial + ' = ' + valor_final + ' ' + unidad_final;
-
+    resultado += valor_inicial + ' ' + unidade_inicial + getConcello(posicion_inicial) +' = ' + valor_final + ' ' + unidade_final + getConcello(posicion_final);
+    
     return resultado;
 }
