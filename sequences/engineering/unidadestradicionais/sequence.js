@@ -43,7 +43,7 @@ var vara = [0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.71, 0.
 var posicion_inicial;
 var posicion_final;
 
-var superficie_unidades = ['fanega', 'ferrado', 'tega', 'cunca', 'cuartillo', 'estadal', 'vara', 'km²', 'hectárea', 'área', 'centiárea', 'm² (S.I.)', 'dm²', 'cm²', 'mm²', 'milla²', 'acre', 'yarda²', 'pie²', 'polgada² (galega)', 'polgada² (inglesa)'];
+var superficie_unidades = ['ferrado', 'cunca', 'fanega', 'tega', 'cuartillo', 'estadal', 'vara', 'km²', 'hectárea', 'área', 'centiárea', 'm² (S.I.)', 'dm²', 'cm²', 'mm²', 'milla²', 'acre', 'yarda²', 'pie²', 'polgada² (galega)', 'polgada² (inglesa)'];
 var superficie_conversion = [1, 1, 1, 1, 1, 1, 1, 1000000, 10000, 100, 1, 1, 0.01, 0.0001, 0.000001, 2589987.83, 4046.8544812, 0.8361273924, 0.0929030436, 0.00054289, 0.00064516];
 
 
@@ -169,7 +169,7 @@ var concellosPontevedra_inicial_nextStep = function () {
     var concellosPontevedra = getAnswer('concellosPontevedra_inicial');
     for (var i = 0; i < pontevedra_concellos.length; i++) {
         if (concellosPontevedra === pontevedra_concellos[i]) {
-            posicion_inicial = i+159;
+            posicion_inicial = i + 159;
         }
     }
     return 'superficie_final';
@@ -290,7 +290,7 @@ var concellosPontevedra_final_nextStep = function () {
     var concellosPontevedra = getAnswer('concellosPontevedra_final');
     for (var i = 0; i < pontevedra_concellos.length; i++) {
         if (concellosPontevedra === pontevedra_concellos[i]) {
-            posicion_final = i+159;
+            posicion_final = i + 159;
         }
     }
     return 'result';
@@ -303,37 +303,35 @@ var concellosPontevedra_final_nextStep = function () {
 function sequenceResult() {
     var unidade_inicial = getAnswer('superficie_inicial');
     var provincia_inicial = getAnswer('provincia_inicial');
-    
+
     var unidade_final = getAnswer('superficie_final');
     var valor_inicial = getAnswer('valor');
     var valor_final;
 
     var resultado = '';
-    
-    alert(posicion_inicial+'->'+posicion_final);
-    
-    var getConcello = function(posicion) {
+
+    var getConcello = function (posicion, unidade) {
         var concello;
-        switch(posicion) {
-                case posicion < 93:
-                    concello = coruna_concellos[posicion] + '(A Coruña)';
-                    break;
-                case posicion >= 93 && posicion < 158:
-                    alert(lugo_concellos[posicion-93]);
-                    concello = lugo_concellos[posicion-93] + '(Lugo)';
-                    break;
-                case posicion = 158:
-                    concello = '(Ourense)';
-                    break;
-                case posicion > 158:
-                    concello = pontevedra_concellos[posicion-158]  + '(Pontevedra)';
-                    break;
+
+        if (unidade !== 'fanega' && unidade !== 'ferrado' && unidade !== 'tega' && unidade !== 'cunca' && unidade !== 'cuartillo' && unidade !== 'estadal' && unidade !== 'vara') {
+            concello = '';
+        } else if (posicion < 93) {
+            concello = 'de ' + coruna_concellos[posicion] + ' (A Coruña)';
+        } else if (posicion >= 93 && posicion < 158) {
+            posicion = posicion - 93;
+            concello = 'de ' + lugo_concellos[posicion] + ' (Lugo)';
+        } else if (posicion == 158) {
+            concello = 'de Ourense';
+        } else if (posicion > 158) {
+            posicion = posicion - 159;
+            concello = 'de ' + pontevedra_concellos[posicion] + ' (Pontevedra)';
         }
+
         return concello;
     };
-    
-    
-    
+
+
+
     var getFactor = function (unidade, posicion) {
         var factor;
         switch (unidade) {
@@ -384,7 +382,7 @@ function sequenceResult() {
     valor_inicial = formatNumber(parseFloat(valor_inicial));
     valor_final = formatNumber(parseFloat(valor_final));
 
-    resultado += valor_inicial + ' ' + unidade_inicial + getConcello(posicion_inicial) +' = ' + valor_final + ' ' + unidade_final + getConcello(posicion_final);
-    
+    resultado += valor_inicial + ' ' + unidade_inicial + ' ' + getConcello(posicion_inicial, unidade_inicial) + ' = ' + valor_final + ' ' + unidade_final + ' ' + getConcello(posicion_final, unidade_final);
+
     return resultado;
 }

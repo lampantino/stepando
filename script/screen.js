@@ -11,7 +11,6 @@ var Screen = function () {
 
     //variables
     var currentStep;
-    var stepCount;
 
     //translation variables
     var button_Author;
@@ -189,6 +188,7 @@ var Screen = function () {
         var option = currentStep.getStepData('option');
         var keyboard = '';
         var info = currentStep.getStepData('info');
+        var stepNum = activeSequence.getStepNumByRef(ref);
 
         var screenContent = '';
         screenContent += '<span id="question_' + ref + '" class=question>' + question + '</span>';
@@ -226,8 +226,8 @@ var Screen = function () {
         screenContent += '</tr></table>';
         screenContent += '<div id="info_' + ref + '" class="rounded boxShadow info" style="display:none;">' + info + '</div>';
         screenContent += '<div id="alert_' + ref + '" class="rounded boxShadow alert" style="display:none;"></div>';
-        document.getElementById('step' + stepCount).innerHTML = screenContent;
-        document.getElementById('step' + stepCount).style.display = 'block';
+        document.getElementById('step' + stepNum).innerHTML = screenContent;
+        document.getElementById('step' + stepNum).style.display = 'block';
         window.scrollTo(0, document.body.scrollHeight);
         document.getElementById('answer_' + ref).focus();
     };
@@ -330,6 +330,7 @@ var Screen = function () {
         var answer = document.getElementById('answer_' + ref).value;
         var type = tempStep.getStepData('type').toLowerCase();
         var option = tempStep.getStepData('option').toString().toLowerCase();
+        var stepNum = activeSequence.getStepNumByRef(ref);
         if (option === 'integer' || option === 'float') {
             answer = parseFloat(answer);
         } //converts numbers entered as string to real numbers
@@ -340,31 +341,50 @@ var Screen = function () {
 
             var nextStep = tempStep.getStepData('next');
             if (nextStep === '') { //if there is no nextStep then execute the function
-                var reference = tempStep.getStepData('reference');
-                eval('nextStep = ' + reference + '_nextStep()');
+                eval('nextStep = ' + ref + '_nextStep()');
                 currentStep = activeSequence.getStepByRef(nextStep);
+                                
                 //this code hides the rest of the steps after updating the answer
                 var totalSteps = activeSequence.getSeqData('steps').length;
-                stepCount = activeSequence.getStepNumByRef(ref) + 1;
-                for (var i = stepCount; i < totalSteps; i++) {
+                for (var i = stepNum+1; i < totalSteps; i++) {
                     document.getElementById('step' + i).style.display = 'none';
                 }
-                printStep();
+                
+                if(typeof activeSequence.getSeqData('result') === 'undefined') {
+                    activeSequence.addResult(sequenceResult());
+                    printResult();
+                } else {
+                    printStep();
+                    document.getElementById('result').style.display = 'none';
+                    activeSequence.addResult(undefined);
+                }
+                
+                    
+                    
+                    
+                    
+                    
+                    
+                /*printStep();
                 document.getElementById('result').style.display = 'none';
-                activeSequence.addResult(undefined);
+                activeSequence.addResult(undefined);*/
+            } else if (nextStep === 'result') {
+                activeSequence.addResult(sequenceResult());
+                printResult();
             }
 
         } else {
             document.getElementById('alert_' + ref).innerHTML = stepAlert;
             document.getElementById('alert_' + ref).style.display = 'block';
         }
+        /*
         if (typeof activeSequence.getSeqData('result') !== 'undefined') {
             activeSequence.addResult(sequenceResult());
             printResult();
-        }
+        }*/
     };
 
-    //private method that modifies the currentStep and the stepCount variables
+    //private method that modifies the currentStep
     var findNextStep = function () {
         var nextStep = currentStep.getStepData('next');
         if (nextStep === '') { //if there is no nextStep then execute the function
@@ -376,23 +396,8 @@ var Screen = function () {
             printResult();
         } else {
             currentStep = activeSequence.getStepByRef(nextStep);
-            stepCount++;
             printStep();
         }
-
-        /*if (currentStep.getStepData('next') == 'result') {
-            activeSequence.addResult(sequenceResult());
-            printResult();
-        } else {
-            var nextStep = currentStep.getStepData('next');
-            if (nextStep === '') { //if there is no nextStep then execute the function
-                var reference = currentStep.getStepData('reference');
-                eval('nextStep = ' + reference + '_nextStep()');
-            }
-            currentStep = activeSequence.getStepByRef(nextStep);
-            stepCount++;
-            printStep();
-        }*/
     };
 };
 
