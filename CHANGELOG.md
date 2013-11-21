@@ -10,6 +10,9 @@ vers 0.2.0 (03/11/13)
 Modificaciones restantes:
 -error: cambio tamaño letra en versión móvil.
 -error: boton next android (tab).
+-modificar aspecto títulos secuencias en el menu.
+-mensaje confirmación cambiar paso.
+-responsive design (cyanogenmod)
 -comentarios en secuencias.
 -comentarios en menu.
 -resolver mejor donativo bitcoin.

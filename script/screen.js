@@ -314,10 +314,20 @@ var Screen = function () {
         var stepAlert = checkAnswer(answer, type, option);
         if (stepAlert === '') {
             currentStep.setStepAnswer(answer);
+            if (option === 'integer' || option === 'float') {
+                answer = parseFloat(answer);
+            } //converts numbers entered as string to real numbers
             document.getElementById('alert_' + ref).style.display = 'none';
             document.getElementById('nextStepButton_' + ref).style.display = 'none';
             document.getElementById('updateStepButton_' + ref).style.display = 'block';
-            findNextStep();
+            var nextStep = findNextStep(currentStep);
+            if (nextStep === 'result') {
+                activeSequence.addResult(sequenceResult());
+                printResult();
+            } else {
+                currentStep = activeSequence.getStepByRef(nextStep);
+                printStep();
+            }
         } else {
             document.getElementById('alert_' + ref).innerHTML = stepAlert;
             document.getElementById('alert_' + ref).style.display = 'block';
@@ -330,45 +340,37 @@ var Screen = function () {
         var answer = document.getElementById('answer_' + ref).value;
         var type = tempStep.getStepData('type').toLowerCase();
         var option = tempStep.getStepData('option').toString().toLowerCase();
-        var stepNum = activeSequence.getStepNumByRef(ref);
-        if (option === 'integer' || option === 'float') {
-            answer = parseFloat(answer);
-        } //converts numbers entered as string to real numbers
         var stepAlert = checkAnswer(answer, type, option);
         if (stepAlert === '') {
+            if (option === 'integer' || option === 'float') {
+                answer = parseFloat(answer);
+            } //converts numbers entered as string to real numbers
             tempStep.setStepAnswer(answer);
             document.getElementById('alert_' + ref).style.display = 'none';
-
-            var nextStep = tempStep.getStepData('next');
-            if (nextStep === '') { //if there is no nextStep then execute the function
-                eval('nextStep = ' + ref + '_nextStep()');
-                currentStep = activeSequence.getStepByRef(nextStep);
-                                
-                //this code hides the rest of the steps after updating the answer
+            
+            var nextStep = findNextStep(tempStep);
+            
+            if(tempStep.getStepData('next') === '') {
+                var stepNum = activeSequence.getStepNumByRef(ref);
                 var totalSteps = activeSequence.getSeqData('steps').length;
+                
                 for (var i = stepNum+1; i < totalSteps; i++) {
                     document.getElementById('step' + i).style.display = 'none';
                 }
+                document.querySelector('footer').style.display = 'none';
                 
-                if(typeof activeSequence.getSeqData('result') === 'undefined') {
+                if(nextStep === 'result') {
                     activeSequence.addResult(sequenceResult());
                     printResult();
                 } else {
-                    printStep();
+                    currentStep = activeSequence.getStepByRef(nextStep);
                     document.getElementById('result').style.display = 'none';
                     activeSequence.addResult(undefined);
+                    printStep();
                 }
-                
-                    
-                    
-                    
-                    
-                    
-                    
-                /*printStep();
-                document.getElementById('result').style.display = 'none';
-                activeSequence.addResult(undefined);*/
-            } else if (nextStep === 'result') {
+            }
+            
+            if (nextStep === 'result' || typeof activeSequence.getSeqData('result') !== 'undefined') {
                 activeSequence.addResult(sequenceResult());
                 printResult();
             }
@@ -377,27 +379,16 @@ var Screen = function () {
             document.getElementById('alert_' + ref).innerHTML = stepAlert;
             document.getElementById('alert_' + ref).style.display = 'block';
         }
-        /*
-        if (typeof activeSequence.getSeqData('result') !== 'undefined') {
-            activeSequence.addResult(sequenceResult());
-            printResult();
-        }*/
     };
 
     //private method that modifies the currentStep
-    var findNextStep = function () {
-        var nextStep = currentStep.getStepData('next');
+    var findNextStep = function (step) {
+        var nextStep = step.getStepData('next');
         if (nextStep === '') { //if there is no nextStep then execute the function
-            var reference = currentStep.getStepData('reference');
+            var reference = step.getStepData('reference');
             eval('nextStep = ' + reference + '_nextStep()');
         }
-        if (nextStep === 'result') {
-            activeSequence.addResult(sequenceResult());
-            printResult();
-        } else {
-            currentStep = activeSequence.getStepByRef(nextStep);
-            printStep();
-        }
+        return nextStep;
     };
 };
 
