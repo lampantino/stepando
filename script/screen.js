@@ -58,15 +58,14 @@ var Screen = function () {
         var paypal = activeSequence.getSeqData('donate')[3];
 
         var screenContent = '';
-        screenContent += '<div class="step rounded boxShadow">';
-        screenContent += '<span class=question>' + title + '</span>';
-        screenContent += '<table id=buttons><tr>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'sequence\')"><div id="infoButton_sequence" class="button rounded centered boxShadow">' + button_Info + '</div></a></td>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'share\')"><div id="infoButton_share" class="button rounded centered boxShadow">' + button_Share + '</div></a></td>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'donate\')"><div id="infoButton_donate" class="button rounded centered boxShadow">' + button_Donate + '</div></a></td>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'author\')"><div id="infoButton_author" class="button rounded centered boxShadow">' + button_Author + '</div></a></td>';
-        screenContent += '</tr></table>';
-
+        screenContent += '<div class="step rounded boxShadow" style="display:block">';
+        screenContent += '<div class=question style="display:block;">' + title + '</div>';
+        
+        screenContent += '<div style="display:inline-block"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'sequence\')" style="float:left"><div id="infoButton_sequence" class="button rounded centered boxShadow">' + button_Info + '</div></a>';
+        screenContent += '<a href="javascript:void(0);" onclick="activeScreen.showInfo(\'share\')" style="float:left"><div id="infoButton_share" class="button rounded centered boxShadow">' + button_Share + '</div></a>';
+        screenContent += '<a href="javascript:void(0);" onclick="activeScreen.showInfo(\'donate\')" style="float:left"><div id="infoButton_donate" class="button rounded centered boxShadow">' + button_Donate + '</div></a>';
+        screenContent += '<a href="javascript:void(0);" onclick="activeScreen.showInfo(\'author\')" style="float:left"><div id="infoButton_author" class="button rounded centered boxShadow">' + button_Author + '</div></a></div>';
+        
         //author info
         screenContent += '<div id="info_author" class="rounded boxShadow info" style="display:none;"><span>' + text_Author + ': <a href="mailto:' + email + '" target="_blank">' + author + '</a></span><span><br>' + text_Update + ': <b>' + date + '</b> (vers. ' + version + ')</span></div>';
         //donation info
@@ -220,12 +219,28 @@ var Screen = function () {
         }
         screenContent += '</div>';
 
-        screenContent += '<table id=buttons><tr>';
-        screenContent += '<td style="float:left;"><a href="javascript:void(0);" id="nextStepButton_' + ref + '" onclick="activeScreen.getStepAnswer(\'' + ref + '\')" style="display:block;"><div class="button rounded centered boxShadow">' + button_Next + '</div></a><a href="javascript:void(0);" id="updateStepButton_' + ref + '" onclick="activeScreen.updateStepAnswer(\'' + ref + '\')" style="display:none;"><div class="button rounded centered boxShadow">' + button_Update + '</div></a></td>';
-        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'' + ref + '\')"><div id="infoButton_' + ref + '" class="button rounded centered boxShadow">' + button_Info + '</div></a></td>';
-        screenContent += '</tr></table>';
+        screenContent += '<div style="display:inline-block"><a href="javascript:void(0);" id="nextStepButton_' + ref + '" onclick="activeScreen.getStepAnswer(\'' + ref + '\')" style="display:block;float:left;"><div class="button rounded centered boxShadow">' + button_Next + '</div></a><a href="javascript:void(0);" id="updateStepButton_' + ref + '" onclick="activeScreen.updateStepAnswer(\'' + ref + '\')" style="display:none;float:left;"><div class="button rounded centered boxShadow">' + button_Update + '</div></a>';
+        screenContent += '<a href="javascript:void(0);" onclick="activeScreen.showInfo(\'' + ref + '\')" style="float:right"><div id="infoButton_' + ref + '" class="button rounded centered boxShadow">' + button_Info + '</div></a></div>';
+        
+        
+//        screenContent += '<table id=buttons><tr>';
+//        screenContent += '<td style="float:left;"><a href="javascript:void(0);" id="nextStepButton_' + ref + '" onclick="activeScreen.getStepAnswer(\'' + ref + '\')" style="display:block;"><div class="button rounded centered boxShadow">' + button_Next + '</div></a><a href="javascript:void(0);" id="updateStepButton_' + ref + '" onclick="activeScreen.updateStepAnswer(\'' + ref + '\')" style="display:none;"><div class="button rounded centered boxShadow">' + button_Update + '</div></a></td>';
+//        screenContent += '<td style="float:right;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'' + ref + '\')"><div id="infoButton_' + ref + '" class="button rounded centered boxShadow">' + button_Info + '</div></a></td>';
+//        screenContent += '</tr></table>';
+        
+        
         screenContent += '<div id="info_' + ref + '" class="rounded boxShadow info" style="display:none;">' + info + '</div>';
         screenContent += '<div id="alert_' + ref + '" class="rounded boxShadow alert" style="display:none;"></div>';
+        
+        
+        screenContent += '<div id="confirm_'+ref+'" style="display:none">';
+        screenContent += '<div class="rounded boxShadow alert" style="float:left">Si actualiza se borrarán los pasos posteriores, ¿desea continuar?</div>';
+        screenContent += '<div style="float:left"><a href="javascript:void(0);" onclick="activeScreen.confirmUpdate(\'' + ref + '\', true)" style="float:left"><div class="littleButton rounded centered boxShadow alert">Si</div></a>';
+        screenContent += '<a href="javascript:void(0);" onclick="activeScreen.confirmUpdate(\'' + ref + '\', false)" style="float:left"><div class="littleButton rounded centered boxShadow alert">No</div></a></div>';
+        screenContent += '</div>';
+        
+        
+        screenContent += '</div>';
         document.getElementById('step' + stepNum).innerHTML = screenContent;
         document.getElementById('step' + stepNum).style.display = 'block';
         window.scrollTo(0, document.body.scrollHeight);
@@ -351,6 +366,11 @@ var Screen = function () {
             var nextStep = findNextStep(tempStep);
             
             if(tempStep.getStepData('next') === '') {
+                
+                document.getElementById('confirm_' + ref).style.display = 'inline-block';
+                
+                
+                
                 var stepNum = activeSequence.getStepNumByRef(ref);
                 var totalSteps = activeSequence.getSeqData('steps').length;
                 
@@ -380,7 +400,19 @@ var Screen = function () {
             document.getElementById('alert_' + ref).style.display = 'block';
         }
     };
-
+    
+    
+    this.confirmUpdate = function(ref, answer) {
+        if(answer == true) {
+            document.getElementById('confirm_' + ref).style.display = 'none';
+            return true;
+        } else {
+            document.getElementById('confirm_' + ref).style.display = 'none';
+            return false;
+        }
+    }
+    
+    
     //private method that modifies the currentStep
     var findNextStep = function (step) {
         var nextStep = step.getStepData('next');

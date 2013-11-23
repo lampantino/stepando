@@ -88,7 +88,7 @@ section {
     height: 20px;
     font-size: 0.9em;
     font-weight: bold;
-    margin: 1px;
+    margin: 2px 4px;
     padding-top:2px;
 }
 .littleButton {
@@ -100,7 +100,7 @@ section {
 }
 .answer {
     border: 3px solid gray;
-    margin: 3px 4px;
+    margin: 2px 4px 4px;
     text-align: center;
 }
 .alert {
@@ -160,7 +160,7 @@ ul {
 .info {
     background-color: gray;
     color: white;
-    margin: 3px 4px 7px 4px;
+    margin: 2px 4px 4px;
     padding: 5px 10px;
     font-size: 0.9em;
 }
