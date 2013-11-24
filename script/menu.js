@@ -39,7 +39,7 @@ var Menu = function (currentLanguage) {
         var screenContent = '';
         screenContent += '<div class="step rounded boxShadow">';
         screenContent += '<span class=question>' + text_Language + '</span>';
-        screenContent += '<table id=buttons><tr>';
+        screenContent += '<div class=buttons>';
         //Only load the languages with sequences
         var langSeq = '';
         for (var l = 0; l < totalLanguages.length; l++) {
@@ -60,10 +60,9 @@ var Menu = function (currentLanguage) {
         }
         //print the buttons of the languages with sequences
         for (var i = languages.length - 1; i >= 0; i--) {
-            screenContent += '<td style="float:right;"><a href="index.html?' + languages[i] + '"><div id="languageButton_' + languages[i] + '" class="button rounded centered boxShadow littleButton">' + languages[i] + '</div></a></td>';
+            screenContent += '<a href="index.html?' + languages[i] + '"style="float:right;"><div id="languageButton_' + languages[i] + '" class="button rounded centered boxShadow littleButton">' + languages[i] + '</div></a>';
         }
-        screenContent += '</tr></table>';
-        screenContent += '</div>';
+        screenContent += '</div></div>';
         document.getElementById('languages').innerHTML = screenContent;
         document.getElementById('languages').style.display = 'block';
         document.getElementById('languageButton_' + language).style.backgroundColor = 'gray';

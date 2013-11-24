@@ -7,8 +7,8 @@
         min-width: 200px;
         max-width: 400px;
     }
-    section {
-        min-width: 400px;
-        max-width: 600px;
+    footer {
+        min-width: 200px;
+        max-width: 400px;
     }
 }

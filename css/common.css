@@ -71,19 +71,21 @@ section {
 .step {
     margin: 5px;
     padding: 5px;
+    border: 1px solid lightgray;
 }
 .question {
     font-size: 1.1em;
     font-weight: bold;
+    margin: 0 5px;
 }
-#buttons {
+.buttons {
     width: 100%;
-    margin: 1px 0;
+    display:inline-block;
 }
 .button {
     background-color: white;
     color: gray;
-    border: 3px solid gray;
+    border: 2px solid gray;
     width: 67px;
     height: 20px;
     font-size: 0.9em;
@@ -99,7 +101,7 @@ section {
     border-radius: 10px;
 }
 .answer {
-    border: 3px solid gray;
+    border: 2px solid gray;
     margin: 2px 4px 4px;
     text-align: center;
 }

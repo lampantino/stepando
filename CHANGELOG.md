@@ -8,6 +8,7 @@ vers 0.2.0 (03/11/13)
 	-First stable version.
 
 Modificaciones restantes:
+-borrar las tablas.
 -error: cambio tamaño letra en versión móvil.
 -error: boton next android (tab).
 -modificar aspecto títulos secuencias en el menu.
