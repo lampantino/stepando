@@ -13,6 +13,10 @@ header {
     color: white;
     font-size: 2.2em;
 }
+p   {
+    line-height: 1.4;
+    margin:0;
+}
 .centered {
     text-align: center;
 }
@@ -48,8 +52,8 @@ header {
             transform:skew(8deg) rotate(3deg);
 }
 .boxShadow {
-    -webkit-box-shadow: 2px 2px 5px 0 gray;
-    box-shadow: 2px 2px 5px 0 gray;
+    -webkit-box-shadow: 2px 2px 5px 0 lightgray;
+    box-shadow: 2px 2px 5px 0 lightgray;
 }
 section {
     margin: 0 auto;
@@ -65,6 +69,12 @@ section {
     padding:2px;
 }
 
+.sequences {
+    list-style-type:none;
+    margin:2px 4px 4px;
+    padding:0;
+}
+
 #steps {
    
 }
@@ -74,7 +84,7 @@ section {
     border: 1px solid lightgray;
 }
 .question {
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: bold;
     margin: 0 5px;
 }
@@ -85,7 +95,7 @@ section {
 .button {
     background-color: white;
     color: gray;
-    border: 2px solid gray;
+    border: 1px solid lightgray;
     width: 67px;
     height: 20px;
     font-size: 0.9em;
@@ -97,18 +107,18 @@ section {
     width: 20px;
 }
 .rounded {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 0;
+    border-radius: 0;
 }
 .answer {
-    border: 2px solid gray;
+    border: 1px solid lightgray;
     margin: 2px 4px 4px;
     text-align: center;
 }
 .alert {
     background-color: white;
     color: red;
-    border: 3px solid red;
+    border: 1px solid red;
     margin: 3px 4px;
     padding: 2px 10px;
     font-size: 0.9em;
@@ -120,7 +130,7 @@ input {
     color: gray;
     font-size: 0.9em;
     font-weight: bold;
-    width: 96%;
+    width: 98%;
     margin: 2px 0;
 }
 
@@ -130,7 +140,7 @@ textarea    {
     color: gray;
     font-size: 0.9em;
     font-weight: bold;
-    width: 96%;
+    width: 98%;
     margin: 2px 0;
 }
 
@@ -141,35 +151,73 @@ select {
     color: gray;
     font-size: 0.9em;
     font-weight: bold;
-    width: 96%;
+    width: 98%;
     margin-bottom: 2px;
 }
-a:link, a:active, a:visited, a:hover {
+a:link, a:active, a:visited {
     text-decoration: none;
     color: white;
     font-weight: bold;
 }
-a.gray:link, a.gray:active, a.gray:visited, a.gray:hover {
+
+a:hover {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+    -webkit-transition: color 300ms linear;
+    -moz-transition: color 300ms linear;
+    -ms-transition: color 300ms linear;
+    -o-transition: color 300ms linear;
+    transition: color 300ms linear;
+}
+
+a.gray:link, a.gray:active, a.gray:visited {
     text-decoration: none;
     color: gray;
     font-weight: bold;
 }
+
+a.gray:hover {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+    -webkit-transition: color 300ms linear;
+    -moz-transition: color 300ms linear;
+    -ms-transition: color 300ms linear;
+    -o-transition: color 300ms linear;
+    transition: color 300ms linear;
+}
+
 ul {
     margin: 2px;
     line-height: 1.4;
 }
 
 .info {
-    background-color: gray;
-    color: white;
+    background-color: lightgray;
+    color: gray;
     margin: 2px 4px 4px;
     padding: 5px 10px;
     font-size: 0.9em;
+    font-weight: bold;
 }
 
 .result {
     font-size: 1em;
 }
+
+.leftBorderRed  {
+    border-left: 3px solid #ff7d7d;
+}
+
+.leftBorderBlue  {
+    border-left: 3px solid #83b7ff;
+}
+
+.leftBorderGreen  {
+    border-left: 3px solid #7bff9e;
+}
+
 footer {
     margin: 5px auto 0 auto;
     width: 100%;

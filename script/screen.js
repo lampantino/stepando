@@ -23,6 +23,7 @@ var Screen = function () {
     var text_Author;
     var text_Update;
     var text_Donation;
+    var text_Share;
     var text_Iframe;
     var text_Answer;
     var text_Result;
@@ -58,7 +59,7 @@ var Screen = function () {
         var paypal = activeSequence.getSeqData('donate')[3];
         
         var screenContent = '';
-        screenContent += '<div class="step rounded boxShadow" style="display:block">';
+        screenContent += '<div class="step rounded boxShadow leftBorderRed" style="display:block">';
         screenContent += '<div class=question >' + title + '</div>';
         
         screenContent += '<div class="buttons" style="display:inline-block;width:100%;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'sequence\')" style="float:right"><div id="infoButton_sequence" class="button rounded centered boxShadow">' + button_Info + '</div></a>';
@@ -67,10 +68,10 @@ var Screen = function () {
         screenContent += '<a href="javascript:void(0);" onclick="activeScreen.showInfo(\'author\')" style="float:right"><div id="infoButton_author" class="button rounded centered boxShadow">' + button_Author + '</div></a></div>';
                 
         //author info
-        screenContent += '<div id="info_author" class="rounded boxShadow info" style="display:none;"><span>' + text_Author + ': <a href="mailto:' + email + '" target="_blank">' + author + '</a></span><span><br>' + text_Update + ': <b>' + date + '</b> (vers. ' + version + ')</span></div>';
+        screenContent += '<div id="info_author" class="rounded boxShadow info" style="display:none;"><p>' + text_Author + ': <a href="mailto:' + email + '" target="_blank">' + author + '</a></p><p>' + text_Update + ': <b>' + date + '</b> (vers. ' + version + ')</p></div>';
         //donation info
         screenContent += '<div id="info_donate" class="rounded boxShadow info" style="display:none;">';
-        screenContent += '<span>' + text_Donation + '</span>';
+        screenContent += '<p>' + text_Donation + '</p>';
         //donation->paypal button
         screenContent += '<div class=buttons><a href="' + paypal + '" target="_blank" style="float:right;"><div id="infoButton_paypal" class="button rounded centered boxShadow">paypal</div></a>';
         //donation->gittip button
@@ -84,6 +85,7 @@ var Screen = function () {
         screenContent += '</div>';
         //share info
         screenContent += '<div id="info_share" class="rounded boxShadow info" style="display:none;">';
+        screenContent += '<p>' + text_Share + '</p>';
         //share->email button
         screenContent += '<div class=buttons><a href="mailto:?subject=' + title + '&body=Stepando%20-%20' + titlePercent + ':%0D%0A' + urlPercent + '" style="float:right;"><div id="infoButton_email" class="button rounded centered boxShadow">email</div></a>';
         //share->iframe button
@@ -140,6 +142,7 @@ var Screen = function () {
         eval('text_Author = text_Author_JSON.' + language);
         eval('text_Update = text_Update_JSON.' + language);
         eval('text_Donation = text_Donation_JSON.' + language);
+        eval('text_Share = text_Share_JSON.' + language);
         eval('text_Iframe = text_Iframe_JSON.' + language);
         eval('text_Answer = text_Answer_JSON.' + language);
         eval('text_Result = text_Result_JSON.' + language);
@@ -153,14 +156,14 @@ var Screen = function () {
     //public method that shows the info message
     this.showInfo = function (ref) {
         if (document.getElementById('info_' + ref).style.display == 'none') {
-            document.getElementById('infoButton_' + ref).style.backgroundColor = 'gray';
-            document.getElementById('infoButton_' + ref).style.color = 'white';
+            document.getElementById('infoButton_' + ref).style.backgroundColor = 'lightgray';
+            document.getElementById('infoButton_' + ref).style.color = 'gray';
             document.getElementById('infoButton_' + ref).style.borderColor = 'white';
             document.getElementById('info_' + ref).style.display = 'block';
         } else {
             document.getElementById('infoButton_' + ref).style.backgroundColor = 'white';
             document.getElementById('infoButton_' + ref).style.color = 'gray';
-            document.getElementById('infoButton_' + ref).style.borderColor = 'gray';
+            document.getElementById('infoButton_' + ref).style.borderColor = 'lightgray';
             document.getElementById('info_' + ref).style.display = 'none';
         }
     };
@@ -169,9 +172,9 @@ var Screen = function () {
     var addDivs = function () {
         var screenContent = '';
         for (var i = 0; i < activeSequence.getSeqData('steps').length; i++) {
-            screenContent += '<div class="step rounded boxShadow" id=step' + i + ' style="display:none;"></div>';
+            screenContent += '<div class="step rounded boxShadow leftBorderBlue" id=step' + i + ' style="display:none;"></div>';
         }
-        screenContent += '<div id=result class="step rounded boxShadow" style="display:none"></div>';
+        screenContent += '<div id=result class="step rounded boxShadow leftBorderGreen" style="display:none"></div>';
         document.getElementById('steps').innerHTML = screenContent;
     };
 

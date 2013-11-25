@@ -210,6 +210,20 @@ var text_Donation_JSON = {
     "zh": "Make a donation to the author to continue updating this sequence or doing something new.",
 };
 
+var text_Share_JSON = {
+    "en": "Help to share this sequence",
+    "es": "Ayude a difundir esta secuencia",
+    "gl": "Axude a difundir esta secuencia",
+    "eu": "Ayude a difundir esta secuencia",
+    "ct": "Ayude a difundir esta secuencia",
+    "de": "Help to share this sequence",
+    "pt": "Help to share this sequence",
+    "it": "Help to share this sequence",
+    "fr": "Help to share this sequence",
+    "ru": "Help to share this sequence",
+    "zh": "Help to share this sequence",
+};
+
 var text_Iframe_JSON = {
     "en": "Insert this code in your website:",
     "es": "Inserte este código en su web:",

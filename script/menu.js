@@ -37,7 +37,7 @@ var Menu = function (currentLanguage) {
 
     var printLanguages = function () {
         var screenContent = '';
-        screenContent += '<div class="step rounded boxShadow">';
+        screenContent += '<div class="step rounded boxShadow leftBorderRed">';
         screenContent += '<span class=question>' + text_Language + '</span>';
         screenContent += '<div class=buttons>';
         //Only load the languages with sequences
@@ -84,7 +84,7 @@ var Menu = function (currentLanguage) {
 
     var printCategories = function () {
         var screenContent = '';
-        screenContent += '<div class="step rounded boxShadow">';
+        screenContent += '<div class="step rounded boxShadow leftBorderBlue">';
         if (sequences_Categories[0] === '') {
             screenContent += '<span class=question>Sorry. No sequences available</span>';
         } else {
@@ -94,14 +94,14 @@ var Menu = function (currentLanguage) {
         for (var i = 0; i < sequences_Categories.length; i++) {
             if (sequences_Categories[i] != category) {
                 screenContent += '<div class="step rounded boxShadow">';
-                screenContent += '<span class=question>' + sequences_Categories[i] + '</span>';
-                screenContent += '<ul>';
+                screenContent += '<div class=question style="text-align:right;">' + sequences_Categories[i] + '</div>';
+                screenContent += '<div><ul class=sequences>';
                 for (var j = 0; j < sequences_Titles.length; j++) {
                     if (sequences_Categories[i] == sequences_Categories[j]) {
                         screenContent += '<li><a href="index.html?' + sequences_Adresses[j] + '" class="gray">' + sequences_Titles[j] + '</a></li>';
                     }
                 }
-                screenContent += '</ul>';
+                screenContent += '</ul></div>';
                 screenContent += '</div>';
                 category = sequences_Categories[i];
             }

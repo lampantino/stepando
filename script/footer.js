@@ -23,14 +23,12 @@ var Footer = function (currentLanguage) {
         translate(language);
 
         var screenContent = '';
-        screenContent += '<table id=buttons class=centered>';
-        screenContent += '<tr>';
-        screenContent += '<td style="float:left;">© 2013 stepando</td>';
-        screenContent += '<td style="float:right; margin-left:10px;"><a href="contact.html" target="_blank">' + button_Contact + '</a></td>';
-        screenContent += '<td style="float:right; margin-left:10px;"><a href="about.html" target="_blank">' + button_About + '</a></td>';
-        screenContent += '<td style="float:right; margin-left:10px;"><a href="'+ url_license +'" target="_blank">' + button_License + '</a></td>';
-        screenContent += '</tr>';
-        screenContent += '</table>';
+        screenContent += '<div id=buttons>';
+        screenContent += '<span style="float:left;">© 2013 stepando</span>';
+        screenContent += '<a href="contact.html" target="_blank" style="float:right; margin-left:10px;">' + button_Contact + '</a>';
+        screenContent += '<td style="float:right; margin-left:10px;"><a href="about.html" target="_blank" style="float:right; margin-left:10px;">' + button_About + '</a>';
+        screenContent += '<a href="'+ url_license +'" target="_blank" style="float:right; margin-left:10px;">' + button_License + '</a>';
+        screenContent += '</div>';
         document.querySelector('footer').innerHTML = screenContent;
     };
 
