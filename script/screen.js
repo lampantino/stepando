@@ -157,12 +157,12 @@ var Screen = function () {
     this.showInfo = function (ref) {
         if (document.getElementById('info_' + ref).style.display == 'none') {
             document.getElementById('infoButton_' + ref).style.backgroundColor = 'lightgray';
-            document.getElementById('infoButton_' + ref).style.color = 'gray';
+            document.getElementById('infoButton_' + ref).style.color = 'black';
             document.getElementById('infoButton_' + ref).style.borderColor = 'white';
             document.getElementById('info_' + ref).style.display = 'block';
         } else {
             document.getElementById('infoButton_' + ref).style.backgroundColor = 'white';
-            document.getElementById('infoButton_' + ref).style.color = 'gray';
+            document.getElementById('infoButton_' + ref).style.color = 'black';
             document.getElementById('infoButton_' + ref).style.borderColor = 'lightgray';
             document.getElementById('info_' + ref).style.display = 'none';
         }
@@ -266,7 +266,7 @@ var Screen = function () {
 
         var screenContent = '';
         screenContent += '<div class=question>' + text_Result + ':</div>';
-        screenContent += '<div class="rounded boxShadow info result">' + result + '</div>';
+        screenContent += '<div class="rounded boxShadow result">' + result + '</div>';
 
         screenContent += '<div class=buttons><a href="javascript:void(0);" onclick="window.print()" style="float:left;"><div id="print" class="button rounded centered boxShadow">' + button_Print + '</div></a>';
         screenContent += '<a href="javascript:void(0);" onclick="activeScreen.showInfo(\'result\')" style="float:right;"><div id="infoButton_result" class="button rounded centered boxShadow">' + button_Info + '</div></a></div>';

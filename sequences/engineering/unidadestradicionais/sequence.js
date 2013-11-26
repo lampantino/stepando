@@ -371,11 +371,12 @@ function sequenceResult() {
     valor_final = valor_inicial * factor_inicial / factor_final;
 
     var formatNumber = function (number) {
-        if (number < 0.001) {
-            number = number.toExponential();
+        if (number < 0.001 || number > 1000000) {
+            number = number.toExponential(3);
         } else if (number % 1 !== 0) {
             number = number.toFixed(3);
         }
+        number = number.toString().replace('.',',');
         return number;
     };
 

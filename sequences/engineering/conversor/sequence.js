@@ -27,6 +27,16 @@ var presion_conversion = [0.001, 1, 0.0001, 1e-6, 1000000, 1000, 100, 1, 100000,
 
 //addStep methods creates new steps and adds them to the sequence
 addStep(
+    'valor', //Step reference
+    'Introduzca el valor a convertir', //Step question
+    'Input', //Step type
+    'Float', //Step option
+    'magnitud', //Next step
+    'Ha de introducir un número' //Step info
+);
+
+//addStep methods creates new steps and adds them to the sequence
+addStep(
     'magnitud', //Step reference
     'Seleccione la mágnitud de la unidad que quiere convertir', //Step question
     'Select', //Step type
@@ -60,7 +70,7 @@ addStep(
     'Select', //Step type
     longitud_unidades, //Step option
     'longitud_final', //Next step
-    'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
+    'Ésta será la unidad en la que está el valor que ha introducido' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -69,8 +79,8 @@ addStep(
     'Seleccione la unidad a la que convertir el valor introducido', //Step question
     'Select', //Step type
     longitud_unidades, //Step option
-    'valor', //Next step
-    'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
+    'result', //Next step
+    'Ésta será la unidad a la que desea convertir el valor que ha introducido' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -80,7 +90,7 @@ addStep(
     'Select', //Step type
     superficie_unidades, //Step option
     'superficie_final', //Next step
-    'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
+    'Ésta será la unidad en la que está el valor que ha introducido' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -89,8 +99,8 @@ addStep(
     'Seleccione la unidad a la que convertir el valor introducido', //Step question
     'Select', //Step type
     superficie_unidades, //Step option
-    'valor', //Next step
-    'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
+    'result', //Next step
+    'Ésta será la unidad a la que desea convertir el valor que ha introducido' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -100,7 +110,7 @@ addStep(
     'Select', //Step type
     volumen_unidades, //Step option
     'volumen_final', //Next step
-    'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
+    'Ésta será la unidad en la que está el valor que ha introducido' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -109,8 +119,8 @@ addStep(
     'Seleccione la unidad a la que convertir el valor introducido', //Step question
     'Select', //Step type
     volumen_unidades, //Step option
-    'valor', //Next step
-    'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
+    'result', //Next step
+    'Ésta será la unidad a la que desea convertir el valor que ha introducido' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -120,7 +130,7 @@ addStep(
     'Select', //Step type
     presion_unidades, //Step option
     'presion_final', //Next step
-    'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
+    'Ésta será la unidad en la que está el valor que ha introducido' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -129,18 +139,8 @@ addStep(
     'Seleccione la unidad a la que convertir el valor introducido', //Step question
     'Select', //Step type
     presion_unidades, //Step option
-    'valor', //Next step
-    'El resultado convertirá el valor a las demás unidades de su categoría' //Step info
-);
-
-//addStep methods creates new steps and adds them to the sequence
-addStep(
-    'valor', //Step reference
-    'Introduzca el valor a convertir', //Step question
-    'Input', //Step type
-    'Float', //Step option
     'result', //Next step
-    'Ha de introducir un número' //Step info
+    'Ésta será la unidad a la que desea convertir el valor que ha introducido' //Step info
 );
 
 //sequenceResult function contains the sequence logic and returns the result
@@ -175,11 +175,12 @@ function sequenceResult() {
     valor_final = valor_inicial * factor_inicial / factor_final;
 
     var formatNumber = function (number) {
-        if (number < 0.001) {
-            number = number.toExponential();
+        if (number < 0.001 || number > 1000000) {
+            number = number.toExponential(3);
         } else if (number % 1 !== 0) {
             number = number.toFixed(3);
         }
+        number = number.toString().replace('.',',');
         return number;
     };
 
