@@ -23,7 +23,7 @@ var volumen_unidades = ['km³', 'hm³', 'dam³', 'm³ (S.I.)', 'dm³', 'cm³', '
 var volumen_conversion = [ 1e+9, 1e+6, 1e+3, 1, 1e-3, 1e-6, 1e-9, 1e-3, 1e-4, 1e-5, 1e-6];
 
 var presion_unidades = ['KN/m²', 'N/m²', 'N/cm²', 'N/mm²', 'MPa', 'kPa', 'hPa', 'Pa (S.I.)', 'Bar', 'kgf/m²', 'kgf/cm²', 'milibar', 'atmósfera física', 'atmósfera técnica', 'psi', 'mmHg', 'mca'];
-var presion_conversion = [0.001, 1, 0.0001, 1e-6, 1000000, 1000, 100, 1, 100000, 9.806652, 98066.52, 100, 101325, 98066.52, 6894.76, 133.32, 9806.65];
+var presion_conversion = [1000, 1, 0.0001, 1e-6, 1e+6, 1e+3, 1e+2, 1, 1e-5, 0.10197162, 1.01971621e-5, 0.01, 1.01971621e-5, 9.86923267e-6, 0.00014504, 0.00750064, 0.00010197];
 
 //addStep methods creates new steps and adds them to the sequence
 addStep(

@@ -37,7 +37,7 @@ var Menu = function (currentLanguage) {
 
     var printLanguages = function () {
         var screenContent = '';
-        screenContent += '<div class="step rounded boxShadow leftBorderRed">';
+        screenContent += '<div class="step leftside boxShadow">';
         screenContent += '<span class=question>' + text_Language + '</span>';
         screenContent += '<div class=buttons>';
         //Only load the languages with sequences
@@ -84,16 +84,16 @@ var Menu = function (currentLanguage) {
 
     var printCategories = function () {
         var screenContent = '';
-        screenContent += '<div class="step rounded boxShadow leftBorderBlue">';
+        /*screenContent += '<div class="step rounded boxShadow leftBorderBlue">';
         if (sequences_Categories[0] === '') {
             screenContent += '<span class=question>Sorry. No sequences available</span>';
         } else {
             screenContent += '<span class=question>' + text_Categories + '</span>';
-        }
+        }*/
         var category = '';
         for (var i = 0; i < sequences_Categories.length; i++) {
             if (sequences_Categories[i] != category) {
-                screenContent += '<div class="step rounded boxShadow">';
+                screenContent += '<div class="step rightside boxShadow">';
                 screenContent += '<div class=question style="text-align:right;">' + sequences_Categories[i] + '</div>';
                 screenContent += '<div><ul class=sequences>';
                 for (var j = 0; j < sequences_Titles.length; j++) {

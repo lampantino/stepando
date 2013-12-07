@@ -8,22 +8,27 @@ var seq_en_JSON = [
 
 var seq_es_JSON = [
     {
-        "category": "Ingeniería",
-        "title": "Calcular una viga de acero",
-        "adress": "engineering&vigaacero"
+        "category": "Conversores",
+        "title": "Conversor de unidades",
+        "adress": "conversors&conversor"
     },
     {
-        "category": "Ingeniería",
-        "title": "Conversor de unidades",
-        "adress": "engineering&conversor"
+        "category": "Estática",
+        "title": "Calcular una viga de acero",
+        "adress": "static&vigaacero"
+    },
+    {
+        "category": "Estática",
+        "title": "Predimensionado de una zapata aislada",
+        "adress": "static&zapata"
     },
 ];
 
 var seq_gl_JSON = [
     {
-        "category": "Enxeñería",
+        "category": "Conversores",
         "title": "Conversor de unidades tradicionais de superficie de Galicia",
-        "adress": "engineering&unidadestradicionais"
+        "adress": "conversors&unidadestradicionais"
     },
 ];
 

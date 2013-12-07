@@ -59,7 +59,7 @@ var Screen = function () {
         var paypal = activeSequence.getSeqData('donate')[3];
         
         var screenContent = '';
-        screenContent += '<div class="step leftside boxShadow leftBorderRed" style="display:block">';
+        screenContent += '<div class="step leftside boxShadow" style="display:block">';
         screenContent += '<div class=question >' + title + '</div>';
         
         screenContent += '<div class="buttons" style="display:inline-block;width:100%;"><a href="javascript:void(0);" onclick="activeScreen.showInfo(\'sequence\')" style="float:right"><div id="infoButton_sequence" class="button rounded centered boxShadow">' + button_Info + '</div></a>';
@@ -172,9 +172,9 @@ var Screen = function () {
     var addDivs = function () {
         var screenContent = '';
         for (var i = 0; i < activeSequence.getSeqData('steps').length; i++) {
-            screenContent += '<div class="step rightside boxShadow leftBorderBlue" id=step' + i + ' style="display:none;"></div>';
+            screenContent += '<div class="step rightside boxShadow" id=step' + i + ' style="display:none;"></div>';
         }
-        screenContent += '<div id=result class="step leftside boxShadow leftBorderGreen" style="display:none"></div>';
+        screenContent += '<div id=result class="step leftside " style="display:none"></div>';
         document.getElementById('steps').innerHTML = screenContent;
     };
 

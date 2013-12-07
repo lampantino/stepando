@@ -11,4 +11,7 @@
         min-width: 200px;
         max-width: 400px;
     }
+    .step {
+    margin: 10px 0;
+    }
 }
