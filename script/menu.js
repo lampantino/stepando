@@ -65,8 +65,8 @@ var Menu = function (currentLanguage) {
         screenContent += '</div></div>';
         document.getElementById('languages').innerHTML = screenContent;
         document.getElementById('languages').style.display = 'block';
-        document.getElementById('languageButton_' + language).style.backgroundColor = 'gray';
-        document.getElementById('languageButton_' + language).style.color = 'white';
+        document.getElementById('languageButton_' + language).style.backgroundColor = 'lightgray';
+        document.getElementById('languageButton_' + language).style.color = 'black';
         document.getElementById('languageButton_' + language).style.borderColor = 'white';
     };
 

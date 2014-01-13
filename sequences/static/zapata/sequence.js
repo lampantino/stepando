@@ -2,12 +2,12 @@
 createSequence(
     'es', //Sequence language
     'Predimensionado de una zapata aislada', //Sequence title
-    'Predimensiona una zapata en función de las cargas introducidas y de la tensión admisible del terreno', //Sequence info
+    'Predimensiona una zapata aislada y centrada que está sometida a una carga vertical sin momentos flectores', //Sequence info
     'Lampantino', //Sequence author
     'sre.quereck@gmail.com', //Sequence author email
     '0.1', //Sequence last version
     '6/12/2013', //Sequence last review date
- ['1NYcpukkrV6UywyJkggWkv7FwhDhijtM1C', 'https://flattr.com/submit/auto?user_id=lampantino&url=https%3A%2F%2Fc9.io%2Flampantino%2Fstepando%2Fworkspace%2Findex.html%3Fengineering%26vigaacero', 'https://www.gittip.com/lampantino'], //Sequence donation adresses
+ ['1CiJTEeMLTdHDekYTK7nXzZQ9SN9EsStdY', 'https://flattr.com/submit/auto?user_id=lampantino&url=https%3A%2F%2Fc9.io%2Flampantino%2Fstepando%2Fworkspace%2Findex.html%3Fengineering%26vigaacero', 'https://www.gittip.com/lampantino'], //Sequence donation adresses
     'Estos resultados son orientativos y únicamente útiles para un predimensionado' //Sequence result information
 );
 
@@ -36,7 +36,7 @@ addStep(
     'Input', //Step type
     'Float', //Step option
     'result', //Next step
-    'Ha de introducir la tensión en MPa' //Step info
+    'Ha de introducir la tensión en MPa.</br>Puede acceder a unas estimaciones orientativas en el siguiente <a href="http://www.codigotecnico.org/web/recursos/documentos/documentos/DBSE/DBSE-C/anejos/anejo_d_tablas/tabla_d25.jpg" target="_blank">enlace</a>.' //Step info
 );
 
 //sequenceResult function contains the sequence logic and returns the result
@@ -64,9 +64,8 @@ function sequenceResult() {
     cuantia = momento / (0.8 * canto * 500 * 1000 / 1.15);
 
     for (var i = 0; i < redondos.length; i++) {
-        for (var j = 3; j < 10; j++) {
+        for (var j = 3; j <= 10; j++) {
             var cuantiaProp = Math.PI * Math.pow((redondos[i] / 1000 / 2),2) * j;
-            alert(j+' redondos de diámetro '+redondos[i]+' = '+cuantiaProp); 
             if (cuantiaProp >= cuantia) {
                 var pesoProp = cuantiaProp * densidadAcero;
                 if (pesoAcero === 0) {
