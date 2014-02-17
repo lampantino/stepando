@@ -67,11 +67,7 @@ section {
     width: 100%;
     background-color: white;
 }
-#menu {
-    padding:2px 0;
-    background-color:lightgray;
-}
-#sequence {
+#menu, #about, #sequence {
     padding:2px 0;
     background-color:lightgray;
 }

@@ -2,8 +2,8 @@
  * STEPANDO (Main)                              *
  * Author: Lampantino                           *
  * Start date: 22/12/2012						*
- * Version date: 03/11/2013                     *
- * Version:0.2.0                                *
+ * Version date: 17/02/2014                     *
+ * Version:0.3.0                                *
  ************************************************/
 
 //MAIN
@@ -14,10 +14,17 @@ var loader = function () {
     if (args[1] === undefined) {
         var activeMenu = new Menu(args[0]);
         window.onload = function () {
+            document.getElementById('about').style.display = 'none';
             document.getElementById('sequence').style.display = 'none';
             activeMenu.start();
         };
-
+    } else if (args[1] === 'about') {
+        var activeAbout = new About(args[0]);
+        window.onload = function () {
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('sequence').style.display = 'none';
+            activeAbout.start();
+        }
     } else {
         var seqSrc = "sequences/" + args[0] + "/" + args[1] + "/sequence.js";
         var seqFile = document.createElement('script');
@@ -25,6 +32,7 @@ var loader = function () {
         document.getElementsByTagName('head')[0].appendChild(seqFile);
         window.onload = function () {
             document.getElementById('menu').style.display = 'none';
+            document.getElementById('about').style.display = 'none';
             activeScreen.start();
         };
     }

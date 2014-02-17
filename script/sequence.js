@@ -2,8 +2,8 @@
  * STEPANDO (Sequence)                          *
  * Author: Lampantino                           *
  * Start date: 22/12/2012						*
- * Version date: 03/11/2013                     *
- * Version:0.2.0                                *
+ * Version date: 17/02/2014                     *
+ * Version:0.3.0                                *
  ************************************************/
 
 //SEQUENCE CLASS

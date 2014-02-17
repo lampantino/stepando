@@ -266,6 +266,62 @@ var text_Result_JSON = {
     "zh": "The result is",
 };
 
+var text_titleAbout_JSON = {
+    "en": "About Stepando",
+    "es": "Acerca de Stepando",
+    "gl": "Acerca de Stepando",
+    "eu": "Acerca de Stepando",
+    "ct": "Acerca de Stepando",
+    "de": "About Stepando",
+    "pt": "About Stepando",
+    "it": "About Stepando",
+    "fr": "About Stepando",
+    "ru": "About Stepando",
+    "zh": "About Stepando",
+};
+
+var text_projectAbout_JSON = {
+    "en": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
+    "es": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sin fín de cosas que habitualmente necesitamos.",
+    "gl": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sin fín de cosas que habitualmente necesitamos.",
+    "eu": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sin fín de cosas que habitualmente necesitamos.",
+    "ct": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sin fín de cosas que habitualmente necesitamos.",
+    "de": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
+    "pt": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
+    "it": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
+    "fr": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
+    "ru": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
+    "zh": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
+};
+
+var text_projectDonation_JSON = {
+    "en": "You can help to make the project go ahead making donations to the following bitcoin address: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+    "es": "Puede colaborar para que el proyecto siga adelante realizando donativos a la siguiente dirección de bitcoin: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+    "gl": "Puede colaborar para que el proyecto siga adelante realizando donativos a la siguiente dirección de bitcoin: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+    "eu": "Puede colaborar para que el proyecto siga adelante realizando donativos a la siguiente dirección de bitcoin: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+    "ct": "Puede colaborar para que el proyecto siga adelante realizando donativos a la siguiente dirección de bitcoin: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+    "de": "You can help to make the project go ahead making donations to the following bitcoin address: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+    "pt": "You can help to make the project go ahead making donations to the following bitcoin address: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+    "it": "You can help to make the project go ahead making donations to the following bitcoin address: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+    "fr": "You can help to make the project go ahead making donations to the following bitcoin address: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+    "ru": "You can help to make the project go ahead making donations to the following bitcoin address: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+    "zh": "You can help to make the project go ahead making donations to the following bitcoin address: 18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5",
+};
+
+var text_projectContact_JSON = {
+    "en": "All the code is available on <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> and is where we welcome your comments.",
+    "es": "Todo el código está disponible en <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> y es ahí donde agradeceremos sus comentarios.",
+    "gl": "Todo el código está disponible en <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> y es ahí donde agradeceremos sus comentarios.",
+    "eu": "Todo el código está disponible en <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> y es ahí donde agradeceremos sus comentarios.",
+    "ct": "Todo el código está disponible en <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> y es ahí donde agradeceremos sus comentarios.",
+    "de": "All the code is available on <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> and is where we welcome your comments.",
+    "pt": "All the code is available on <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> and is where we welcome your comments.",
+    "it": "All the code is available on <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> and is where we welcome your comments.",
+    "fr": "All the code is available on <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> and is where we welcome your comments.",
+    "ru": "All the code is available on <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> and is where we welcome your comments.",
+    "zh": "All the code is available on <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> and is where we welcome your comments.",
+};
+
 
 
 var alert_Text_JSON = {
