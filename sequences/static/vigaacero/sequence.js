@@ -210,6 +210,7 @@ function sequenceResult() {
                     }
                 }
                 temporal = pesos[0];
+                resultadoTemp = resultado[0];
                 for (var i in resultado) {
                     if (pesos[i] < temporal) {
                         temporal = pesos[i];
@@ -322,11 +323,10 @@ function sequenceResult() {
         pesoServicio = CHS.encontrarPerfil(vigaCalculo.calculoInercia(), CHS.getInercia(), CHS.getPeso());
         break;
     }
-
+    
     if (cantoUltimo === 'No existe ningún perfil que soporte esa carga' && cantoServicio === 'No existe ningún perfil que soporte esa carga') {
         resultado = 'No existe ningún perfil que soporte esa carga';
-    }
-    if (selectorPerfil !== "CHS (tubo circular)") {
+    } else if (selectorPerfil !== "CHS (tubo circular)") {
         if (cantoUltimo === 'No existe ningún perfil que soporte esa carga' && cantoServicio !== 'No existe ningún perfil que soporte esa carga') {
             resultado = 'No existe ningún perfil que soporte esa carga a resistencia. </br>A deformación es necesario un <b>' + cantoServicio + '</b>.';
         } else if (cantoUltimo !== 'No existe ningún perfil que soporte esa carga' && cantoServicio === 'No existe ningún perfil que soporte esa carga') {
