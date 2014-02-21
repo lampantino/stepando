@@ -5,8 +5,8 @@ createSequence(
     'Calcula la viga de acero en función de las cargas introducidas', //Sequence info
     'Lampantino', //Sequence author
     'sre.quereck@gmail.com', //Sequence author email
-    '0.2', //Sequence last version
-    '20/02/2014', //Sequence last review date
+    '0.2.1', //Sequence last version
+    '21/02/2014', //Sequence last review date
  ['1NYcpukkrV6UywyJkggWkv7FwhDhijtM1C', 'lampantino', 'lampantino', 'https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sre%2equereck%40gmail%2ecom&lc=ES&item_name=Stepando&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest'], //Sequence donation adresses
     'Estos resultados son orientativos y únicamente útiles para un predimensionado' //Sequence result information
 );
@@ -56,7 +56,7 @@ addStep(
     'perfil', //Step reference
     '¿A qué serie pertenece el perfil que desea calcular?', //Step question
     'Select', //Step type
- ['IPE', 'IPN', 'CHS (tubo circular)'], //Step option
+ ['IPE', 'IPN', 'HEA', 'HEB', 'HEM', 'CHS (tubo circular)'], //Step option
     'limite', //Next step
     'Seleccione una serie' //Step info
 );
@@ -170,13 +170,13 @@ function sequenceResult() {
         //Métodos
         //Función que devuelve el peso de un perfil
         var encontrarPeso = function (perfil) {
-            for(var i in nombreSerie) {
-                if(nombreSerie[i] === perfil) {
+            for (var i in nombreSerie) {
+                if (nombreSerie[i] === perfil) {
                     return pesoSerie[i];
                 }
             }
         };
-        
+
         // Función que devuelve el perfil buscado
         this.encontrarPerfil = function (valor, listaSerie, listaPesos) {
             var encontrado = true;
@@ -200,7 +200,7 @@ function sequenceResult() {
             if (resultado === "No existe ningún perfil que soporte esa carga") {
                 return resultado;
             } else if (!listaPesos) {
-                return resultado[0]+' ('+encontrarPeso(resultado[0])+'kg/ml)';
+                return resultado[0] + ' (' + encontrarPeso(resultado[0]) + 'kg/ml)';
             } else {
                 for (var i in nombreSerie) {
                     for (var j in resultado) {
@@ -217,7 +217,7 @@ function sequenceResult() {
                         resultadoTemp = resultado[i];
                     }
                 }
-                return resultadoTemp+' ('+encontrarPeso(resultadoTemp)+'kg/ml)';
+                return resultadoTemp + ' (' + encontrarPeso(resultadoTemp) + 'kg/ml)';
             }
         };
 
@@ -245,6 +245,18 @@ function sequenceResult() {
     // Creamos un objeto de la clase perfil para perfiles de la serie IPN
     var IPN = new perfil(
  ["IPN80", "IPN100", "IPN120", "IPN140", "IPN160", "IPN180", "IPN200", "IPN220", "IPN240", "IPN260", "IPN280", "IPN300", "IPN320", "IPN340", "IPN360", "IPN380", "IPN400", "IPN450", "IPN500", "IPN550", "IPN600"], [19.5, 34.2, 54.7, 81.9, 117, 161, 214, 278, 354, 442, 542, 653, 782, 923, 1090, 1260, 1460, 2040, 2750, 3610, 4630], [77.8, 171, 328, 573, 935, 1450, 2140, 3060, 4250, 5740, 7590, 9800, 12510, 15700, 19610, 24010, 29210, 45850, 68740, 99180, 139000], [5.95, 8.32, 11.2, 14.4, 17.9, 21.9, 26.3, 31.1, 36.2, 41.9, 48, 54.2, 61.1, 68.1, 76.2, 84, 92.6, 115, 141, 167, 199]);
+
+    // Creamos un objeto de la clase perfil para perfiles de la serie HEA
+    var HEA = new perfil(
+ ['HEA100', 'HEA120', 'HEA140', 'HEA160', 'HEA180', 'HEA200', 'HEA220', 'HEA240', 'HEA260', 'HEA280', 'HEA300', 'HEA320', 'HEA340', 'HEA360', 'HEA400', 'HEA450', 'HEA500', 'HEA550', 'HEA600'], [72.8, 106, 155, 220, 294, 389, 515, 675, 836, 1010, 1260, 1480, 1680, 1890, 2310, 2900, 3550, 4150, 4790], [349, 606, 1030, 1670, 2510, 3690, 5410, 7760, 10450, 13670, 18260, 22930, 27690, 33090, 45070, 63720, 86970, 111900, 141200], [16.7, 19.9, 24.7, 30.4, 35.5, 42.3, 50.5, 60.3, 68.2, 76.4, 88.3, 97.6, 105, 112, 125, 140, 155, 166, 178]);
+
+    // Creamos un objeto de la clase perfil para perfiles de la serie HEB
+    var HEB = new perfil(
+ ['HEB100', 'HEB120', 'HEB140', 'HEB160', 'HEB180', 'HEB200', 'HEB220', 'HEB240', 'HEB260', 'HEB280', 'HEB300', 'HEB320', 'HEB340', 'HEB360', 'HEB400', 'HEB450', 'HEB500', 'HEB550', 'HEB600'], [89.9, 144, 216, 311, 426, 570, 736, 938, 1150, 1380, 1680, 1930, 2160, 2400, 2880, 3550, 4290, 4970, 5700], [450, 864, 1510, 2490, 3830, 5700, 8090, 11260, 14920, 19270, 25170, 30820, 36660, 43190, 57680, 79890, 107200, 136700, 171000], [20.4, 26.7, 33.7, 42.6, 51.2, 61.3, 71.5, 83.2, 93, 103, 117, 127, 134, 142, 155, 171, 187, 199, 212]);
+
+    // Creamos un objeto de la clase perfil para perfiles de la serie HEM
+    var HEM = new perfil(
+ ['HEM100', 'HEM120', 'HEM140', 'HEM160', 'HEM180', 'HEM200', 'HEM220', 'HEM240', 'HEM260', 'HEM280', 'HEM300', 'HEM320', 'HEM340', 'HEM360', 'HEM400', 'HEM450', 'HEM500', 'HEM550', 'HEM600'], [190, 288, 411, 566, 748, 967, 1220, 1800, 2160, 2550, 3480, 3800, 4050, 4300, 4820, 5500, 6180, 6920, 7660], [1140, 2020, 3290, 5100, 7480, 10640, 14600, 24290, 31310, 39550, 59200, 68130, 76370, 84870, 104100, 131500, 161900, 198000, 237400], [41.8, 52.1, 63.2, 76.2, 88.9, 103, 117, 157, 172, 189, 238, 245, 248, 250, 256, 263, 270, 278, 285]);
 
     // Creamos un objeto de la clase perfil para perfiles de la serie CHS
     var CHSNombres = ['CHS17.2x1.5', 'CHS17.2x2', 'CHS17.2x2.3', 'CHS17.2x2.5', 'CHS21.3x1.5', 'CHS21.3x2', 'CHS21.3x2.3', 'CHS21.3x2.5', 'CHS21.3x2.9', 'CHS21.3x3', 'CHS25x1.5', 'CHS25x2', 'CHS25x2.3', 'CHS25x2.5', 'CHS25x2.9', 'CHS25x3', 'CHS26.9x1.5', 'CHS26.9x2', 'CHS26.9x2.3', 'CHS26.9x2.5', 'CHS26.9x2.9', 'CHS26.9x3', 'CHS28x1.5', 'CHS28x2', 'CHS28x2.3', 'CHS28x2.5', 'CHS28x2.9', 'CHS28x3', 'CHS30x1.5', 'CHS30x2', 'CHS30x2.3', 'CHS30x2.5', 'CHS30x2.9', 'CHS30x3', 'CHS32x1.5', 'CHS32x2', 'CHS32x2.3', 'CHS32x2.5', 'CHS32x2.9', 'CHS32x3', 'CHS33.7x1.5', 'CHS33.7x2', 'CHS33.7x2.3', 'CHS33.7x2.5', 'CHS33.7x2.9', 'CHS33.7x3', 'CHS33.7x3.2', 'CHS33.7x3.6', 'CHS33.7x4', 'CHS35x1.5', 'CHS35x2', 'CHS35x2.3', 'CHS35x2.5', 'CHS35x2.9', 'CHS35x3', 'CHS35x3.2', 'CHS35x3.6', 'CHS35x4', 'CHS37.5x1.5', 'CHS37.5x2', 'CHS37.5x2.3', 'CHS37.5x2.5', 'CHS37.5x2.9', 'CHS37.5x3', 'CHS37.5x3.2', 'CHS37.5x3.6', 'CHS37.5x4', 'CHS38x1.5', 'CHS38x2', 'CHS38x2.3', 'CHS38x2.5', 'CHS38x2.9', 'CHS38x3', 'CHS38x3.2', 'CHS38x3.6', 'CHS38x4', 'CHS38x5', 'CHS39x1.5', 'CHS39x2', 'CHS39x2.3', 'CHS39x2.5', 'CHS39x2.9', 'CHS39x3', 'CHS39x3.2', 'CHS39x3.6', 'CHS39x4', 'CHS40x1.5', 'CHS40x2', 'CHS40x2.3', 'CHS40x2.5', 'CHS40x2.9', 'CHS40x3', 'CHS40x3.2', 'CHS40x3.6', 'CHS40x4', 'CHS41.5x1.5', 'CHS41.5x2', 'CHS41.5x2.3', 'CHS41.5x2.5', 'CHS41.5x2.9', 'CHS41.5x3', 'CHS41.5x3.2', 'CHS41.5x3.6', 'CHS41.5x4', 'CHS42x1.5', 'CHS42x2', 'CHS42x2.3', 'CHS42x2.5', 'CHS42x2.9', 'CHS42x3', 'CHS42x3.2', 'CHS42x3.6', 'CHS42x4', 'CHS42.4x1.5', 'CHS42.4x2', 'CHS42.4x2.3', 'CHS42.4x2.5', 'CHS42.4x2.9', 'CHS42.4x3', 'CHS42.4x3.2', 'CHS42.4x3.6', 'CHS42.4x4', 'CHS42.4x5', 'CHS42.4x6', 'CHS42.4x6.3', 'CHS44.5x1.5', 'CHS44.5x2', 'CHS44.5x2.3', 'CHS44.5x2.5', 'CHS44.5x2.9', 'CHS44.5x3', 'CHS44.5x3.2', 'CHS44.5x3.6', 'CHS44.5x4', 'CHS45x1.5', 'CHS45x2', 'CHS45x2.3', 'CHS45x2.5', 'CHS45x2.9', 'CHS45x3', 'CHS45x3.2', 'CHS45x3.6', 'CHS45x4', 'CHS45x5', 'CHS45x6', 'CHS45x6.3', 'CHS48x1.5', 'CHS48x2', 'CHS48x2.3', 'CHS48x2.5', 'CHS48x2.9', 'CHS48x3', 'CHS48x3.2', 'CHS48x3.6', 'CHS48x4', 'CHS48.3x1.5', 'CHS48.3x2', 'CHS48.3x2.3', 'CHS48.3x2.5', 'CHS48.3x2.9', 'CHS48.3x3', 'CHS48.3x3.2', 'CHS48.3x3.6', 'CHS48.3x4', 'CHS48.3x5', 'CHS48.3x6', 'CHS48.3x6.3', 'CHS48.6x1.5', 'CHS48.6x2', 'CHS48.6x2.3', 'CHS48.6x2.5', 'CHS48.6x2.9', 'CHS48.6x3', 'CHS48.6x3.2', 'CHS48.6x3.6', 'CHS48.6x4', 'CHS49.4x2', 'CHS49.4x2.3', 'CHS49.4x2.5', 'CHS49.4x2.9', 'CHS49.4x3', 'CHS49.4x3.2', 'CHS49.4x3.6', 'CHS49.4x4', 'CHS49.4x5', 'CHS50x1.5', 'CHS50x2', 'CHS50x2.3', 'CHS50x2.5', 'CHS50x2.9', 'CHS50x3', 'CHS50x3.2', 'CHS50x3.6', 'CHS50x4', 'CHS50x5', 'CHS50x6', 'CHS50x6.3', 'CHS51x1.5', 'CHS51x2', 'CHS51x2.3', 'CHS51x2.5', 'CHS51x2.9', 'CHS51x3', 'CHS51x3.2', 'CHS51x3.6', 'CHS51x4', 'CHS51x5', 'CHS51x6', 'CHS51x6.3', 'CHS52x1.5', 'CHS52x2', 'CHS52x2.3', 'CHS52x2.5', 'CHS52x2.9', 'CHS52x3', 'CHS52x3.2', 'CHS52x3.6', 'CHS52x4', 'CHS52x5', 'CHS52x6', 'CHS52x6.3', 'CHS55x1.5', 'CHS55x2', 'CHS55x2.3', 'CHS55x2.5', 'CHS55x2.9', 'CHS55x3', 'CHS55x3.2', 'CHS55x3.6', 'CHS55x4', 'CHS55x5', 'CHS55x6', 'CHS55x6.3', 'CHS56x2', 'CHS57x1.5', 'CHS57x2', 'CHS57x2.3', 'CHS57x2.5', 'CHS57x2.9', 'CHS57x3', 'CHS57x3.2', 'CHS57x3.6', 'CHS57x4', 'CHS57x5', 'CHS57x6', 'CHS57x6.3', 'CHS58x2', 'CHS58x2.3', 'CHS58x2.5', 'CHS58x2.9', 'CHS58x3', 'CHS58x3.2', 'CHS58x3.6', 'CHS58x4', 'CHS58x5', 'CHS58x6', 'CHS58x6.3', 'CHS60x1.5', 'CHS60x2', 'CHS60x2.3', 'CHS60x2.5', 'CHS60x2.9', 'CHS60x3', 'CHS60x3.2', 'CHS60x3.6', 'CHS60x4', 'CHS60x5', 'CHS60x6', 'CHS60x6.3', 'CHS60.3x1.5', 'CHS60.3x2', 'CHS60.3x2.3', 'CHS60.3x2.5', 'CHS60.3x2.9', 'CHS60.3x3', 'CHS60.3x3.2', 'CHS60.3x3.6', 'CHS60.3x4', 'CHS60.3x5', 'CHS60.3x6', 'CHS60.3x6.3', 'CHS61.5x2', 'CHS61.5x2.3', 'CHS61.5x2.5', 'CHS61.5x2.9', 'CHS61.5x3', 'CHS61.5x3.2', 'CHS61.5x3.6', 'CHS61.5x4', 'CHS61.5x5', 'CHS61.5x6', 'CHS61.5x6.3', 'CHS62x1.5', 'CHS62x2', 'CHS62x2.3', 'CHS62x2.5', 'CHS62x2.9', 'CHS62x3', 'CHS62x3.2', 'CHS62x3.6', 'CHS62x4', 'CHS62.2x2', 'CHS62.2x2.3', 'CHS62.2x2.5', 'CHS62.2x2.9', 'CHS62.2x3', 'CHS62.2x3.2', 'CHS62.2x3.6', 'CHS62.2x4', 'CHS62.2x5', 'CHS62.2x6', 'CHS62.2x6.3', 'CHS63x1.5', 'CHS63x2', 'CHS63x2.3', 'CHS63x2.5', 'CHS63x2.9', 'CHS63x3', 'CHS63x3.2', 'CHS63x3.6', 'CHS63x4', 'CHS63x5', 'CHS63x6', 'CHS63x6.3', 'CHS63.5x1.5', 'CHS63.5x2', 'CHS63.5x2.3', 'CHS63.5x2.5', 'CHS63.5x2.9', 'CHS63.5x3', 'CHS63.5x3.2', 'CHS63.5x3.6', 'CHS63.5x4', 'CHS63.5x5', 'CHS63.5x6', 'CHS63.5x6.3', 'CHS66x2', 'CHS66x2.3', 'CHS66x2.5', 'CHS66x2.9', 'CHS66x3', 'CHS66x3.2', 'CHS66x3.6', 'CHS66x4', 'CHS66x5', 'CHS66x6', 'CHS66x6.3', 'CHS68x2', 'CHS70x1.5', 'CHS70x2', 'CHS70x2.3', 'CHS70x2.5', 'CHS70x2.9', 'CHS70x3', 'CHS70x3.2', 'CHS70x3.6', 'CHS70x4', 'CHS70x5', 'CHS70x6', 'CHS70x6.3', 'CHS71.5x2', 'CHS71.5x2.3', 'CHS71.5x2.5', 'CHS71.5x2.9', 'CHS71.5x3', 'CHS71.5x3.2', 'CHS71.5x3.6', 'CHS71.5x4', 'CHS71.5x5', 'CHS71.5x6', 'CHS71.5x6.3', 'CHS72x2', 'CHS72x2.3', 'CHS72x2.5', 'CHS72x2.9', 'CHS72x3', 'CHS72x3.2', 'CHS72x3.6', 'CHS72x4', 'CHS72x5', 'CHS72x6', 'CHS72x6.3', 'CHS75.5x2', 'CHS75.5x2.3', 'CHS75.5x2.5', 'CHS75.5x2.9', 'CHS75.5x3', 'CHS75.5x3.2', 'CHS75.5x3.6', 'CHS75.5x4', 'CHS75.5x5', 'CHS75.5x6', 'CHS75.5x6.3', 'CHS76x1.5', 'CHS76x2', 'CHS76x2.3', 'CHS76x2.5', 'CHS76x2.9', 'CHS76x3', 'CHS76x3.2', 'CHS76x3.6', 'CHS76x4', 'CHS76x5', 'CHS76x6', 'CHS76x6.3', 'CHS76.1x1.5', 'CHS76.1x2', 'CHS76.1x2.3', 'CHS76.1x2.5', 'CHS76.1x2.9', 'CHS76.1x3', 'CHS76.1x3.2', 'CHS76.1x3.6', 'CHS76.1x4', 'CHS76.1x5', 'CHS76.1x6', 'CHS76.1x6.3', 'CHS80x1.5', 'CHS80x2', 'CHS80x2.3', 'CHS80x2.5', 'CHS80x2.9', 'CHS80x3', 'CHS80x3.2', 'CHS80x3.6', 'CHS80x4', 'CHS80x5', 'CHS80x6', 'CHS80x6.3', 'CHS82.5x2', 'CHS82.5x2.3', 'CHS82.5x2.5', 'CHS82.5x2.9', 'CHS82.5x3', 'CHS82.5x3.2', 'CHS82.5x3.6', 'CHS82.5x4', 'CHS82.5x5', 'CHS82.5x6', 'CHS82.5x6.3', 'CHS83x1.5', 'CHS83x2', 'CHS83x2.3', 'CHS83x2.5', 'CHS83x2.9', 'CHS83x3', 'CHS83x3.2', 'CHS83x3.6', 'CHS83x4', 'CHS83x5', 'CHS83x6', 'CHS83x6.3', 'CHS84x2', 'CHS84x2.3', 'CHS84x2.5', 'CHS84x2.9', 'CHS84x3', 'CHS84x3.2', 'CHS84x3.6', 'CHS84x4', 'CHS84x5', 'CHS84x6', 'CHS84x6.3', 'CHS88.9x1.5', 'CHS88.9x2', 'CHS88.9x2.3', 'CHS88.9x2.5', 'CHS88.9x2.9', 'CHS88.9x3', 'CHS88.9x3.2', 'CHS88.9x3.6', 'CHS88.9x4', 'CHS88.9x5', 'CHS88.9x6', 'CHS88.9x6.3', 'CHS88.9x7', 'CHS88.9x8', 'CHS88.9x10', 'CHS89x1.5', 'CHS89x2', 'CHS89x2.3', 'CHS89x2.5', 'CHS89x2.9', 'CHS89x3', 'CHS89x3.2', 'CHS89x3.6', 'CHS89x4', 'CHS89x5', 'CHS89x6', 'CHS89x6.3', 'CHS90x1.5', 'CHS90x2', 'CHS90x2.3', 'CHS90x2.5', 'CHS90x2.9', 'CHS90x3', 'CHS90x3.2', 'CHS90x3.6', 'CHS90x4', 'CHS95x1.5', 'CHS95x2', 'CHS95x2.3', 'CHS95x2.5', 'CHS95x2.9', 'CHS95x3', 'CHS95x3.2', 'CHS95x3.6', 'CHS95x4', 'CHS95x5', 'CHS95x6', 'CHS95x6.3', 'CHS96x2', 'CHS96x2.3', 'CHS96x2.5', 'CHS96x2.9', 'CHS96x3', 'CHS96x3.2', 'CHS96x3.6', 'CHS96x4', 'CHS96x5', 'CHS96x6', 'CHS96x6.3', 'CHS96x7', 'CHS96x8', 'CHS96x10', 'CHS100x1.5', 'CHS100x2', 'CHS100x2.3', 'CHS100x2.5', 'CHS100x2.9', 'CHS100x3', 'CHS100x3.2', 'CHS100x3.6', 'CHS100x4', 'CHS100x5', 'CHS100x6', 'CHS100x6.3', 'CHS100x7', 'CHS100x8', 'CHS101.6x1.5', 'CHS101.6x2', 'CHS101.6x2.3', 'CHS101.6x2.5', 'CHS101.6x2.9', 'CHS101.6x3', 'CHS101.6x3.2', 'CHS101.6x3.6', 'CHS101.6x4', 'CHS101.6x5', 'CHS101.6x6', 'CHS101.6x6.3', 'CHS101.6x7', 'CHS101.6x8', 'CHS101.6x10', 'CHS108x1.5', 'CHS108x2', 'CHS108x2.3', 'CHS108x2.5', 'CHS108x2.9', 'CHS108x3', 'CHS108x3.2', 'CHS108x3.6', 'CHS108x4', 'CHS108x5', 'CHS108x6', 'CHS108x6.3', 'CHS108x7', 'CHS108x8', 'CHS108x10', 'CHS110x2', 'CHS110x2.3', 'CHS110x2.5', 'CHS110x2.9', 'CHS110x3', 'CHS110x3.2', 'CHS110x3.6', 'CHS110x4', 'CHS113x1.5', 'CHS113x2', 'CHS113x2.3', 'CHS113x2.5', 'CHS113x2.9', 'CHS113x3', 'CHS113x3.2', 'CHS113x3.6', 'CHS113x4', 'CHS113x5', 'CHS113x6', 'CHS113x6.3', 'CHS113x7', 'CHS113x8', 'CHS114x1.5', 'CHS114x2', 'CHS114x2.3', 'CHS114x2.5', 'CHS114x2.9', 'CHS114x3', 'CHS114x3.2', 'CHS114x3.6', 'CHS114x4', 'CHS114x5', 'CHS114x6', 'CHS114x6.3', 'CHS114x7', 'CHS114x8', 'CHS114x10', 'CHS114.3x1.5', 'CHS114.3x2', 'CHS114.3x2.3', 'CHS114.3x2.5', 'CHS114.3x2.9', 'CHS114.3x3', 'CHS114.3x3.2', 'CHS114.3x3.6', 'CHS114.3x4', 'CHS114.3x5', 'CHS114.3x6', 'CHS114.3x6.3', 'CHS114.3x7', 'CHS114.3x8', 'CHS114.3x10', 'CHS120x1.5', 'CHS120x2', 'CHS120x2.3', 'CHS120x2.5', 'CHS120x2.9', 'CHS120x3', 'CHS120x3.2', 'CHS120x3.6', 'CHS120x4', 'CHS120x5', 'CHS120x6', 'CHS120x6.3', 'CHS125x2', 'CHS125x2.3', 'CHS125x2.5', 'CHS125x2.9', 'CHS125x3', 'CHS125x3.2', 'CHS125x3.6', 'CHS125x4', 'CHS125x5', 'CHS125x6', 'CHS125x6.3', 'CHS125x7', 'CHS125x8', 'CHS125x10', 'CHS125x12.5', 'CHS127x2', 'CHS127x2.3', 'CHS127x2.5', 'CHS127x2.9', 'CHS127x3', 'CHS127x3.2', 'CHS127x3.6', 'CHS127x4', 'CHS127x5', 'CHS127x6', 'CHS127x6.3', 'CHS127x7', 'CHS127x8', 'CHS127x10', 'CHS133x2', 'CHS133x2.3', 'CHS133x2.5', 'CHS133x2.9', 'CHS133x3', 'CHS133x3.2', 'CHS133x3.6', 'CHS133x4', 'CHS133x5', 'CHS133x6', 'CHS133x6.3', 'CHS133x7', 'CHS133x8', 'CHS133x10', 'CHS139.7x2', 'CHS139.7x2.3', 'CHS139.7x2.5', 'CHS139.7x2.9', 'CHS139.7x3', 'CHS139.7x3.2', 'CHS139.7x3.6', 'CHS139.7x4', 'CHS139.7x5', 'CHS139.7x6', 'CHS139.7x6.3', 'CHS139.7x7', 'CHS139.7x8', 'CHS139.7x10', 'CHS139.7x12.5', 'CHS152x2', 'CHS152x2.3', 'CHS152x2.5', 'CHS152x2.9', 'CHS152x3', 'CHS152x3.2', 'CHS152x3.6', 'CHS152x4', 'CHS152x5', 'CHS152x6', 'CHS152x6.3', 'CHS152x7', 'CHS152x8', 'CHS152x10', 'CHS152x12.5', 'CHS152.4x2', 'CHS152.4x2.3', 'CHS152.4x2.5', 'CHS152.4x2.9', 'CHS152.4x3', 'CHS152.4x3.2', 'CHS152.4x3.6', 'CHS152.4x4', 'CHS152.4x5', 'CHS152.4x6', 'CHS152.4x6.3', 'CHS152.4x7', 'CHS152.4x8', 'CHS152.4x10', 'CHS152.4x12.5', 'CHS159x1.5', 'CHS159x2', 'CHS159x2.3', 'CHS159x2.5', 'CHS159x2.9', 'CHS159x3', 'CHS159x3.2', 'CHS159x3.6', 'CHS159x4', 'CHS159x5', 'CHS159x6', 'CHS159x6.3', 'CHS159x7', 'CHS159x8', 'CHS159x10', 'CHS164x2', 'CHS164x2.3', 'CHS164x2.5', 'CHS164x2.9', 'CHS164x3', 'CHS164x3.2', 'CHS164x3.6', 'CHS164x4', 'CHS164x5', 'CHS164x6', 'CHS164x6.3', 'CHS165.1x3', 'CHS165.1x3.2', 'CHS165.1x3.6', 'CHS165.1x4', 'CHS165.1x5', 'CHS165.1x6', 'CHS165.1x6.3', 'CHS165.1x7', 'CHS165.1x8', 'CHS168x2.5', 'CHS168x2.9', 'CHS168x3', 'CHS168x3.2', 'CHS168x3.6', 'CHS168x4', 'CHS168x5', 'CHS168x6', 'CHS168x6.3', 'CHS168.1x2.5', 'CHS168.1x2.9', 'CHS168.1x3', 'CHS168.1x3.2', 'CHS168.1x3.6', 'CHS168.1x4', 'CHS168.1x5', 'CHS168.1x6', 'CHS168.3x2.5', 'CHS168.3x2.9', 'CHS168.3x3', 'CHS168.3x3.2', 'CHS168.3x3.6', 'CHS168.3x4', 'CHS168.3x5', 'CHS168.3x6', 'CHS168.3x6.3', 'CHS168.3x7', 'CHS168.3x8', 'CHS168.3x10', 'CHS168.3x12.5', 'CHS177.8x3', 'CHS177.8x3.2', 'CHS177.8x3.6', 'CHS177.8x4', 'CHS177.8x5', 'CHS177.8x6', 'CHS177.8x6.3', 'CHS177.8x7', 'CHS177.8x8', 'CHS177.8x10', 'CHS193.7x3', 'CHS193.7x3.2', 'CHS193.7x3.6', 'CHS193.7x4', 'CHS193.7x5', 'CHS193.7x6', 'CHS193.7x6.3', 'CHS193.7x7', 'CHS193.7x8', 'CHS193.7x10', 'CHS193.7x12.5', 'CHS200x3', 'CHS200x3.2', 'CHS200x3.6', 'CHS200x4', 'CHS200x5', 'CHS200x6', 'CHS200x6.3', 'CHS200x7', 'CHS200x8', 'CHS219.1x3', 'CHS219.1x3.2', 'CHS219.1x3.6', 'CHS219.1x4', 'CHS219.1x5', 'CHS219.1x6', 'CHS219.1x6.3', 'CHS219.1x7', 'CHS219.1x8', 'CHS219.1x10', 'CHS219.1x12.5', 'CHS244.5x4', 'CHS244.5x5', 'CHS244.5x6', 'CHS244.5x6.3', 'CHS244.5x7', 'CHS244.5x8', 'CHS244.5x10', 'CHS244.5x12.5', 'CHS273x4', 'CHS273x5', 'CHS273x6', 'CHS273x6.3', 'CHS273x7', 'CHS273x8', 'CHS273x10', 'CHS273x12.5', 'CHS273.1x5', 'CHS273.1x6', 'CHS273.1x6.3', 'CHS273.1x7', 'CHS273.1x8', 'CHS273.1x10', 'CHS273.1x12.5', 'CHS323.9x4', 'CHS323.9x5', 'CHS323.9x6', 'CHS323.9x6.3', 'CHS323.9x7', 'CHS323.9x8', 'CHS323.9x10', 'CHS323.9x12.5', 'CHS323.9x14.2', 'CHS323.9x16', 'CHS339.7x5', 'CHS339.7x6', 'CHS339.7x6.3', 'CHS339.7x7', 'CHS339.7x8', 'CHS339.7x10', 'CHS355.6x5', 'CHS355.6x6', 'CHS355.6x6.3', 'CHS355.6x7', 'CHS355.6x8', 'CHS355.6x10', 'CHS355.6x12.5', 'CHS355.6x14.2', 'CHS355.6x16', 'CHS406.4x5', 'CHS406.4x6', 'CHS406.4x6.3', 'CHS406.4x7', 'CHS406.4x8'
@@ -316,6 +328,18 @@ function sequenceResult() {
         cantoUltimo = IPN.encontrarPerfil(vigaCalculo.calculoModulo(), IPN.getModulo(), false);
         cantoServicio = IPN.encontrarPerfil(vigaCalculo.calculoInercia(), IPN.getInercia(), false);
         break;
+    case "HEA":
+        cantoUltimo = HEA.encontrarPerfil(vigaCalculo.calculoModulo(), HEA.getModulo(), false);
+        cantoServicio = HEA.encontrarPerfil(vigaCalculo.calculoInercia(), HEA.getInercia(), false);
+        break;
+    case "HEB":
+        cantoUltimo = HEB.encontrarPerfil(vigaCalculo.calculoModulo(), HEB.getModulo(), false);
+        cantoServicio = HEB.encontrarPerfil(vigaCalculo.calculoInercia(), HEB.getInercia(), false);
+        break;
+    case "HEM":
+        cantoUltimo = HEM.encontrarPerfil(vigaCalculo.calculoModulo(), HEM.getModulo(), false);
+        cantoServicio = HEM.encontrarPerfil(vigaCalculo.calculoInercia(), HEM.getInercia(), false);
+        break;
     case "CHS (tubo circular)":
         cantoUltimo = CHS.encontrarPerfil(vigaCalculo.calculoModulo(), CHS.getModulo(), false);
         cantoServicio = CHS.encontrarPerfil(vigaCalculo.calculoInercia(), CHS.getInercia(), false);
@@ -323,7 +347,7 @@ function sequenceResult() {
         pesoServicio = CHS.encontrarPerfil(vigaCalculo.calculoInercia(), CHS.getInercia(), CHS.getPeso());
         break;
     }
-    
+
     if (cantoUltimo === 'No existe ningún perfil que soporte esa carga' && cantoServicio === 'No existe ningún perfil que soporte esa carga') {
         resultado = 'No existe ningún perfil que soporte esa carga';
     } else if (selectorPerfil !== "CHS (tubo circular)") {
