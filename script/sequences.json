@@ -10,17 +10,17 @@ var seq_es_JSON = [
     {
         "category": "Conversores",
         "title": "Conversor de unidades",
-        "adress": "conversors&conversor"
+        "adress": "conversors:conversor"
     },
     {
         "category": "Estática",
         "title": "Calcular una viga de acero",
-        "adress": "static&vigaacero"
+        "adress": "static:vigaacero"
     },
     {
         "category": "Estática",
         "title": "Predimensionado de una zapata aislada",
-        "adress": "static&zapata"
+        "adress": "static:zapata"
     },
 ];
 
@@ -28,7 +28,7 @@ var seq_gl_JSON = [
     {
         "category": "Conversores",
         "title": "Conversor de unidades tradicionais de superficie de Galicia",
-        "adress": "conversors&unidadestradicionais"
+        "adress": "conversors:unidadestradicionais"
     },
 ];
 

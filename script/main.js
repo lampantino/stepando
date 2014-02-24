@@ -10,7 +10,7 @@
 
 //loader method loads the menu or a called sequence
 var loader = function () {
-    var args = location.search.substr(1).split('&');
+    var args = location.search.substr(1).split(':');
     if (args[1] === undefined) {
         var activeMenu = new Menu(args[0]);
         window.onload = function () {
