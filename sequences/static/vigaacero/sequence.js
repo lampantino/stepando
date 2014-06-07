@@ -5,8 +5,8 @@ createSequence(
     'Calcula la viga de acero necesaria en función de las dimensiones, los enlaces y las cargas introducidas', //Sequence info
     'Lampantino', //Sequence author
     'sre.quereck@gmail.com', //Sequence author email
-    '0.3', //Sequence last version
-    '24/02/2014', //Sequence last review date
+    '0.4', //Sequence last version
+    '7/6/2014', //Sequence last review date
  ['1NYcpukkrV6UywyJkggWkv7FwhDhijtM1C', 'lampantino', 'lampantino', 'https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sre%2equereck%40gmail%2ecom&lc=ES&item_name=Stepando&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest'], //Sequence donation adresses
     'Estos resultados son orientativos y únicamente útiles para un predimensionado' //Sequence result information
 );
@@ -18,7 +18,7 @@ addStep(
     'Input', //Step type
     'Float', //Step option
     'faja', //Next step
-    'Ha de introducir la dimensión en metros' //Step info
+    'Ha de introducir la dimensión en metros entre apoyos' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -28,7 +28,7 @@ addStep(
     'Input', //Step type
     'Float', //Step option
     'enlaces', //Next step
-    'Ha de introducir la dimensión en metros' //Step info
+    'Ha de introducir la dimensión en metros entre vigas contiguas' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -38,7 +38,7 @@ addStep(
     'Select', //Step type
  ['Articulado-Articulado', 'Articulado-Empotrado', 'Empotrado-Empotrado', 'Voladizo'], //Step option
     'pesoPropio', //Next step
-    'Seleccione cómo se conecta la viga a su entorno' //Step info
+    'Seleccione cómo se conecta la viga a su apoyo' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -48,7 +48,7 @@ addStep(
     'Input', //Step type
     'Float', //Step option
     'sobrecarga', //Next step
-    'Ha de introducir el peso en kN/m2' //Step info
+    'Ha de introducir el peso en kN/m2 sin mayorar' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -58,7 +58,7 @@ addStep(
     'Input', //Step type
     'Float', //Step option
     'perfil', //Next step
-    'Ha de introducir el peso en kN/m2' //Step info
+    'Ha de introducir el peso en kN/m2 sin mayorar' //Step info
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -245,6 +245,15 @@ function sequenceResult() {
                 return resultadoTemp + ' (' + encontrarPeso(resultadoTemp) + 'kg/ml)';
             }
         };
+        
+        this.encontrarInercia = function (canto) {
+            var canto = canto.split(' ');
+            for(var i in nombreSerie) {
+                if (canto[0] === nombreSerie[i]) {
+                    return inerciaSerie[i];
+                }
+            }
+        };
 
         this.getModulo = function () {
             return moduloSerie;
@@ -253,11 +262,11 @@ function sequenceResult() {
         this.getInercia = function () {
             return inerciaSerie;
         };
-        //Función que devuelve la inercia
+        //Función que devuelve el peso
         this.getPeso = function () {
             return pesoSerie;
         };
-        //Función que devuelve la inercia
+        //Función que devuelve el canto
         this.getCanto = function () {
             return cantoSerie;
         };
@@ -381,7 +390,7 @@ function sequenceResult() {
 
     var ZP = new perfil(ZPNombres, ZPModulos, ZPInercias, ZPPesos);
 
-    // Creamos un objeto de la clase perfil para perfiles de la serie ZP
+    // Creamos un objeto de la clase perfil para perfiles de la serie CP
     var CPNombres = ['CP100x2', 'CP100x2.5', 'CP100x3', 'CP120x2', 'CP120x2.5', 'CP120x3', 'CP140x2', 'CP140x2.5', 'CP140x3', 'CP150x2', 'CP150x2.5', 'CP150x3', 'CP160x2', 'CP160x2.5', 'CP160x3', 'CP180x2', 'CP180x2.5', 'CP180x3', 'CP200x2', 'CP200x2.5', 'CP200x3', 'CP200x3.5', 'CP200x4', 'CP225x2', 'CP225x2.5', 'CP225x3', 'CP225x3.5', 'CP225x4', 'CP250x2', 'CP250x2.5', 'CP250x3', 'CP250x3.5', 'CP250x4', 'CP275x2', 'CP275x2.5', 'CP275x3', 'CP275x3.5', 'CP275x4', 'CP300x2', 'CP300x2.5', 'CP300x3', 'CP300x3.5', 'CP300x4', 'CP325x2', 'CP325x2.5', 'CP325x3', 'CP-325x3.5', 'CP-325x4', 'CP-350x2', 'CP-350x2.5', 'CP-350x3', 'CP-350x3.5', 'CP-350x4'
 ];
 
@@ -402,6 +411,7 @@ function sequenceResult() {
     // Definimos las variables que van a albergar el nombre del perfil último y de servicio;
     var cantoUltimo;
     var cantoServicio;
+    var inerciaServicio;
     var pesoUltimo;
     var pesoServicio;
 
@@ -437,11 +447,6 @@ function sequenceResult() {
         break;
     }
 
-    vigaCalculo.setVigaData('enlaces', getAnswer('enlaces'));
-    if (vigaCalculo.getVigaData('faja') < 0) {
-        error += 'Ha introducido una faja de carga negativa</br>';
-    }
-
     vigaCalculo.setVigaData('pesoPropio', getAnswer('pesoPropio'));
     if (vigaCalculo.getVigaData('pesoPropio') < 0) {
         error += 'Ha introducido un peso propio negativo</br>';
@@ -465,81 +470,108 @@ function sequenceResult() {
         vigaCalculo.setVigaData('flecha', 300);
         break;
     }
-
+    
     // Obtenemos la serie elegida y encontramos el perfil último y de servicio
     var selectorPerfil = getAnswer('perfil');
     switch (selectorPerfil) {
     case "IPE":
         cantoUltimo = IPE.encontrarPerfil(vigaCalculo.calculoModulo(), IPE.getModulo(), false);
         cantoServicio = IPE.encontrarPerfil(vigaCalculo.calculoInercia(), IPE.getInercia(), false);
+        inerciaServicio = IPE.encontrarInercia(cantoServicio);
         break;
     case "IPN":
         cantoUltimo = IPN.encontrarPerfil(vigaCalculo.calculoModulo(), IPN.getModulo(), false);
         cantoServicio = IPN.encontrarPerfil(vigaCalculo.calculoInercia(), IPN.getInercia(), false);
+        inerciaServicio = IPN.encontrarInercia(cantoServicio);
         break;
     case "HEA":
         cantoUltimo = HEA.encontrarPerfil(vigaCalculo.calculoModulo(), HEA.getModulo(), false);
         cantoServicio = HEA.encontrarPerfil(vigaCalculo.calculoInercia(), HEA.getInercia(), false);
+        inerciaServicio = HEA.encontrarInercia(cantoServicio);
         break;
     case "HEB":
         cantoUltimo = HEB.encontrarPerfil(vigaCalculo.calculoModulo(), HEB.getModulo(), false);
         cantoServicio = HEB.encontrarPerfil(vigaCalculo.calculoInercia(), HEB.getInercia(), false);
+        inerciaServicio = HEB.encontrarInercia(cantoServicio);
         break;
     case "HEM":
         cantoUltimo = HEM.encontrarPerfil(vigaCalculo.calculoModulo(), HEM.getModulo(), false);
         cantoServicio = HEM.encontrarPerfil(vigaCalculo.calculoInercia(), HEM.getInercia(), false);
+        inerciaServicio = HEM.encontrarInercia(cantoServicio);
         break;
     case "UPE":
         cantoUltimo = UPE.encontrarPerfil(vigaCalculo.calculoModulo(), UPE.getModulo(), false);
         cantoServicio = UPE.encontrarPerfil(vigaCalculo.calculoInercia(), UPE.getInercia(), false);
+        inerciaServicio = UPE.encontrarInercia(cantoServicio);
         break;
     case "UPN":
         cantoUltimo = UPN.encontrarPerfil(vigaCalculo.calculoModulo(), UPN.getModulo(), false);
         cantoServicio = UPN.encontrarPerfil(vigaCalculo.calculoInercia(), UPN.getInercia(), false);
+        inerciaServicio = UPN.encontrarInercia(cantoServicio);
         break;
     case "CHS (tubo circular conformado en caliente)":
         cantoUltimo = CHS.encontrarPerfil(vigaCalculo.calculoModulo(), CHS.getModulo(), false);
         cantoServicio = CHS.encontrarPerfil(vigaCalculo.calculoInercia(), CHS.getInercia(), false);
         pesoUltimo = CHS.encontrarPerfil(vigaCalculo.calculoModulo(), CHS.getModulo(), CHS.getPeso());
         pesoServicio = CHS.encontrarPerfil(vigaCalculo.calculoInercia(), CHS.getInercia(), CHS.getPeso());
+        inerciaServicio = CHS.encontrarInercia(cantoServicio);
         break;
     case "SHS (tubo cuadrado conformado en caliente)":
         cantoUltimo = SHS.encontrarPerfil(vigaCalculo.calculoModulo(), SHS.getModulo(), false);
         cantoServicio = SHS.encontrarPerfil(vigaCalculo.calculoInercia(), SHS.getInercia(), false);
         pesoUltimo = SHS.encontrarPerfil(vigaCalculo.calculoModulo(), SHS.getModulo(), SHS.getPeso());
         pesoServicio = SHS.encontrarPerfil(vigaCalculo.calculoInercia(), SHS.getInercia(), SHS.getPeso());
+        inerciaServicio = SHS.encontrarInercia(cantoServicio);
         break;
     case "RHS (tubo rectangular conformado en caliente)":
         cantoUltimo = RHS.encontrarPerfil(vigaCalculo.calculoModulo(), RHS.getModulo(), false);
         cantoServicio = RHS.encontrarPerfil(vigaCalculo.calculoInercia(), RHS.getInercia(), false);
         pesoUltimo = RHS.encontrarPerfil(vigaCalculo.calculoModulo(), RHS.getModulo(), RHS.getPeso());
         pesoServicio = RHS.encontrarPerfil(vigaCalculo.calculoInercia(), RHS.getInercia(), RHS.getPeso());
+        inerciaServicio = RHS.encontrarInercia(cantoServicio);
         break;
     case "L (lados iguales)":
         cantoUltimo = L.encontrarPerfil(vigaCalculo.calculoModulo(), L.getModulo(), false);
         cantoServicio = L.encontrarPerfil(vigaCalculo.calculoInercia(), L.getInercia(), false);
         pesoUltimo = L.encontrarPerfil(vigaCalculo.calculoModulo(), L.getModulo(), L.getPeso());
         pesoServicio = L.encontrarPerfil(vigaCalculo.calculoInercia(), L.getInercia(), L.getPeso());
+        inerciaServicio = L.encontrarInercia(cantoServicio);
         break;
     case "L (lados desiguales)":
         cantoUltimo = LD.encontrarPerfil(vigaCalculo.calculoModulo(), LD.getModulo(), false);
         cantoServicio = LD.encontrarPerfil(vigaCalculo.calculoInercia(), LD.getInercia(), false);
         pesoUltimo = LD.encontrarPerfil(vigaCalculo.calculoModulo(), LD.getModulo(), LD.getPeso());
         pesoServicio = LD.encontrarPerfil(vigaCalculo.calculoInercia(), LD.getInercia(), LD.getPeso());
+        inerciaServicio = LD.encontrarInercia(cantoServicio);
         break;
     case "Zeta (conformado en frío)":
         cantoUltimo = ZP.encontrarPerfil(vigaCalculo.calculoModulo(), ZP.getModulo(), false);
         cantoServicio = ZP.encontrarPerfil(vigaCalculo.calculoInercia(), ZP.getInercia(), false);
         pesoUltimo = ZP.encontrarPerfil(vigaCalculo.calculoModulo(), ZP.getModulo(), ZP.getPeso());
         pesoServicio = ZP.encontrarPerfil(vigaCalculo.calculoInercia(), ZP.getInercia(), ZP.getPeso());
+            inerciaServicio = ZP.encontrarInercia(cantoServicio);
         break;
     case "Ce (conformado en frío)":
         cantoUltimo = CP.encontrarPerfil(vigaCalculo.calculoModulo(), CP.getModulo(), false);
         cantoServicio = CP.encontrarPerfil(vigaCalculo.calculoInercia(), CP.getInercia(), false);
         pesoUltimo = CP.encontrarPerfil(vigaCalculo.calculoModulo(), CP.getModulo(), CP.getPeso());
         pesoServicio = CP.encontrarPerfil(vigaCalculo.calculoInercia(), CP.getInercia(), CP.getPeso());
+        inerciaServicio = CP.encontrarInercia(cantoServicio);
         break;
     }
+    
+    var calculoFlecha = function () {
+        var pesoPropio = vigaCalculo.getVigaData('pesoPropio');
+        var sobreCarga = vigaCalculo.getVigaData('sobreCarga');
+        var faja = vigaCalculo.getVigaData('faja');
+        var coefFle = vigaCalculo.getVigaData('coefFle');
+        var luz = vigaCalculo.getVigaData('luz');
+        
+        var cargaLineal = (pesoPropio * 1 + sobreCarga * 1) * faja;
+        var flecha = (coefFle * cargaLineal * luz * luz * luz * luz) * 100000000 / (moduloAcero * inerciaServicio) * 1000;
+        
+        return Math.round(flecha);
+    };
     
     resultado = 'El módulo resistente necesario es de <b>'+Math.round(vigaCalculo.calculoModulo())+'mm3</b></br> y el momento de inercia ha de ser como mínimo de <b>'+Math.round(vigaCalculo.calculoInercia())+'mm4</b>.</br>';
     
@@ -547,23 +579,23 @@ function sequenceResult() {
         resultado += 'No existe ningún perfil que soporte esa carga';
     } else if (selectorPerfil !== "CHS (tubo circular conformado en caliente)" && selectorPerfil !== "SHS (tubo cuadrado conformado en caliente)" && selectorPerfil !== "RHS (tubo rectangular conformado en caliente)" && selectorPerfil !== "L (lados iguales)" && selectorPerfil !== "L (lados desiguales)" && selectorPerfil !== "Zeta (conformado en frío)" && selectorPerfil !== "Ce (conformado en frío)") {
         if (cantoUltimo === 'No existe ningún perfil que soporte esa carga' && cantoServicio !== 'No existe ningún perfil que soporte esa carga') {
-            resultado += 'No existe ningún perfil que soporte esa carga a resistencia. </br>A deformación es necesario un <b>' + cantoServicio + '</b>.';
+            resultado += 'No existe ningún perfil que soporte esa carga a resistencia. </br>A deformación es necesario un <b>' + cantoServicio + '</b>. </br>La flecha será de ' + calculoFlecha() + ' mm.';
         } else if (cantoUltimo !== 'No existe ningún perfil que soporte esa carga' && cantoServicio === 'No existe ningún perfil que soporte esa carga') {
             resultado += 'A resistencia es necesario un <b>' + cantoUltimo + '</b>. </br>No existe ningún perfil que soporte esa carga a deformación.';
         } else if (error !== '') {
             resultado += error;
         } else {
-            resultado += 'A resistencia es necesario un <b>' + cantoUltimo + '</b>. </br>A deformación es necesario un <b>' + cantoServicio + '</b>.';
+            resultado += 'A resistencia es necesario un <b>' + cantoUltimo + '</b>. </br>A deformación es necesario un <b>' + cantoServicio + '</b>. </br>La flecha será de ' + calculoFlecha() + ' mm.';
         }
     } else {
         if (cantoUltimo === 'No existe ningún perfil que soporte esa carga' && cantoServicio !== 'No existe ningún perfil que soporte esa carga') {
-            resultado += 'No existe ningún perfil que soporte esa carga a resistencia. </br>A deformación y con menor peso es necesario un <b>' + pesoServicio + '</b>,</br>y a deformación y con menos canto es necesario un <b>' + perfilServicio[0] + '</b>.';
+            resultado += 'No existe ningún perfil que soporte esa carga a resistencia. </br>A deformación y con menor peso es necesario un <b>' + pesoServicio + '</b>,</br>y a deformación y con menos canto es necesario un <b>' + perfilServicio[0] + '</b>. </br>La flecha será de ' + calculoFlecha() + ' mm.';
         } else if (cantoUltimo !== 'No existe ningún perfil que soporte esa carga' && cantoServicio === 'No existe ningún perfil que soporte esa carga') {
             resultado += 'A resistencia y con menos peso es necesario un <b>' + pesoUltimo + '</b>,</br>y a resistencia y con menos canto es necesario un <b>' + cantoUltimo + '</b>. </br>No existe ningún perfil que soporte esa carga a deformación.';
         } else if (error !== '') {
             resultado += error;
         } else {
-            resultado += 'A resistencia y con menos peso es necesario un <b>' + pesoUltimo + '</b>,</br>y a resistencia y con menos canto es necesario un <b>' + cantoUltimo + '</b>.</br>A deformación y con menos peso es necesario un <b>' + pesoServicio + '</b>,</br>y a deformación y con menos canto es necesario un <b>' + cantoServicio + '</b>.';
+            resultado += 'A resistencia y con menos peso es necesario un <b>' + pesoUltimo + '</b>,</br>y a resistencia y con menos canto es necesario un <b>' + cantoUltimo + '</b>.</br>A deformación y con menos peso es necesario un <b>' + pesoServicio + '</b>,</br>y a deformación y con menos canto es necesario un <b>' + cantoServicio + '</b>. </br>La flecha será de ' + calculoFlecha() + ' mm.';
         }
     }
     return resultado;
