@@ -1,0 +1,59 @@
+var precios = [
+    {
+        "capitulo": "Actuaciones previas",
+        "partidas": [
+            {
+                "titulo": "Mirar aparentando",
+                "unidad": "h",
+                "descripcion": "Mirar haciendo como que entiendes algo de lo que tienes que construir en ese sitio",
+                "precio": 15.67
+            },
+            {
+                "titulo": "Cagarse en el técnico",
+                "unidad": "h",
+                "descripcion": "Emitir sonidos guturales intentando ocultar tu incompetencia",
+                "precio": 12.56
+            },
+            {
+                "titulo": "Cagarse en el técnico",
+                "unidad": "h",
+                "descripcion": "Emitir sonidos guturales intentando ocultar tu incompetencia",
+                "precio": 12.56
+            },
+        ]
+    },
+    {
+        "capitulo": "Movimientos de tierras",
+        "partidas": [
+            {
+                "titulo": "Rascar con el pie",
+                "unidad": "h",
+                "descripcion": "Mover piedrecitas sueltas con el pie",
+                "precio": 17.62
+            },
+        ]
+    },
+    {
+        "capitulo": "Actuaciones previas",
+        "partidas": [
+            {
+                "titulo": "Mirar aparentando",
+                "unidad": "h",
+                "descripcion": "Mirar haciendo como que entiendes algo de lo que tienes que construir en ese sitio",
+                "precio": 15.67
+            },
+            {
+                "titulo": "Cagarse en el técnico",
+                "unidad": "h",
+                "descripcion": "Emitir sonidos guturales intentando ocultar tu incompetencia",
+                "precio": 12.56
+            },
+            {
+                "titulo": "Cagarse en el técnico",
+                "unidad": "h",
+                "descripcion": "Emitir sonidos guturales intentando ocultar tu incompetencia",
+                "precio": 12.56
+            },
+        ]
+    },
+];

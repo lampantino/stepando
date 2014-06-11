@@ -5,10 +5,10 @@ createSequence(
     'Recopilatorio de las partidas más usadas en las obras', //Sequence info
     'uno7o', //Sequence author
     'uno70@uno70.com', //Sequence author email
-    '0.1', //Sequence last version
-    '22/05/2014', //Sequence last review date
- ['1CiJTEeMLTdHDekYTK7nXzZQ9SN9EsStdY', 'https://flattr.com/submit/auto?user_id=lampantino&url=https%3A%2F%2Fc9.io%2Flampantino%2Fstepando%2Fworkspace%2Findex.html%3Fengineering%26vigaacero', 'https://www.gittip.com/lampantino'], //Sequence donation adresses
-    'Este precio es orientativo y procede de distintas bases de precios como la CENTRO o la PREOC, así como de la propia experiencia de los autores' //Sequence result information
+    '0.2', //Sequence last version
+    '11/06/2014', //Sequence last review date
+    ['1NYcpukkrV6UywyJkggWkv7FwhDhijtM1C', '', '', ''], //Sequence donation adresses
+    'Estos precios son orientativos y no incluye IVA.' //Sequence result information
 );
 
 var precios = [
@@ -39,7 +39,7 @@ var precios = [
                 "precio": 17.62
             },
         ]
-    }        
+    },
 ];
 
 var capitulos = [];
@@ -59,19 +59,23 @@ addStep(
 
 var capitulo_nextStep = function () {
     var capitulo = getAnswer('capitulo');
-    return capitulo;
+    for(var i in capitulos) {
+        if(capitulo === capitulos[i]) {
+            return 'capitulo_'+i;
+        }
+    }
 };
 
 for(var i in capitulos) {
-    var partidas = [];
+    var partidasTemp = [];
     for(var j in precios[i].partidas) {
-        partidas.push(precios[i].partidas[j].titulo);
+        partidasTemp.push(precios[i].partidas[j].titulo);
     }
     addStep(
-        capitulos[i], //Step reference
+        'capitulo_'+i, //Step reference
         'Seleccione una partida de obra', //Step question
         'select', //Step type (input or select)
-        partidas, //Step option (integer, float, string, email, url)
+        partidasTemp, //Step option (integer, float, string, email, url)
         'medicion', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
         'Seleccione una de las partidas disponibles del capítulo de '+ capitulos[i].toLowerCase() //Step info
     );
@@ -90,8 +94,29 @@ addStep(
 //sequenceResult function contains the sequence logic and returns the result
 function sequenceResult() {
     var resultado;
+    var capitulo = getAnswer('capitulo');
+    var numCapitulo;
+    var partida;
+    var numPartida;
+    var medicion = getAnswer('medicion');
     
+    for(var i in precios) {
+         if(capitulo === precios[i].capitulo) {
+            numCapitulo = i;
+        }
+    }
     
+    partida = getAnswer('capitulo_'+numCapitulo);
+    
+    for(var i in precios[numCapitulo].partidas) {
+        if(partida === precios[numCapitulo].partidas[i].titulo) {
+            numPartida = i;
+        }
+    }
+    
+    resultado = '('+precios[numCapitulo].partidas[numPartida].unidad+') <b>'+precios[numCapitulo].partidas[numPartida].titulo+'</b><br>';
+    resultado += precios[numCapitulo].partidas[numPartida].descripcion+'<br>';
+    resultado += medicion+' '+precios[numCapitulo].partidas[numPartida].unidad+' X '+precios[numCapitulo].partidas[numPartida].precio+' €/'+precios[numCapitulo].partidas[numPartida].unidad+' = '+medicion*precios[numCapitulo].partidas[numPartida].precio+' €';
     
     return resultado;
 }
