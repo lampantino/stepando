@@ -43,19 +43,9 @@ var precios = [
 ];
 
 var capitulos = [];
-var partidas = [];
-
 for(var i in precios) {
     capitulos.push(precios[i].capitulo);
 }
-
-for(var i in precios) {
-    for(var j in precios[i].capitulo)
-}
-
-
-
-
 
 //AddStep methods creates new steps and adds them to the sequence
 addStep(
@@ -63,74 +53,38 @@ addStep(
     'Seleccione el capítulo de la partida de obra', //Step question
     'select', //Step type (input or select)
     capitulos, //Step option (integer, float, string, email, url)
+    '', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
+    'Seleccione uno de los capítulos disponibles' //Step info
+);
+
+var capitulo_nextStep = function () {
+    var capitulo = getAnswer('capitulo');
+    return capitulo;
+};
+
+for(var i in capitulos) {
+    var partidas = [];
+    for(var j in precios[i].partidas) {
+        partidas.push(precios[i].partidas[j].titulo);
+    }
+    addStep(
+        capitulos[i], //Step reference
+        'Seleccione una partida de obra', //Step question
+        'select', //Step type (input or select)
+        partidas, //Step option (integer, float, string, email, url)
+        'medicion', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
+        'Seleccione una de las partidas disponibles del capítulo de '+ capitulos[i].toLowerCase() //Step info
+    );
+}
+
+//AddStep methods creates new steps and adds them to the sequence
+addStep(
+    'medicion', //Step reference
+    '¿Cuál es la medición de la partida?', //Step question
+    'input', //Step type (input or select)
+    'float', //Step option (integer, float, string, email, url)
     'result', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
-    'asfasf' //Step info
-);
-
-//AddStep methods creates new steps and adds them to the sequence
-addStep(
-    '', //Step reference
-    '', //Step question
-    '', //Step type (input or select)
-    '', //Step option (integer, float, string, email, url)
-    '', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
-    /*
-    If you let an empty string (''), you must add after this addStep() method another method that returns
-    where is the next step to print. This method name must be compoused by a name and the suffix _nextStep.
-    For example:
-        var stepX_nextStep = function () {
-            if(getAnswer('step1') < 1) {
-                return 'step2';
-            } else {
-                return 'step3';
-            }
-        };
-    */
-    '' //Step info
-);
-
-//AddStep methods creates new steps and adds them to the sequence
-addStep(
-    '', //Step reference
-    '', //Step question
-    '', //Step type (input or select)
-    '', //Step option (integer, float, string, email, url)
-    '', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
-    /*
-    If you let an empty string (''), you must add after this addStep() method another method that returns
-    where is the next step to print. This method name must be compoused by a name and the suffix _nextStep.
-    For example:
-        var stepX_nextStep = function () {
-            if(getAnswer('step1') < 1) {
-                return 'step2';
-            } else {
-                return 'step3';
-            }
-        };
-    */
-    '' //Step info
-);
-
-//AddStep methods creates new steps and adds them to the sequence
-addStep(
-    '', //Step reference
-    '', //Step question
-    '', //Step type (input or select)
-    '', //Step option (integer, float, string, email, url)
-    '', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
-    /*
-    If you let an empty string (''), you must add after this addStep() method another method that returns
-    where is the next step to print. This method name must be compoused by a name and the suffix _nextStep.
-    For example:
-        var stepX_nextStep = function () {
-            if(getAnswer('step1') < 1) {
-                return 'step2';
-            } else {
-                return 'step3';
-            }
-        };
-    */
-    '' //Step info
+    'Indique la medición de la partida seleccionada' //Step info
 );
 
 //sequenceResult function contains the sequence logic and returns the result
