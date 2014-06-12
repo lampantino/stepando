@@ -127,7 +127,7 @@ var button_About_JSON = {
 var button_License_JSON = {
     "en": "license",
     "es": "licencia",
-    "gl": "licencia",
+    "gl": "licenza",
     "eu": "licencia",
     "ct": "licencia",
     "de": "license",
@@ -227,7 +227,7 @@ var text_Share_JSON = {
 var text_Iframe_JSON = {
     "en": "Insert this code in your website:",
     "es": "Inserte este código en su web:",
-    "gl": "Inserte este código en su web:",
+    "gl": "Insira este código na súa web:",
     "eu": "Inserte este código en su web:",
     "ct": "Inserte este código en su web:",
     "de": "Insert this code in your website:",
@@ -282,10 +282,10 @@ var text_titleAbout_JSON = {
 
 var text_projectAbout_JSON = {
     "en": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
-    "es": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sin fín de cosas que habitualmente necesitamos.",
-    "gl": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sin fín de cosas que habitualmente necesitamos.",
-    "eu": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sin fín de cosas que habitualmente necesitamos.",
-    "ct": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sin fín de cosas que habitualmente necesitamos.",
+    "es": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sinfín de cosas que habitualmente necesitamos.",
+    "gl": "Stepando é un proxecto de software libre que pretende albergar pequenas secuencias de preguntas que se sirvan para calcular unha morea de cousas que habitualmente necesitamos.",
+    "eu": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sinfín de cosas que habitualmente necesitamos.",
+    "ct": "Stepando es un proyecto de software libre que pretende albergar pequeñas secuencias de preguntas que se sirvan para calcular un sinfín de cosas que habitualmente necesitamos.",
     "de": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
     "pt": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
     "it": "Stepando is a free software project that aims to accommodate small sequences of questions that serve to calculate an endless of things that we usually need.",
@@ -297,7 +297,7 @@ var text_projectAbout_JSON = {
 var text_projectDonation_JSON = {
     "en": "You can help to make the project go ahead making donations to the following bitcoin address: <a href='bitcoin:18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5' target='_blank'>18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5 </a> (<a href='http://chart.apis.google.com/chart?chs=300x300&cht=qr&chl=18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5&choe=UTF-8' target='_blank'>qr code</a>)",
     "es": "Puede colaborar para que el proyecto siga adelante realizando donativos a la siguiente dirección de bitcoin: <a href='bitcoin:18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5' target='_blank'>18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5 </a> (<a href='http://chart.apis.google.com/chart?chs=300x300&cht=qr&chl=18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5&choe=UTF-8' target='_blank'>qr code</a>)",
-    "gl": "Puede colaborar para que el proyecto siga adelante realizando donativos a la siguiente dirección de bitcoin: <a href='bitcoin:18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5' target='_blank'>18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5 </a> (<a href='http://chart.apis.google.com/chart?chs=300x300&cht=qr&chl=18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5&choe=UTF-8' target='_blank'>qr code</a>)",
+    "gl": "Pode colaborar para que o proxecto siga adiante realizando donativos á seguinte dirección de bitcoin: <a href='bitcoin:18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5' target='_blank'>18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5 </a> (<a href='http://chart.apis.google.com/chart?chs=300x300&cht=qr&chl=18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5&choe=UTF-8' target='_blank'>qr code</a>)",
     "eu": "Puede colaborar para que el proyecto siga adelante realizando donativos a la siguiente dirección de bitcoin: <a href='bitcoin:18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5' target='_blank'>18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5 </a> (<a href='http://chart.apis.google.com/chart?chs=300x300&cht=qr&chl=18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5&choe=UTF-8' target='_blank'>qr code</a>)",
     "ct": "Puede colaborar para que el proyecto siga adelante realizando donativos a la siguiente dirección de bitcoin: <a href='bitcoin:18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5' target='_blank'>18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5 </a> (<a href='http://chart.apis.google.com/chart?chs=300x300&cht=qr&chl=18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5&choe=UTF-8' target='_blank'>qr code</a>)",
     "de": "You can help to make the project go ahead making donations to the following bitcoin address: <a href='bitcoin:18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5' target='_blank'>18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5 </a> (<a href='http://chart.apis.google.com/chart?chs=300x300&cht=qr&chl=18nVAgzDnPPpLrQutztZf77TbCu5NzQLS5&choe=UTF-8' target='_blank'>qr code</a>)",
@@ -310,7 +310,7 @@ var text_projectDonation_JSON = {
 var text_projectContact_JSON = {
     "en": "All the code is available on <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> and is where we welcome your comments.",
     "es": "Todo el código está disponible en <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> y es ahí donde agradeceremos sus comentarios.",
-    "gl": "Todo el código está disponible en <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> y es ahí donde agradeceremos sus comentarios.",
+    "gl": "Todo o código está dispoñible en <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> e é aí onde agradeceremos os seus comentarios.",
     "eu": "Todo el código está disponible en <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> y es ahí donde agradeceremos sus comentarios.",
     "ct": "Todo el código está disponible en <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> y es ahí donde agradeceremos sus comentarios.",
     "de": "All the code is available on <a href='https://github.com/lampantino/stepando.git' target='_blank'>GitHub</a> and is where we welcome your comments.",
