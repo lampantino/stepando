@@ -7,9 +7,10 @@ createSequence(
     'uno70@uno70.com', //Sequence author email
     '0.2', //Sequence last version
     '11/06/2014', //Sequence last review date
-    ['1NYcpukkrV6UywyJkggWkv7FwhDhijtM1C', '', '', ''], //Sequence donation adresses
+    ['1GvoFs2Lv8VAA6wffTcC4vFzECurySecmU', '', '', ''], //Sequence donation adresses
     'Estos precios son orientativos y no incluye IVA.' //Sequence result information
 );
+
 
 var precios = [
     {
@@ -99,6 +100,7 @@ function sequenceResult() {
     var partida;
     var numPartida;
     var medicion = getAnswer('medicion');
+    var importe;
     
     for(var i in precios) {
          if(capitulo === precios[i].capitulo) {
@@ -114,9 +116,11 @@ function sequenceResult() {
         }
     }
     
+    importe = medicion*precios[numCapitulo].partidas[numPartida].precio;
+    
     resultado = '('+precios[numCapitulo].partidas[numPartida].unidad+') <b>'+precios[numCapitulo].partidas[numPartida].titulo+'</b><br>';
     resultado += precios[numCapitulo].partidas[numPartida].descripcion+'<br>';
-    resultado += medicion+' '+precios[numCapitulo].partidas[numPartida].unidad+' X '+precios[numCapitulo].partidas[numPartida].precio+' €/'+precios[numCapitulo].partidas[numPartida].unidad+' = '+medicion*precios[numCapitulo].partidas[numPartida].precio+' €';
+    resultado += medicion+' '+precios[numCapitulo].partidas[numPartida].unidad+' X '+precios[numCapitulo].partidas[numPartida].precio+' €/'+precios[numCapitulo].partidas[numPartida].unidad+' = '+importe.toFixed(2)+' €';
     
     return resultado;
 }

@@ -24,9 +24,8 @@ var Footer = function (currentLanguage) {
 
         var screenContent = '';
         screenContent += '<div id=buttons>';
-        screenContent += '<span style="float:left;">© 2012-2014 stepando</span>';
-        //screenContent += '<a href="contact.html" target="_blank" style="float:right; margin-left:15px;color:white;">' + button_Contact + '</a>';
-        screenContent += '<td style="float:right; margin-left:15px;"><a href="index.html?'+language+'&about" target="_blank" style="float:right; margin-left:15px;color:white;">' + button_About + '</a>';
+        screenContent += '<span style="float:left;">© 2012-2014 stepando (beta 0.3.0)</span>';
+        screenContent += '<td style="float:right; margin-left:15px;"><a href="index.html?'+language+':about" style="float:right; margin-left:15px;color:white;">' + button_About + '</a>';
         screenContent += '<a href="'+ url_license +'" target="_blank" style="float:right; margin-left:15px;color:white;">' + button_License + '</a>';
         screenContent += '</div>';
         document.querySelector('footer').innerHTML = screenContent;
