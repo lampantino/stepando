@@ -266,6 +266,20 @@ var text_Result_JSON = {
     "zh": "The result is",
 };
 
+var text_Comments_JSON = {
+    "en": "Comments",
+    "es": "Comentarios",
+    "gl": "Comentarios",
+    "eu": "Comentarios",
+    "ct": "Comentarios",
+    "de": "Comments",
+    "pt": "Comments",
+    "it": "Comments",
+    "fr": "Comments",
+    "ru": "Comments",
+    "zh": "Comments",
+};
+
 var text_titleAbout_JSON = {
     "en": "About Stepando",
     "es": "Acerca de Stepando",

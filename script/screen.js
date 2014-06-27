@@ -146,6 +146,7 @@ var Screen = function () {
         eval('text_Iframe = text_Iframe_JSON.' + language);
         eval('text_Answer = text_Answer_JSON.' + language);
         eval('text_Result = text_Result_JSON.' + language);
+        eval('text_Comments = text_Comments_JSON.' + language);
         eval('alert_Text = alert_Text_JSON.' + language);
         eval('alert_Integer = alert_Integer_JSON.' + language);
         eval('alert_Float = alert_Float_JSON.' + language);
@@ -175,6 +176,7 @@ var Screen = function () {
             screenContent += '<div class="step rightside boxShadow" id=step' + i + ' style="display:none;"></div>';
         }
         screenContent += '<div id=result class="step leftside " style="display:none"></div>';
+        screenContent += '<div id=comments class="step leftside " style="display:none"></div>';
         document.getElementById('steps').innerHTML = screenContent;
     };
 
@@ -273,6 +275,34 @@ var Screen = function () {
         screenContent += '<div id="info_result" class="rounded boxShadow info" style="display:none;">' + resultInfo + '</div>';
         document.getElementById('result').innerHTML = screenContent;
         document.getElementById('result').style.display = 'block';
+    };
+    
+    //private method that prints the sequence comments
+    var printComments = function () {
+        
+        var screenContent = '';
+        screenContent += '<div class=question>' + text_Comments + ':</div>';
+        
+        //starts Disqus code
+        screenContent += '<div id="disqus_thread"></div>';
+        var disqus_shortname = "stepando";
+        var args = location.search.substr(1).split(':');
+        var disqus_identifier = args[1];
+        
+        (function() {
+            var dsq = document.createElement("script");
+            dsq.type = "text/javascript";
+            dsq.async = true;
+            dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+            (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            console.log('eoeo');
+        })();
+        screenContent += '<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>';
+        screenContent += '<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>';
+        //ends Disqus code
+        
+        document.getElementById('comments').innerHTML = screenContent;
+        document.getElementById('comments').style.display = 'block';
         document.querySelector('footer').style.display = 'block';
         window.scrollTo(0, document.body.scrollHeight);
     };
@@ -328,6 +358,7 @@ var Screen = function () {
             if (nextStep === 'result') {
                 activeSequence.addResult(sequenceResult());
                 printResult();
+                printComments();
             } else {
                 currentStep = activeSequence.getStepByRef(nextStep);
                 printStep();
