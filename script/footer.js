@@ -2,8 +2,8 @@
  * STEPANDO (Footer)                            *
  * Author: Lampantino                           *
  * Start date: 22/12/2012						*
- * Version date: 17/02/2014                     *
- * Version:0.3.0                                *
+ * Version date: 11/07/2014                     *
+ * Version:0.4.0                                *
  ************************************************/
 
 //FOOTER CLASS
@@ -24,7 +24,7 @@ var Footer = function (currentLanguage) {
 
         var screenContent = '';
         screenContent += '<div id=buttons>';
-        screenContent += '<span style="float:left;">© 2012-2014 stepando (beta 0.3.0)</span>';
+        screenContent += '<span style="float:left;">© 2012-2014 stepando (beta 0.4.0)</span>';
         screenContent += '<td style="float:right; margin-left:15px;"><a href="index.html?'+language+':about" style="float:right; margin-left:15px;color:white;">' + button_About + '</a>';
         screenContent += '<a href="'+ url_license +'" target="_blank" style="float:right; margin-left:15px;color:white;">' + button_License + '</a>';
         screenContent += '</div>';

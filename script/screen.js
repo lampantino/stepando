@@ -2,8 +2,8 @@
  * STEPANDO (Screen)                            *
  * Author: Lampantino                           *
  * Start date: 22/12/2012						*
- * Version date: 17/02/2014                     *
- * Version:0.3.0                                *
+ * Version date: 11/07/2014                     *
+ * Version:0.4.0                                *
  ************************************************/
 
 //SCREEN CLASS

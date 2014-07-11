@@ -2,8 +2,8 @@
  * STEPANDO (About)                             *
  * Author: Lampantino                           *
  * Start date: 15/02/2014						*
- * Version date: 17/02/2014                     *
- * Version:0.3.0                                *
+ * Version date: 11/07/2014                     *
+ * Version:0.4.0                                *
  ************************************************/
 
 //ABOUT CLASS
