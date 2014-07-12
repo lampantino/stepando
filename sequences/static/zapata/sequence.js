@@ -3,8 +3,8 @@ createSequence(
     'es', //Sequence language
     'Predimensionado de una zapata aislada', //Sequence title
     'Predimensiona una zapata aislada y centrada que está sometida a una carga vertical sin momentos flectores', //Sequence info
-    'Lampantino', //Sequence author
-    'sre.quereck@gmail.com', //Sequence author email
+    'stepando', //Sequence author
+    'contact@stepando.com', //Sequence author email
     '0.1', //Sequence last version
     '6/12/2013', //Sequence last review date
  ['1CiJTEeMLTdHDekYTK7nXzZQ9SN9EsStdY', 'https://flattr.com/submit/auto?user_id=lampantino&url=https%3A%2F%2Fc9.io%2Flampantino%2Fstepando%2Fworkspace%2Findex.html%3Fengineering%26vigaacero', 'https://www.gittip.com/lampantino'], //Sequence donation adresses

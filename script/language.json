@@ -267,17 +267,17 @@ var text_Result_JSON = {
 };
 
 var text_Comments_JSON = {
-    "en": "Comments",
-    "es": "Comentarios",
-    "gl": "Comentarios",
-    "eu": "Comentarios",
-    "ct": "Comentarios",
-    "de": "Comments",
-    "pt": "Comments",
-    "it": "Comments",
-    "fr": "Comments",
-    "ru": "Comments",
-    "zh": "Comments",
+    "en": "Please make a comment",
+    "es": "Por favor, haga algún comentario",
+    "gl": "Por favor, faga algún comentario",
+    "eu": "Por favor, haga algún comentario",
+    "ct": "Por favor, haga algún comentario",
+    "de": "Please make a comment",
+    "pt": "Please make a comment",
+    "it": "Please make a comment",
+    "fr": "Please make a comment",
+    "ru": "Please make a comment",
+    "zh": "Please make a comment",
 };
 
 var text_titleAbout_JSON = {
