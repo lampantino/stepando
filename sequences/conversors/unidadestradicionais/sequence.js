@@ -7,7 +7,7 @@ createSequence(
     'contact@stepando.com', //Sequence author email
     '0.1', //Sequence last version
     '11/11/2013', //Sequence last review date
- ['18JBKuM7LuMbLXDPctYkyk34Jpm74KenKa', 'lampantino', 'lampantino', 'https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sre%2equereck%40gmail%2ecom&lc=ES&item_name=Stepando&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHostedGuest'], //Sequence donation adresses
+ ['1DXmFrR6wGf7y3oeLyZvLWZC7QQtTvaMHX', 'stepando', 'lampantino', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XDW597BZDGYU6'], //Sequence donation adresses
     'Información obtida de <a href="http://www.mftopografia.com/f02_unidades.php" target="_blank">MF Topografía</a>' //Sequence result information
 );
 

@@ -7,7 +7,7 @@ createSequence(
     'contact@stepando.com', //Sequence author email
     '0.1', //Sequence last version
     '6/12/2013', //Sequence last review date
- ['1CiJTEeMLTdHDekYTK7nXzZQ9SN9EsStdY', 'https://flattr.com/submit/auto?user_id=lampantino&url=https%3A%2F%2Fc9.io%2Flampantino%2Fstepando%2Fworkspace%2Findex.html%3Fengineering%26vigaacero', 'https://www.gittip.com/lampantino'], //Sequence donation adresses
+ ['18RHPDCF8qPWLjWDHJ9CKxwXSc9Lom58XR', 'stepando', 'lampantino','https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XDW597BZDGYU6'], //Sequence donation adresses
     'Estos resultados son orientativos y únicamente útiles para un predimensionado' //Sequence result information
 );
 
