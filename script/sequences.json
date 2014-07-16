@@ -7,11 +7,11 @@ var seq_en_JSON = [
 ];
 
 var seq_es_JSON = [
-    /*{
+    {
         "category": "Construcción",
         "title": "Precios de partidas de obra",
         "adress": "construction:preciosconstruccion"
-    },*/
+    },
     {
         "category": "Conversores",
         "title": "Conversor de unidades",
@@ -26,6 +26,11 @@ var seq_es_JSON = [
         "category": "Estática",
         "title": "Predimensionado de una zapata aislada",
         "adress": "static:zapata"
+    },
+    {
+        "category": "Instalaciones",
+        "title": "Cálculo de las secciones de conductos de saneamiento en edificios",
+        "adress": "facilities:saneamientoedificios"
     },
 ];
 

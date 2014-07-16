@@ -5,10 +5,10 @@ createSequence(
     'Predimensiona una zapata aislada y centrada que está sometida a una carga vertical sin momentos flectores', //Sequence info
     'stepando', //Sequence author
     'contact@stepando.com', //Sequence author email
-    '0.1', //Sequence last version
-    '6/12/2013', //Sequence last review date
+    '0.2', //Sequence last version
+    '16/07/2014', //Sequence last review date
  ['18RHPDCF8qPWLjWDHJ9CKxwXSc9Lom58XR', 'stepando', 'lampantino','https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XDW597BZDGYU6'], //Sequence donation adresses
-    'Estos resultados son orientativos y únicamente útiles para un predimensionado' //Sequence result information
+    'Estos resultados son orientativos y únicamente útiles para un predimensionado.' //Sequence result information
 );
 
 //addStep methods creates new steps and adds them to the sequence
@@ -18,18 +18,10 @@ addStep(
     'Input', //Step type
     'Float', //Step option
     'tension', //Next step
-    'Ha de introducir la carga en KN' //Step info
+    '<p>Ha de introducir la carga en KN y sin mayorar.</p><p>Como referencia puede utilizar una carga de 8KN/m2 para cada planta correspondiente a un forjado unidireccional de 25+5cm y bovedillas de hormigón, con un uso residencial.</p><p>En el caso de tratarse de una cubierta ligera, puede estimar unos 2-3KN/m2.</p><p>Cada pilar de hormigón armado de 30x30cm y 3 metros de altura pesa unos 7KN.</p>' //Step info
 );
-/*
-addStep(
-    'pilar', //Step reference
-    '¿Cuánto mide el lado del pilar que se apoya en la zapata?', //Step question
-    'Input', //Step type
-    'Float', //Step option
-    'tension', //Next step
-    'Ha de introducir la dimensión en m' //Step info
-);
-*/
+
+//addStep methods creates new steps and adds them to the sequence
 addStep(
     'tension', //Step reference
     '¿Cuál es la tensión admisible del terreno?', //Step question
