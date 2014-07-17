@@ -25,7 +25,7 @@ var tipoRed_nextStep = function () {
     if(getAnswer('tipoRed') === 'Fecales') {
         return 'fecales';
     } else {
-        return 'pluviales';
+        return 'superficieCubierta';
     }
 };
 
@@ -34,18 +34,16 @@ addStep(
     'fecales', //Step reference
     '¿Cuál es la función del conducto a calcular?', //Step question
     'select', //Step type (input or select)
-    ['Sifón o derivación individual de algún aparato sanitario','Colector horizontal','Bajante' ], //Step option (integer, float, string, email, url)
+    ['Sifón o derivación individual de algún aparato sanitario','Ramal colector','Bajante', 'Colector horizontal' ], //Step option (integer, float, string, email, url)
     '', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
-    'Seleccione uno de los casos.' //Step info
+    'Seleccione entre la derivación de cada aparato o sifón, el ramal que une estas derivaciones con la bajante, la bajante o el colector horizontal posterior a la bajante.' //Step info
 );
 
 var fecales_nextStep = function () {
     if(getAnswer('fecales') === 'Sifón o derivación individual de algún aparato sanitario') {
         return 'derivación';
-    } else if (getAnswer('fecales') === 'Colector horizontal') {
-        return 'colector';
     } else {
-        return 'bajante';
+        return 'unidadesDesague';
     }
 };
 
@@ -61,18 +59,48 @@ addStep(
 
 //AddStep methods creates new steps and adds them to the sequence
 addStep(
-    'colector', //Step reference
-    '¿Cuántas unidades de desagüe pasarán por el conducto?', //Step question
+    'unidadesDesague', //Step reference
+    '¿Cuántas unidades de desagüe pasarán por el ramal?', //Step question
     'input', //Step type (input or select)
     'integer', //Step option (integer, float, string, email, url)
-    'pendienteColector', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
+    '', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
     'Para saber el número de las unidades de desagüe en función de los aparatos a los que sirve, puede utilizar la <a href="/sequences/facilities/saneamientoedificios/colectores.png" target="_blank">tabla 4.1</a> del CTE DB-HS5.' //Step info
+);
+
+var unidadesDesague_nextStep = function () {
+    if(getAnswer('fecales') === 'Ramal colector') {
+        return 'pendienteRamal';
+    } else if(getAnswer('fecales') === 'Bajante') {
+        return 'alturasBajante';
+    } else {
+        return 'pendienteColector';
+    }
+};
+
+//AddStep methods creates new steps and adds them to the sequence
+addStep(
+    'pendienteRamal', //Step reference
+    '¿Cuál es la pendiente del ramal?', //Step question
+    'select', //Step type (input or select)
+    ['1%', '2%', '4%'], //Step option (integer, float, string, email, url)
+    'result', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
+    'Seleccione la pendiente del ramal.' //Step info
+);
+
+//AddStep methods creates new steps and adds them to the sequence
+addStep(
+    'alturasBajante', //Step reference
+    '¿Cuántas alturas tiene la bajante?', //Step question
+    'select', //Step type (input or select)
+    ['Hasta 3 plantas','Más de 3 plantas'], //Step option (integer, float, string, email, url)
+    'result', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
+    'Seleccione una de las dos opciones disponibles.' //Step info
 );
 
 //AddStep methods creates new steps and adds them to the sequence
 addStep(
     'pendienteColector', //Step reference
-    '¿Cuál es la pendiente del colector?', //Step question
+    '¿Cuál es la pendiente del colector horizontal?', //Step question
     'select', //Step type (input or select)
     ['1%', '2%', '4%'], //Step option (integer, float, string, email, url)
     'result', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
@@ -80,53 +108,49 @@ addStep(
 );
 
 
-
+//AddStep methods creates new steps and adds them to the sequence
+addStep(
+    'superficieCubierta', //Step reference
+    '¿Cuál es la superficie de la cubierta?', //Step question
+    'input', //Step type (input or select)
+    'float', //Step option (integer, float, string, email, url)
+    'intensidadPluviometrica', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
+    'Introduzca la superficie de la cubierta en proyección horizontal y en m2.' //Step info
+);
 
 //AddStep methods creates new steps and adds them to the sequence
 addStep(
-    'bajante', //Step reference
-    'bajante', //Step question
-    '', //Step type (input or select)
-    '', //Step option (integer, float, string, email, url)
-    '', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
-    /*
-    If you let an empty string (''), you must add after this addStep() method another method that returns
-    where is the next step to print. This method name must be compoused by a name and the suffix _nextStep.
-    For example:
-        var stepX_nextStep = function () {
-            if(getAnswer('step1') < 1) {
-                return 'step2';
-            } else {
-                return 'step3';
-            }
-        };
-    */
-    '' //Step info
+    'intensidadPluviometrica', //Step reference
+    '¿Cuál es la intensidad pluviométrica?', //Step question
+    'input', //Step type (input or select)
+    'float', //Step option (integer, float, string, email, url)
+    'conductoPluviales', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
+    'Para obtener la intensidad pluviométrica de la ubicación de la cubierta, puede utilizar la figura B.1 y la tabla B.1 del <a href="/sequences/facilities/saneamientoedificios/pluviometria.png" target="_blank">Apéndice B</a> del CTE DB-HS5.<br/>Introduzca el valor en mm/h.' //Step info
 );
-
-
 
 //AddStep methods creates new steps and adds them to the sequence
 addStep(
-    'pluviales', //Step reference
-    'pluviales', //Step question
-    '', //Step type (input or select)
-    '', //Step option (integer, float, string, email, url)
+    'conductoPluviales', //Step reference
+    '¿Cuál es la función del conducto a calcular?', //Step question
+    'select', //Step type (input or select)
+    ['Canalón', 'Bajante', 'Colector horizontal' ], //Step option (integer, float, string, email, url)
     '', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
-    /*
-    If you let an empty string (''), you must add after this addStep() method another method that returns
-    where is the next step to print. This method name must be compoused by a name and the suffix _nextStep.
-    For example:
-        var stepX_nextStep = function () {
-            if(getAnswer('step1') < 1) {
-                return 'step2';
-            } else {
-                return 'step3';
-            }
-        };
-    */
-    '' //Step info
+    'Seleccione una de las opciones disponibles.' //Step info
 );
+
+var conductoPluviales_nextStep = function () {
+    if(getAnswer('conductoPluviales') === 'Canalón') {
+        return 'pendienteCanalon';
+    } else if(getAnswer('conductoPluviales') === 'Bajante') {
+        return 'result';
+    } else {
+        return 'pendienteColectorPluviales';
+    }
+};
+
+
+
+
 
 /*
 SequenceResult function contains the sequence logic and returns the result.
@@ -200,11 +224,11 @@ function sequenceResult() {
         }
     }
     
-    //Caso Fecales->Colector
-    if(getAnswer('tipoRed') === 'Fecales' && getAnswer('fecales') === 'Colector horizontal') {
-        var unidadesDesague = getAnswer('colector');
-        result = 'Para '+unidadesDesague+' UD a un '+getAnswer('pendienteColector')+' de pendiente: ';
-        if(getAnswer('pendienteColector') === '1%') {
+    //Caso Fecales->Ramal
+    if(getAnswer('tipoRed') === 'Fecales' && getAnswer('fecales') === 'Ramal colector') {
+        var unidadesDesague = getAnswer('unidadesDesague');
+        result = 'Para '+unidadesDesague+' UD a un '+getAnswer('pendienteRamal')+' de pendiente: ';
+        if(getAnswer('pendienteRamal') === '1%') {
             if(unidadesDesague <= 47) {
                 result += 'Ø90mm';
             } else if(unidadesDesague > 47 && unidadesDesague <= 123) {
@@ -218,7 +242,7 @@ function sequenceResult() {
             } else {
                 result += 'No existe una sección de conducto válida';
             }
-        } else if(getAnswer('pendienteColector') === '2%') {
+        } else if(getAnswer('pendienteRamal') === '2%') {
             if(unidadesDesague <= 1) {
                 result += 'Ø32mm';
             } else if(unidadesDesague > 1 && unidadesDesague <= 2) {
@@ -270,9 +294,157 @@ function sequenceResult() {
     }
     
     //Caso Fecales->Bajante
-    if(getAnswer('tipoRed') === 'Fecales' && getAnswer('fecales') === 'Bajante') {}
+    if(getAnswer('tipoRed') === 'Fecales' && getAnswer('fecales') === 'Bajante') {
+        var unidadesDesague = getAnswer('unidadesDesague');
+        result = 'Para '+unidadesDesague+' UD y una bajante de ';
+        if(getAnswer('alturasBajante') === 'Hasta 3 plantas') {
+            result += 'hasta 3 plantas: ';
+            if(unidadesDesague <= 10) {
+                result += 'Ø50mm';
+                result += '<br/>Las bajantes que sirvan a inodoros serán como mínimo de Ø110mm';
+            } else if(unidadesDesague > 10 && unidadesDesague <= 19) {
+                result += 'Ø63mm';
+                result += '<br/>Las bajantes que sirvan a inodoros serán como mínimo de Ø110mm';
+            } else if(unidadesDesague > 19 && unidadesDesague <= 27) {
+                result += 'Ø75mm';
+                result += '<br/>Las bajantes que sirvan a inodoros serán como mínimo de Ø110mm';
+            } else if(unidadesDesague > 27 && unidadesDesague <= 135) {
+                result += 'Ø90mm';
+                result += '<br/>Las bajantes que sirvan a inodoros serán como mínimo de Ø110mm';
+            } else if(unidadesDesague > 135 && unidadesDesague <= 360) {
+                result += 'Ø110mm';
+            } else if(unidadesDesague > 360 && unidadesDesague <= 540) {
+                result += 'Ø125mm';
+            } else if(unidadesDesague > 540 && unidadesDesague <= 1208) {
+                result += 'Ø160mm';
+            } else if(unidadesDesague > 1208 && unidadesDesague <= 2200) {
+                result += 'Ø200mm';
+            } else if(unidadesDesague > 2200 && unidadesDesague <= 3800) {
+                result += 'Ø250mm';
+            } else if(unidadesDesague > 3800 && unidadesDesague <= 6000) {
+                result += 'Ø315mm';
+            } else {
+                result += 'No existe una sección de conducto válida';
+            }
+        } else {
+            result += 'más de 3 plantas: ';
+            if(unidadesDesague <= 25) {
+                result += 'Ø50mm';
+                result += '<br/>Las bajantes que sirvan a inodoros serán como mínimo de Ø110mm';
+            } else if(unidadesDesague > 25 && unidadesDesague <= 38) {
+                result += 'Ø63mm';
+                result += '<br/>Las bajantes que sirvan a inodoros serán como mínimo de Ø110mm';
+            } else if(unidadesDesague > 38 && unidadesDesague <= 53) {
+                result += 'Ø75mm';
+                result += '<br/>Las bajantes que sirvan a inodoros serán como mínimo de Ø110mm';
+            } else if(unidadesDesague > 53 && unidadesDesague <= 280) {
+                result += 'Ø90mm';
+                result += '<br/>Las bajantes que sirvan a inodoros serán como mínimo de Ø110mm';
+            } else if(unidadesDesague > 280 && unidadesDesague <= 740) {
+                result += 'Ø110mm';
+            } else if(unidadesDesague > 740 && unidadesDesague <= 1100) {
+                result += 'Ø125mm';
+            } else if(unidadesDesague > 1100 && unidadesDesague <= 2240) {
+                result += 'Ø160mm';
+            } else if(unidadesDesague > 2240 && unidadesDesague <= 3600) {
+                result += 'Ø200mm';
+            } else if(unidadesDesague > 3600 && unidadesDesague <= 5600) {
+                result += 'Ø250mm';
+            } else if(unidadesDesague > 5600 && unidadesDesague <= 9240) {
+                result += 'Ø315mm';
+            } else {
+                result += 'No existe una sección de conducto válida';
+            }
+        }
+    }
     
+    //Caso Fecales->Colector
+    if(getAnswer('tipoRed') === 'Fecales' && getAnswer('fecales') === 'Colector horizontal') {
+        var unidadesDesague = getAnswer('unidadesDesague');
+        result = 'Para '+unidadesDesague+' UD a un '+getAnswer('pendienteColector')+' de pendiente: ';
+        if(getAnswer('pendienteColector') === '1%') {
+            if(unidadesDesague <= 96) {
+                result += 'Ø90mm';
+            } else if(unidadesDesague > 96 && unidadesDesague <= 264) {
+                result += 'Ø110mm';
+            } else if(unidadesDesague > 264 && unidadesDesague <= 390) {
+                result += 'Ø125mm';
+            } else if(unidadesDesague > 390 && unidadesDesague <= 880) {
+                result += 'Ø160mm';
+            } else if(unidadesDesague > 880 && unidadesDesague <= 1600) {
+                result += 'Ø200mm';
+            } else if(unidadesDesague > 1600 && unidadesDesague <= 2900) {
+                result += 'Ø250mm';
+            } else if(unidadesDesague > 2900 && unidadesDesague <= 5710) {
+                result += 'Ø315mm';
+            } else if(unidadesDesague > 5710 && unidadesDesague <= 8300) {
+                result += 'Ø350mm';
+            } else {
+                result += 'No existe una sección de conducto válida';
+            }
+        } else if(getAnswer('pendienteColector') === '2%') {
+            if(unidadesDesague <= 20) {
+                result += 'Ø50mm';
+            } else if(unidadesDesague > 20 && unidadesDesague <= 24) {
+                result += 'Ø63mm';
+            } else if(unidadesDesague > 24 && unidadesDesague <= 38) {
+                result += 'Ø75mm';
+            } else if(unidadesDesague > 38 && unidadesDesague <= 130) {
+                result += 'Ø90mm';
+            } else if(unidadesDesague > 130 && unidadesDesague <= 321) {
+                result += 'Ø110mm';
+            } else if(unidadesDesague > 321 && unidadesDesague <= 480) {
+                result += 'Ø125mm';
+            } else if(unidadesDesague > 480 && unidadesDesague <= 1056) {
+                result += 'Ø160mm';
+            } else if(unidadesDesague > 1056 && unidadesDesague <= 1920) {
+                result += 'Ø200mm';
+            } else if(unidadesDesague > 1920 && unidadesDesague <= 3500) {
+                result += 'Ø250mm';
+            } else if(unidadesDesague > 3500 && unidadesDesague <= 6920) {
+                result += 'Ø315mm';
+            } else if(unidadesDesague > 6920 && unidadesDesague <= 10000) {
+                result += 'Ø350mm';
+            } else {
+                result += 'No existe una sección de conducto válida';
+            }
+        } else {
+            if(unidadesDesague <= 25) {
+                result += 'Ø50mm';
+            } else if(unidadesDesague > 25 && unidadesDesague <= 29) {
+                result += 'Ø63mm';
+            } else if(unidadesDesague > 29 && unidadesDesague <= 57) {
+                result += 'Ø75mm';
+            } else if(unidadesDesague > 57 && unidadesDesague <= 160) {
+                result += 'Ø90mm';
+            } else if(unidadesDesague > 160 && unidadesDesague <= 382) {
+                result += 'Ø110mm';
+            } else if(unidadesDesague > 382 && unidadesDesague <= 580) {
+                result += 'Ø125mm';
+            } else if(unidadesDesague > 580 && unidadesDesague <= 1300) {
+                result += 'Ø160mm';
+            } else if(unidadesDesague > 1300 && unidadesDesague <= 2300) {
+                result += 'Ø200mm';
+            } else if(unidadesDesague > 2300 && unidadesDesague <= 4200) {
+                result += 'Ø250mm';
+            } else if(unidadesDesague > 4200 && unidadesDesague <= 8290) {
+                result += 'Ø315mm';
+            } else if(unidadesDesague > 8290 && unidadesDesague <= 12000) {
+                result += 'Ø350mm';
+            } else {
+                result += 'No existe una sección de conducto válida';
+            }
+        }
+    }
     
-
+    //Caso Pluviales->Canalón
+    if(getAnswer('tipoRed') === 'Pluviales' && getAnswer('conductoPluviales') === 'Canalón') {}
+    
+    //Caso Pluviales->Bajante
+    if(getAnswer('tipoRed') === 'Pluviales' && getAnswer('conductoPluviales') === 'Bajante') {}
+    
+    //Caso Pluviales->Colector horizontal
+    if(getAnswer('tipoRed') === 'Pluviales' && getAnswer('conductoPluviales') === 'Colector horizontal') {}
+    
     return result;
 }

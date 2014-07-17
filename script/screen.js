@@ -398,7 +398,7 @@ var Screen = function () {
                     document.getElementById('step' + i).style.display = 'none';
                 }
                 document.querySelector('footer').style.display = 'none';
-                
+                document.getElementById('comments').style.display = 'none';
                 if(nextStep === 'result') {
                     activeSequence.addResult(sequenceResult());
                     printResult();
