@@ -6,7 +6,7 @@ createSequence(
     'stepando', //Sequence author
     'contact@stepando.com', //Sequence author email
     '0.1', //Sequence last version
-    '16/07/2014', //Sequence last review date
+    '17/07/2014', //Sequence last review date
  ['1FT8c67hiyXahzqbvPNAxciPCjPVwPczaV', 'stepando', 'lampantino', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XDW597BZDGYU6'], //Sequence donation adresses (BTC adress, flattr username, gittip username, paypal link)
     'Este resultado se ha obtenido utilizando el método de cálculo que figura en el Documento Básico <a href="http://www.codigotecnico.org/cte/export/sites/default/web/galerias/archivos/DB_HS_2009.pdf">HS5</a> del Código Técnico de la Edificación.' //Sequence result information
 );
@@ -148,9 +148,25 @@ var conductoPluviales_nextStep = function () {
     }
 };
 
+//AddStep methods creates new steps and adds them to the sequence
+addStep(
+    'pendienteCanalon', //Step reference
+    '¿Cuál es la pendiente del canalón?', //Step question
+    'select', //Step type (input or select)
+    ['0.5%' ,'1%', '2%', '4%'], //Step option (integer, float, string, email, url)
+    'result', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
+    'Seleccione la pendiente del canalón.' //Step info
+);
 
-
-
+//AddStep methods creates new steps and adds them to the sequence
+addStep(
+    'pendienteColectorPluviales', //Step reference
+    '¿Cuál es la pendiente del colector de pluviales?', //Step question
+    'select', //Step type (input or select)
+    ['1%', '2%', '4%'], //Step option (integer, float, string, email, url)
+    'result', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
+    'Seleccione la pendiente del colector de pluviales.' //Step info
+);
 
 /*
 SequenceResult function contains the sequence logic and returns the result.
@@ -162,7 +178,7 @@ function sequenceResult() {
     //Caso Fecales->Derivación individual
     if(getAnswer('tipoRed') === 'Fecales' && getAnswer('fecales') === 'Sifón o derivación individual de algún aparato sanitario') {
         var tipoAparato = getAnswer('derivación');
-        result = tipoAparato +': ';
+        result = tipoAparato +' = ';
         switch (tipoAparato) {
             case 'Lavabo':
                 result += 'Ø32mm para uso privado y Ø40mm para uso público';
@@ -227,7 +243,7 @@ function sequenceResult() {
     //Caso Fecales->Ramal
     if(getAnswer('tipoRed') === 'Fecales' && getAnswer('fecales') === 'Ramal colector') {
         var unidadesDesague = getAnswer('unidadesDesague');
-        result = 'Para '+unidadesDesague+' UD a un '+getAnswer('pendienteRamal')+' de pendiente: ';
+        result = 'La sección del ramal colector para '+unidadesDesague+' UD a un '+getAnswer('pendienteRamal')+' de pendiente = ';
         if(getAnswer('pendienteRamal') === '1%') {
             if(unidadesDesague <= 47) {
                 result += 'Ø90mm';
@@ -296,9 +312,9 @@ function sequenceResult() {
     //Caso Fecales->Bajante
     if(getAnswer('tipoRed') === 'Fecales' && getAnswer('fecales') === 'Bajante') {
         var unidadesDesague = getAnswer('unidadesDesague');
-        result = 'Para '+unidadesDesague+' UD y una bajante de ';
+        result = 'La sección de la bajante para '+unidadesDesague+' UD ';
         if(getAnswer('alturasBajante') === 'Hasta 3 plantas') {
-            result += 'hasta 3 plantas: ';
+            result += 'hasta 3 plantas = ';
             if(unidadesDesague <= 10) {
                 result += 'Ø50mm';
                 result += '<br/>Las bajantes que sirvan a inodoros serán como mínimo de Ø110mm';
@@ -327,7 +343,7 @@ function sequenceResult() {
                 result += 'No existe una sección de conducto válida';
             }
         } else {
-            result += 'más de 3 plantas: ';
+            result += 'más de 3 plantas = ';
             if(unidadesDesague <= 25) {
                 result += 'Ø50mm';
                 result += '<br/>Las bajantes que sirvan a inodoros serán como mínimo de Ø110mm';
@@ -361,7 +377,7 @@ function sequenceResult() {
     //Caso Fecales->Colector
     if(getAnswer('tipoRed') === 'Fecales' && getAnswer('fecales') === 'Colector horizontal') {
         var unidadesDesague = getAnswer('unidadesDesague');
-        result = 'Para '+unidadesDesague+' UD a un '+getAnswer('pendienteColector')+' de pendiente: ';
+        result = 'La sección del colector horizontal para '+unidadesDesague+' UD a un '+getAnswer('pendienteColector')+' de pendiente = ';
         if(getAnswer('pendienteColector') === '1%') {
             if(unidadesDesague <= 96) {
                 result += 'Ø90mm';
@@ -438,13 +454,153 @@ function sequenceResult() {
     }
     
     //Caso Pluviales->Canalón
-    if(getAnswer('tipoRed') === 'Pluviales' && getAnswer('conductoPluviales') === 'Canalón') {}
+    if(getAnswer('tipoRed') === 'Pluviales' && getAnswer('conductoPluviales') === 'Canalón') {
+        var superficie = getAnswer('superficieCubierta')*getAnswer('intensidadPluviometrica')/100;
+        result = 'La sección del canalón para '+getAnswer('superficieCubierta')+'m2 de cubierta a un '+getAnswer('pendienteCanalon')+' de pendiente = ';
+        if(getAnswer('pendienteCanalon') === '0.5%') {
+            if(superficie <= 35) {
+                result += 'Ø100mm';
+            } else if(superficie > 35 && superficie <= 60) {
+                result += 'Ø125mm';
+            } else if(superficie > 60 && superficie <= 90) {
+                result += 'Ø150mm';
+            } else if(superficie > 90 && superficie <= 185) {
+                result += 'Ø200mm';
+            } else if(superficie > 185 && superficie <= 335) {
+                result += 'Ø250mm';
+            } else {
+                result += 'No existe una sección válida';
+            }
+        } else if(getAnswer('pendienteCanalon') === '1%') {
+            if(superficie <= 45) {
+                result += 'Ø100mm';
+            } else if(superficie > 45 && superficie <= 80) {
+                result += 'Ø125mm';
+            } else if(superficie > 80 && superficie <= 125) {
+                result += 'Ø150mm';
+            } else if(superficie > 125 && superficie <= 260) {
+                result += 'Ø200mm';
+            } else if(superficie > 260 && superficie <= 475) {
+                result += 'Ø250mm';
+            } else {
+                result += 'No existe una sección válida';
+            }
+        } else if(getAnswer('pendienteCanalon') === '2%') {
+            if(superficie <= 65) {
+                result += 'Ø100mm';
+            } else if(superficie > 65 && superficie <= 115) {
+                result += 'Ø125mm';
+            } else if(superficie > 115 && superficie <= 175) {
+                result += 'Ø150mm';
+            } else if(superficie > 175 && superficie <= 370) {
+                result += 'Ø200mm';
+            } else if(superficie > 370 && superficie <= 670) {
+                result += 'Ø250mm';
+            } else {
+                result += 'No existe una sección válida';
+            }
+        } else {
+            if(superficie <= 95) {
+                result += 'Ø100mm';
+            } else if(superficie > 95 && superficie <= 165) {
+                result += 'Ø125mm';
+            } else if(superficie > 165 && superficie <= 255) {
+                result += 'Ø150mm';
+            } else if(superficie > 255 && superficie <= 520) {
+                result += 'Ø200mm';
+            } else if(superficie > 520 && superficie <= 930) {
+                result += 'Ø250mm';
+            } else {
+                result += 'No existe una sección válida';
+            }
+        }
+    }
     
     //Caso Pluviales->Bajante
-    if(getAnswer('tipoRed') === 'Pluviales' && getAnswer('conductoPluviales') === 'Bajante') {}
-    
+    if(getAnswer('tipoRed') === 'Pluviales' && getAnswer('conductoPluviales') === 'Bajante') {
+        var superficie = getAnswer('superficieCubierta')*getAnswer('intensidadPluviometrica')/100;
+        result = 'La sección de la bajante para '+getAnswer('superficieCubierta')+'m2 de cubierta = ';
+        if(superficie <= 65) {
+            result += 'Ø50mm';
+        } else if(superficie > 65 && superficie <= 113) {
+            result += 'Ø63mm';
+        } else if(superficie > 113 && superficie <= 177) {
+            result += 'Ø75mm';
+        } else if(superficie > 177 && superficie <= 318) {
+            result += 'Ø90mm';
+        } else if(superficie > 318 && superficie <= 580) {
+            result += 'Ø110mm';
+        } else if(superficie > 580 && superficie <= 805) {
+            result += 'Ø125mm';
+        } else if(superficie > 805 && superficie <= 1544) {
+            result += 'Ø160mm';
+        } else if(superficie > 1544 && superficie <= 2700) {
+            result += 'Ø200mm';
+        } else {
+            result += 'No existe una sección válida';
+        }
+    }
+
     //Caso Pluviales->Colector horizontal
-    if(getAnswer('tipoRed') === 'Pluviales' && getAnswer('conductoPluviales') === 'Colector horizontal') {}
+    if(getAnswer('tipoRed') === 'Pluviales' && getAnswer('conductoPluviales') === 'Colector horizontal') {
+        var superficie = getAnswer('superficieCubierta')*getAnswer('intensidadPluviometrica')/100;
+        result = 'La sección del colector para '+getAnswer('superficieCubierta')+'m2 de cubierta a un '+getAnswer('pendienteColectorPluviales')+' de pendiente = ';
+        if(getAnswer('pendienteColectorPluviales') === '1%') {
+            if(superficie <= 125) {
+                result += 'Ø90mm';
+            } else if(superficie > 125 && superficie <= 229) {
+                result += 'Ø110mm';
+            } else if(superficie > 229 && superficie <= 310) {
+                result += 'Ø125mm';
+            } else if(superficie > 310 && superficie <= 614) {
+                result += 'Ø160mm';
+            } else if(superficie > 614 && superficie <= 1070) {
+                result += 'Ø200mm';
+            } else if(superficie > 1070 && superficie <= 1920) {
+                result += 'Ø250mm';
+            } else if(superficie > 1920 && superficie <= 2016) {
+                result += 'Ø315mm';
+            } else {
+                result += 'No existe una sección de conducto válida';
+            }
+        } else if(getAnswer('pendienteColectorPluviales') === '2%') {
+            if(superficie <= 178) {
+                result += 'Ø90mm';
+            } else if(superficie > 178 && superficie <= 323) {
+                result += 'Ø110mm';
+            } else if(superficie > 323 && superficie <= 440) {
+                result += 'Ø125mm';
+            } else if(superficie > 440 && superficie <= 862) {
+                result += 'Ø160mm';
+            } else if(superficie > 862 && superficie <= 1510) {
+                result += 'Ø200mm';
+            } else if(superficie > 1510 && superficie <= 2710) {
+                result += 'Ø250mm';
+            } else if(superficie > 2710 && superficie <= 4589) {
+                result += 'Ø315mm';
+            } else {
+                result += 'No existe una sección de conducto válida';
+            }
+        } else {
+            if(superficie <= 253) {
+                result += 'Ø90mm';
+            } else if(superficie > 253 && superficie <= 458) {
+                result += 'Ø110mm';
+            } else if(superficie > 458 && superficie <= 620) {
+                result += 'Ø125mm';
+            } else if(superficie > 620 && superficie <= 1228) {
+                result += 'Ø160mm';
+            } else if(superficie > 1228 && superficie <= 2140) {
+                result += 'Ø200mm';
+            } else if(superficie > 2140 && superficie <= 3850) {
+                result += 'Ø250mm';
+            } else if(superficie > 3850 && superficie <= 6500) {
+                result += 'Ø315mm';
+            } else {
+                result += 'No existe una sección de conducto válida';
+            }
+        }
+    }
     
     return result;
 }

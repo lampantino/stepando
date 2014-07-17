@@ -2,8 +2,8 @@
  * STEPANDO (Screen)                            *
  * Author: Lampantino                           *
  * Start date: 22/12/2012						*
- * Version date: 11/07/2014                     *
- * Version:0.4.0                                *
+ * Version date: 17/07/2014                     *
+ * Version:0.4.1                                *
  ************************************************/
 
 //SCREEN CLASS
@@ -275,6 +275,7 @@ var Screen = function () {
         screenContent += '<div id="info_result" class="rounded boxShadow info" style="display:none;">' + resultInfo + '</div>';
         document.getElementById('result').innerHTML = screenContent;
         document.getElementById('result').style.display = 'block';
+        printComments();
     };
     
     //private method that prints the sequence comments
@@ -358,7 +359,6 @@ var Screen = function () {
             if (nextStep === 'result') {
                 activeSequence.addResult(sequenceResult());
                 printResult();
-                printComments();
             } else {
                 currentStep = activeSequence.getStepByRef(nextStep);
                 printStep();
