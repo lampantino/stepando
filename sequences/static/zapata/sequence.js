@@ -28,7 +28,7 @@ addStep(
     'Input', //Step type
     'Float', //Step option
     'result', //Next step
-    'Ha de introducir la tensión en MPa.</br>Puede acceder a unas estimaciones orientativas en el siguiente <a href="http://www.codigotecnico.org/web/recursos/documentos/documentos/DBSE/DBSE-C/anejos/anejo_d_tablas/tabla_d25.jpg" target="_blank">enlace</a>.' //Step info
+    'Ha de introducir la tensión en MPa.</br>Puede acceder a unas estimaciones orientativas en el siguiente <a href="/sequences/static/zapata/presionesAdmisibles.jpg" target="_blank">enlace</a>.' //Step info
 );
 
 //sequenceResult function contains the sequence logic and returns the result

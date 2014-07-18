@@ -14,7 +14,7 @@ createSequence(
 //AddStep methods creates new steps and adds them to the sequence
 addStep(
     'tipoRed', //Step reference
-    '¿Qué tipo de red pertenece el conducto?', //Step question
+    '¿A qué tipo de red pertenece el conducto?', //Step question
     'select', //Step type (input or select)
     ['Fecales','Pluviales'], //Step option (integer, float, string, email, url)
     '', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
