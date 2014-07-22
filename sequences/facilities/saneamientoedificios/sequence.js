@@ -60,7 +60,7 @@ addStep(
 //AddStep methods creates new steps and adds them to the sequence
 addStep(
     'unidadesDesague', //Step reference
-    '¿Cuántas unidades de desagüe pasarán por el ramal?', //Step question
+    '¿Cuántas unidades de desagüe pasarán por el conducto?', //Step question
     'input', //Step type (input or select)
     'integer', //Step option (integer, float, string, email, url)
     '', //Next step (next step reference, an empty string ('') or 'result' for run de sequenceResult() method)
