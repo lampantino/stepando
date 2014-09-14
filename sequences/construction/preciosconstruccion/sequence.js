@@ -33,10 +33,28 @@ var precios = [
         "capitulo": "Movimientos de tierras",
         "partidas": [
 			{
-                "titulo": "",
-                "unidad": "",
-                "descripcion": "",
-                "precio": 0.00
+                "titulo": "Excavación a máquina terrenos compactos",
+                "unidad": "m3",
+                "descripcion": "Excavación a cielo abierto, en terrenos compactos, por medios mecánicos, con extracción de tierras fuera de la excavación, en vaciados, sin carga ni transporte al vertedero y con p.p. de medios auxiliares.",
+                "precio": 2.90
+            },
+			{
+                "titulo": "Excavación a máquina zanjas terrenos compactos",
+                "unidad": "m3",
+                "descripcion": "Excavación en zanjas, en terrenos compactos, por medios mecánicos, con extracción de tierras a los bordes, sin carga ni transporte al vertedero y con p.p. de medios auxiliares.",
+                "precio": 20.80
+            },
+			{
+                "titulo": "Excavación a máquina zanjas de instalaciones terrenos compactos",
+                "unidad": "m3",
+                "descripcion": "Excavación en zanjas de instalaciones, en terrenos de consistencia dura, por medios mecánicos, con extracción de tierras a los bordes, y con posterior relleno y apisonado de las tierras procedentes de la excavación y con p.p. de medios auxiliares.",
+                "precio": 26.80
+            },
+			{
+                "titulo": "Encachado 15cm para base de solera",
+                "unidad": "m2",
+                "descripcion": "Encachado de 15 cm para base solera, con aporte de grava de cantera de piedra caliza, Ø40/70 mm, compactación mediante equipo manual con bandeja vibrante.",
+                "precio": 7.50
             },
         ]
     },
@@ -55,10 +73,40 @@ var precios = [
         "capitulo": "Cimentaciones",
         "partidas": [
 			{
-                "titulo": "",
-                "unidad": "",
-                "descripcion": "",
-                "precio": 0.00
+                "titulo": "Zapatas de hormigón armado",
+                "unidad": "m3",
+                "descripcion": "Zapata de cimentación de hormigón armado, realizada con hormigón HA-25/B/20/IIa fabricado en central, y vertido desde camión, y acero UNE-EN 10080 B 500 S, cuantía 50 kg/m³.",
+                "precio": 182.00
+            },
+			{
+                "titulo": "Losa de cimentación de hormigón armado",
+                "unidad": "m3",
+                "descripcion": "Losa de cimentación de hormigón armado, realizada con hormigón HA-25/B/20/IIa fabricado en central, y vertido desde camión, y acero UNE-EN 10080 B 500 S, cuantía 100 kg/m³; acabado superficial liso mediante regla vibrante.",
+                "precio": 250.00
+            },
+			{
+                "titulo": "Muro de hormigón armado 30cm",
+                "unidad": "m2",
+                "descripcion": "Muro de hormigón armado, H<=3 m, espesor 30 cm, realizado con hormigón HA-25/B/20/IIa fabricado en central, y vertido con cubilote, y acero UNE-EN 10080 B 500 S, 70 kg/m³; montaje y desmontaje del sistema de encofrado metálico.",
+                "precio": 110.00
+            },
+			{
+                "titulo": "Muro de hormigón armado 20cm",
+                "unidad": "m2",
+                "descripcion": "Muro de hormigón armado, H<=3 m, espesor 20 cm, realizado con hormigón HA-25/B/20/IIa fabricado en central, y vertido con cubilote, y acero UNE-EN 10080 B 500 S, 60 kg/m³; montaje y desmontaje del sistema de encofrado metálico.",
+                "precio": 76.00
+            },
+			{
+                "titulo": "Solera de hormigón armado 15cm",
+                "unidad": "m2",
+                "descripcion": "Solera de de hormigón armado HA-25/B/20/IIa fabricado en central y vertido con cubilote, de 15 cm de espesor, extendido y vibrado manual, armada con malla electrosoldada ME 15x15 de Ø 5 mm, para base de un solado.",
+                "precio": 21.50
+            },
+			{
+                "titulo": "Solera de hormigón armado 15cm acabado pulido",
+                "unidad": "m2",
+                "descripcion": "Solera de de hormigón armado HA-25/B/20/IIa fabricado en central y vertido con cubilote, de 15 cm de espesor, extendido y vibrado manual, armada con malla electrosoldada ME 15x15 de Ø 5 mm, con acabado pulido mediante fratasado mecánico.",
+                "precio": 28.00
             },
         ]
     },
@@ -66,10 +114,46 @@ var precios = [
         "capitulo": "Estructura",
         "partidas": [
 			{
-                "titulo": "",
-                "unidad": "",
-                "descripcion": "",
-                "precio": 0.00
+                "titulo": "Forjado unidireccional 25+5 semivigueta armada con vigas",
+                "unidad": "m2",
+                "descripcion": "Estructura de hormigón armado HA-25/B/20/IIa vertido con cubilote; acero B 500 S con una cuantía total de 11 kg/m²; forjado unidireccional, horizontal, de canto 30 = 25+5 cm; semivigueta armada con zapatilla de hormigón; bovedilla de hormigón, 60x20x25 cm; malla electrosoldada ME 20x20, Ø 5 mm, acero B 500 T en capa de compresión; vigas planas; altura libre de planta de hasta 3 m",
+                "precio": 74.25
+            },
+			{
+                "titulo": "Forjado unidireccional 20+5 semivigueta armada con vigas",
+                "unidad": "m2",
+                "descripcion": "Estructura de hormigón armado HA-25/B/20/IIa vertido con cubilote; acero B 500 S con una cuantía total de 11 kg/m²; forjado unidireccional, horizontal, de canto 25 = 20+5 cm; semivigueta armada con zapatilla de hormigón; bovedilla de hormigón, 60x20x25 cm; malla electrosoldada ME 20x20, Ø 5 mm, acero B 500 T en capa de compresión; vigas planas; altura libre de planta de hasta 3 m",
+                "precio": 72.70
+            },
+			{
+                "titulo": "Forjado unidireccional 25+5 vivigueta pretensada con vigas",
+                "unidad": "m2",
+                "descripcion": "Estructura de hormigón armado HA-25/B/20/IIa vertido con cubilote; acero B 500 S con una cuantía total de 11 kg/m²; forjado unidireccional, horizontal, de canto 30 = 25+5 cm; vigueta pretensada; bovedilla de hormigón, 60x20x25 cm; malla electrosoldada ME 20x20, Ø 5 mm, acero B 500 T en capa de compresión; vigas planas; altura libre de planta de hasta 3 m.",
+                "precio": 77.00
+            },
+			{
+                "titulo": "Forjado unidireccional 20+5 vivigueta pretensada con vigas",
+                "unidad": "m2",
+                "descripcion": "Estructura de hormigón armado HA-25/B/20/IIa vertido con cubilote; acero B 500 S con una cuantía total de 11 kg/m²; forjado unidireccional, horizontal, de canto 25 = 20+5 cm; vigueta pretensada; bovedilla de hormigón, 60x20x25 cm; malla electrosoldada ME 20x20, Ø 5 mm, acero B 500 T en capa de compresión; vigas planas; altura libre de planta de hasta 3 m.",
+                "precio": 75.50
+            },
+			{
+                "titulo": "Forjado de losa maciza 20cm",
+                "unidad": "m2",
+                "descripcion": "Forjado de losa maciza, horizontal, canto 20 cm; HA-25/B/20/IIa fabricado en central y vertido con cubilote; acero UNE-EN 10080 B 500 S, cuantía 22 kg/m²; encofrado de madera; altura libre de planta de hasta 3 m.",
+                "precio": 87.00
+            },
+			{
+                "titulo": "Pilar de hormigón armado 30x30 de 3 metros",
+                "unidad": "ud",
+                "descripcion": "Pilar de hormigón armado HA-25 N/mm2, Tmáx.20 mm., consistencia plástica elaborado en central, de 30x30 cm., i/p.p. de armadura (100 kg/m3.) y encofrado metálico, vertido con pluma-grúa, vibrado y colocado.",
+                "precio": 118.00
+            },
+			{
+                "titulo": "Pilar metálico de 3 metros (HEB120 ó 2UPN120)",
+                "unidad": "ud",
+                "descripcion": "Pilar de acero laminado S275JR, perfiles laminados en caliente, mediante uniones soldadas; i/p.p. de soldaduras, cortes, piezas especiales, despuntes y dos manos de imprimación con pintura de minio de plomo, montado y colocado.",
+                "precio": 205.00
             },
         ]
     },
@@ -195,8 +279,9 @@ var capitulo_nextStep = function () {
 
 for(var i in capitulos) {
     var partidasTemp = [];
+    var unidadesTemp = [];
     for(var j in precios[i].partidas) {
-        partidasTemp.push(precios[i].partidas[j].titulo);
+        partidasTemp.push('('+precios[i].partidas[j].unidad+') '+precios[i].partidas[j].titulo);
     }
     addStep(
         'capitulo_'+i, //Step reference
@@ -238,7 +323,7 @@ function sequenceResult() {
     partida = getAnswer('capitulo_'+numCapitulo);
 
     for(var i in precios[numCapitulo].partidas) {
-        if(partida === precios[numCapitulo].partidas[i].titulo) {
+        if(partida === '('+precios[numCapitulo].partidas[i].unidad+') '+precios[numCapitulo].partidas[i].titulo) {
             numPartida = i;
         }
     }
