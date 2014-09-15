@@ -573,7 +573,7 @@ function sequenceResult() {
         return Math.round(flecha);
     };
     
-    resultado = 'El módulo resistente necesario es de <b>'+Math.round(vigaCalculo.calculoModulo())+'mm3</b></br> y el momento de inercia ha de ser como mínimo de <b>'+Math.round(vigaCalculo.calculoInercia())+'mm4</b>.</br>';
+    resultado = 'El módulo resistente necesario es de <b>'+Math.round(vigaCalculo.calculoModulo())+'cm3</b></br> y el momento de inercia ha de ser como mínimo de <b>'+Math.round(vigaCalculo.calculoInercia())+'cm4</b>.</br>';
     
     if (cantoUltimo === 'No existe ningún perfil que soporte esa carga' && cantoServicio === 'No existe ningún perfil que soporte esa carga') {
         resultado += 'No existe ningún perfil que soporte esa carga';
