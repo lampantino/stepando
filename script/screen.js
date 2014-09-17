@@ -322,9 +322,9 @@ var Screen = function () {
         if (type === 'input') {
             if (option === 'string' && (!isNaN(answer) || answer == '')) {
                 return alert_Text;
-            } else if (option === 'integer' && (isNaN(answer) || +answer % 1 !== 0 || answer == '')) {
+            } else if (option === 'integer' && (isNaN(answer) || +answer % 1 !== 0 || answer == '') && answer !== 0) {
                 return alert_Integer;
-            } else if (option === 'float' && (isNaN(answer) || answer == '')) {
+            } else if (option === 'float' && (isNaN(answer) || answer == '') && answer !== 0) {
                 return alert_Float;
             } else if (option === 'email' && (!checkPattern(answer, /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,4}$/) || answer == '')) {
                 return alert_Email;
