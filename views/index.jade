@@ -1,5 +1,18 @@
 extends layout
 
+block append head
+  //en cambio, este script será añadido al final del head
+  //añadimos el cdn de jQuery
+  script(type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+  //añadimos un archivo js que vamos a crear a continuación en la carpeta javascripts
+  script(type='text/javascript' src='/javascripts/functions.js')
+ 
+block prepend head
+  //así añadimos una hoja de estilos herendando de otra template
+  //prepend al principio del head
+  //esta hoja será añadida al principio del head
+  link(rel='stylesheet', href='/stylesheets/estilos.css')
+
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 stepando
+  p Bienvenid@ a #{title}
