@@ -4,6 +4,20 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongo = require('mongodb');
+var mongoose = require('mongoose');
+//Nos conectamos a la base de datos situada en MongoLab
+mongoose.connect('mongodb://admin:jailander@ds041380.mongolab.com:41380/stepando');
+//Nos conectamos a la base de datos local
+//mongoose.connect('mongodb://localhost/stepando');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log('DB connected');
+});
+
+var models = require('./models/users');
 
 var routes = require('./routes/index');
 //Para añadir otra ruta a un archivo .js dentro de 
