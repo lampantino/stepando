@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    div.container
+    h1 Users list
+    table.table
+        thead
+            tr
+                th Name
+                th Surname
+                th User
+                th Email
+        tbody
+            each user, i in userslist
+                tr
+                    td #{user.name}
+                    td #{user.surname}
+                    td #{user.user}
+                    td #{user.email}
+                    td
+                        button.btn.btn-primary.btn-xs(type='submit') Remove

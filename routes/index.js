@@ -35,9 +35,38 @@ router.post('/addUser', function(req, res) {
             res.write('Hubo un error al almacenar el usuario.');
             res.end();
         } else {
+//            res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
+//            res.write('Usuario ' + addUser.user + ' almacenado con éxito.');
+//            res.end();
+            
+            var users = require('mongoose').model('users');
+            users.find({}, function(err, users) {
+                if(err) {
+                    res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
+                    res.write('Hubo un error al acceder a la lista de usuarios.');
+                    res.end();
+                } else {
+                    res.render('userslist', {
+                        'userslist' : users
+                    });
+                }
+            });
+        }
+    });
+});
+
+//Añadimos una página de alta
+router.get('/userslist', function(req, res) {
+    var users = require('mongoose').model('users');
+    users.find({}, function(err, users) {
+        if(err) {
             res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
-            res.write('Usuario ' + addUser.user + ' almacenado con éxito.');
+            res.write('Hubo un error al acceder a la lista de usuarios.');
             res.end();
+        } else {
+            res.render('userslist', {
+                'userslist' : users
+            });
         }
     });
 });
