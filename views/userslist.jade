@@ -18,4 +18,4 @@ block content
                     td #{user.user}
                     td #{user.email}
                     td
-                        button.btn.btn-primary.btn-xs(type='submit') Remove
+                        a.btn.btn-primary.btn-xs(href="/removeUser/#{user._id}") Delete

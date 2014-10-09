@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+//Creamos una variable que albergue el esquema 'users'
+var users = require('mongoose').model('users');
+
 //Mediante este método le indicamos que en la ruta '/' debe
 //renderizar el archivo index.jade que está dentro de la carpeta
 //views. Se le pasa como argumento un objeto json.
@@ -15,9 +18,6 @@ router.get('/signup', function(req, res) {
 
 //Obtenemos la información de la página de alta
 router.post('/addUser', function(req, res) {
-    
-    //Creamos una variable que albergue el esquema 'users'
-    var user = require('mongoose').model('users');
     
     //Creamos una variable que sigue el esquema 'users'
     var addUser = new user({
@@ -35,29 +35,24 @@ router.post('/addUser', function(req, res) {
             res.write('Hubo un error al almacenar el usuario.');
             res.end();
         } else {
-//            res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
-//            res.write('Usuario ' + addUser.user + ' almacenado con éxito.');
-//            res.end();
-            
-            var users = require('mongoose').model('users');
             users.find({}, function(err, users) {
                 if(err) {
                     res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
                     res.write('Hubo un error al acceder a la lista de usuarios.');
                     res.end();
                 } else {
-                    res.render('userslist', {
-                        'userslist' : users
-                    });
+//                    res.render('userslist', {
+//                        'userslist' : users
+//                    });
+                    res.redirect('/userslist');
                 }
             });
         }
     });
 });
 
-//Añadimos una página de alta
+//Página que muestra los usuarios existentes
 router.get('/userslist', function(req, res) {
-    var users = require('mongoose').model('users');
     users.find({}, function(err, users) {
         if(err) {
             res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
@@ -70,6 +65,20 @@ router.get('/userslist', function(req, res) {
         }
     });
 });
+
+//Con este método eleminamos un usuario según su ID
+router.get('/removeUser/:id', function(req, res) {
+    users.remove({_id: req.params.id}, function(err) {
+        if(err) {
+            res.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
+            res.write('Hubo un error al intentar borrar el usuario.');
+            res.end();
+        } else {
+            res.redirect('/userslist');
+        }
+    });
+});
+
 
 //Para añadir más archivos a renderizar utilizar la siguiente expresión:
 //router.get('/ruta', function(req, res) {
