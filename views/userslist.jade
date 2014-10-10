@@ -18,4 +18,6 @@ block content
                     td #{user.user}
                     td #{user.email}
                     td
+                        a.btn.btn-primary.btn-xs(href="/editUser/#{user._id}/edit") Edit
+                    td
                         a.btn.btn-primary.btn-xs(href="/removeUser/#{user._id}") Delete
