@@ -2,7 +2,7 @@ extends layout
 
 block content
     div.container
-      form.form-signin.col-md-6(method='post', action='/editUser/#{user._id}')
+      form.form-signin.col-md-6(method='POST', action='/editUser/#{user._id}')
         input(type='hidden', name='_method', value='PUT')
         h1.form-signin-heading Edit user data
         div.form-group

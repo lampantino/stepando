@@ -20,7 +20,7 @@ router.get('/signup', function(req, res) {
 });
 
 //Obtenemos la información de la página de alta
-router.post('/addUser', function(req, res) {
+router.put('/addUser', function(req, res) {
     
     //Creamos una variable que sigue el esquema 'users'
     var addUser = new user({
@@ -72,6 +72,7 @@ router.get('/userslist', function(req, res) {
     );
 });
 
+//Con este método se muestra el formulario de edición de usuario
 router.get('/editUser/:id/edit', function(req, res) {
     users.findById(
         req.params.id,
@@ -89,6 +90,7 @@ router.get('/editUser/:id/edit', function(req, res) {
     );
 });
 
+//Con este método modificamos los datos de un usuario según su ID
 router.post('/editUser/:id', function(req, res) {
     users.update(
         { _id : req.params.id },

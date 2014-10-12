@@ -2,7 +2,7 @@ extends layout
 
 block content
     div.container
-      form.form-signin.col-md-6(method='post', action='/addUser')
+      form.form-signin.col-md-6(method='POST', action='/addUser')
         h1.form-signin-heading Sign in
         div.form-group
             input.form-control(type='text', name='name', placeholder='Name')

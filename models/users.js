@@ -7,7 +7,7 @@ var usersSchema = new mongoose.Schema({
     user : String,
     email : String,
     password : String
-})
+});
 
 //Exportamos este nuevo esquema de usuarios denominándolo 'users'
 module.exports = mongoose.model('users', usersSchema);

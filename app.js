@@ -18,6 +18,7 @@ db.once('open', function callback () {
 });
 
 var models = require('./models/users');
+var models = require('./models/sequences');
 
 var routes = require('./routes/index');
 //Para añadir otra ruta a un archivo .js dentro de 
