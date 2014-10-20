@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    div.container
+        h1 User #{user} list
+        table.table
+            thead
+                tr
+                    th Title
+                    th Last update
+                    th Version
+                    th Info
+            tbody
+                each sequence, i in sequenceslist
+                    tr
+                        td #{sequence.title}
+                        td #{sequence.lastUpdate}
+                        td #{sequence.version}
+                        td #{sequence.info}
+//                        td
+//                            a.btn.btn-primary.btn-xs(href="/sequencesByID/#{user._id}") Sequences
+//                        td
+//                            a.btn.btn-primary.btn-xs(href="/editUser/#{user._id}/edit") Edit
+//                        td
+//                            a.btn.btn-primary.btn-xs(href="/removeUser/#{user._id}") Delete
+//        a.btn.btn-primary.btn-xs(href="/signup") Add new user

@@ -1,0 +1,80 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose node symlink /usr/bin/node
+5 verbose readDependencies using package.json deps
+6 verbose install where, deps [ '/home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando',
+6 verbose install   [ 'express',
+6 verbose install     'body-parser',
+6 verbose install     'cookie-parser',
+6 verbose install     'morgan',
+6 verbose install     'serve-favicon',
+6 verbose install     'debug',
+6 verbose install     'jade',
+6 verbose install     'mongodb',
+6 verbose install     'mongoose' ] ]
+7 info preinstall stepando@0.0.0
+8 verbose readDependencies using package.json deps
+9 verbose already installed skipping express@~4.9.0 /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+10 verbose already installed skipping body-parser@~1.8.1 /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+11 verbose already installed skipping cookie-parser@~1.3.3 /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+12 verbose already installed skipping morgan@~1.3.0 /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+13 verbose already installed skipping serve-favicon@~2.1.3 /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+14 verbose already installed skipping debug@~2.0.0 /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+15 verbose already installed skipping jade@~1.6.0 /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+16 verbose already installed skipping mongodb@* /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+17 verbose already installed skipping mongoose@* /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+18 silly resolved []
+19 info build /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+20 verbose linkStuff [ false,
+20 verbose linkStuff   false,
+20 verbose linkStuff   false,
+20 verbose linkStuff   '/home/sre/Dropbox/Trabajo/Trabajos/Stepando/web' ]
+21 info linkStuff stepando@0.0.0
+22 verbose linkBins stepando@0.0.0
+23 verbose linkMans stepando@0.0.0
+24 verbose rebuildBundles stepando@0.0.0
+25 verbose rebuildBundles [ '.bin',
+25 verbose rebuildBundles   'body-parser',
+25 verbose rebuildBundles   'cookie-parser',
+25 verbose rebuildBundles   'debug',
+25 verbose rebuildBundles   'express',
+25 verbose rebuildBundles   'jade',
+25 verbose rebuildBundles   'mongodb',
+25 verbose rebuildBundles   'mongoose',
+25 verbose rebuildBundles   'morgan',
+25 verbose rebuildBundles   'nodemon',
+25 verbose rebuildBundles   'serve-favicon' ]
+26 verbose rebuild bundle /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando/node_modules/nodemon
+27 info build /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando/node_modules/nodemon
+28 info preinstall nodemon@1.2.1
+29 verbose linkStuff [ false,
+29 verbose linkStuff   false,
+29 verbose linkStuff   false,
+29 verbose linkStuff   '/home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando/node_modules' ]
+30 info linkStuff nodemon@1.2.1
+31 warn prefer global nodemon@1.2.1 should be installed with -g
+32 verbose linkBins nodemon@1.2.1
+33 verbose link bins [ { nodemon: './bin/nodemon.js' },
+33 verbose link bins   '/home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando/node_modules/.bin',
+33 verbose link bins   false ]
+34 verbose linkMans nodemon@1.2.1
+35 verbose rebuildBundles nodemon@1.2.1
+36 verbose rebuildBundles [ 'minimatch', 'ps-tree', 'update-notifier' ]
+37 error Error: EACCES, unlink '/home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando/node_modules/.bin/nodemon'
+37 error  { [Error: EACCES, unlink '/home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando/node_modules/.bin/nodemon']
+37 error   errno: 3,
+37 error   code: 'EACCES',
+37 error   path: '/home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando/node_modules/.bin/nodemon' }
+38 error Please try running this command again as root/Administrator.
+39 error System Linux 3.13.0-24-generic
+40 error command "/usr/bin/node" "/usr/bin/npm" "install"
+41 error cwd /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando
+42 error node -v v0.10.32
+43 error npm -v 1.4.28
+44 error path /home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando/node_modules/.bin/nodemon
+45 error code EACCES
+46 error errno 3
+47 error stack Error: EACCES, unlink '/home/sre/Dropbox/Trabajo/Trabajos/Stepando/web/stepando/node_modules/.bin/nodemon'
+48 verbose exit [ 3, true ]

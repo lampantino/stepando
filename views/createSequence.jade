@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    div.container
+      form.form-signin.col-md-6(method='POST', action='/addSequence')
+        h1.form-signin-heading New sequence
+        div.form-group
+            input.form-control(type='text', name='title', placeholder='Sequence title')
+        div.form-group
+            select.form-control(name='userId')
+                each user, i in userslist
+                    option(value='#{user._id}') #{user.name}
+        div.form-group
+            input.form-control(type='date', name='lastUpdate', placeholder='Last updated')
+        div.form-group
+            input.form-control(type='text', name='version', placeholder='Version')
+        div.form-group
+            input.form-control(type='text', name='info', placeholder='Information')
+        div.form-group
+            button.btn.btn-primary.btn-block(type='submit') Save and exit
