@@ -122,7 +122,6 @@ router.post('/editUser/:id', function (req, res) {
                 res.write('Hubo un error al modificar los datos del usuario.');
                 res.end();
             } else {
-                console.log(user);
                 res.redirect('/userslist');
             }
         }
@@ -209,7 +208,67 @@ router.post('/addSequence', function (req, res) {
     );
 });
 
+//Con este método se muestra el formulario de edición de sequencia
+router.get('/editSequence/:id/edit', function (req, res) {
+    sequences.findById(
+        req.params.id,
+        function (err, sequence) {
+            if (err) {
+                res.writeHead(200, {
+                    'Content-Type': 'text/html; charset=UTF-8'
+                });
+                res.write('No se encontró la secuencia.');
+                res.end();
+            } else {
+                users.findById(
+                    sequence.userId,
+                    function (err, user) {
+                        if (err) {
+                            res.writeHead(200, {
+                                'Content-Type': 'text/html; charset=UTF-8'
+                            });
+                            res.write('No se encontró el usuario.');
+                            res.end();
+                        } else {
+                            res.render(
+                                'editSequence', {
+                                    'user' : user,
+                                    'sequence': sequence
+                                }
+                            );
+                        }
+                    }
+                );
+            }
+        }
+    );
+});
 
+//Con este método modificamos los datos de una sequencia según su ID
+router.post('/editSequence/:id', function (req, res) {
+    sequences.update({
+            _id: req.params.id
+        }, {
+            $set: {
+                'title': req.param('title'),
+                'lastUpdate': req.param('lastUpdate'),
+                'version': req.param('version'),
+                'info': req.param('info')
+            }
+        },
+        function (err, sequence) {
+            if (err) {
+                res.writeHead(200, {
+                    'Content-Type': 'text/html; charset=UTF-8'
+                });
+                res.write('Hubo un error al modificar los datos de la secuencia.');
+                res.end();
+            } else {
+                res.redirect('/userslist');
+            }
+        }
+    );
+});
 
 //Página que muestra las secuencias de un usuario por su ID
 router.get('/sequencesByUser/:id', function (req, res) {
