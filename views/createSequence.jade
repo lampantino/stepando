@@ -9,7 +9,7 @@ block content
         div.form-group
             select.form-control(name='userId')
                 each user, i in userslist
-                    option(value='#{user._id}') #{user.name}
+                    option(value='#{user._id}') #{user.name} #{user.surname}
         div.form-group
             input.form-control(type='date', name='lastUpdate', placeholder='Last updated')
         div.form-group

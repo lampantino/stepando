@@ -1,31 +1,25 @@
 extends layout
 
 block content
-    div.container
-      form.form-horizontal.col-dm-6(method='POST', action='/editSequence/#{sequence._id}')
-        input(type='hidden', name='_method', value='PUT')
-        h1.form-signin-heading Edit sequence data
-        
-        div.form-group
-            label.control-label Title
-            input.form-control(type='text', name='title', value='#{sequence.title}')
-                
-        div.form-group
-            label.control-label User
-            fieldset(disabled)
-                input#disabledTextInput.form-control(type='text', name='title', value='#{user.user}')
-                
-        div.form-group
-            label.control-label Last updated
-            input.form-control(type='date', name='lastUpdate', value='#{sequence.lastUpdate}')
-            
-        div.form-group
-            label.control-label Version
-            input.form-control(type='text', name='version', value='#{sequence.version}')
-            
-        div.form-group
-            label.control-label Information
-            textarea.form-control(type='text', rows='3', name='info') #{sequence.info}
-            
-        div.form-group
-            button.btn.btn-primary.btn-block(type='submit') Save and exit
+  form.form-horizontal.col-dm-6(method='POST', action='/editSequence/#{sequence._id}')
+    input(type='hidden', name='_method', value='PUT')
+    h1.form-signin-heading Edit sequence data
+
+  div.form-group
+    label.control-label Title
+    input.form-control(type='text', name='title', value='#{sequence.title}')
+
+  div.form-group
+    label.control-label Last updated
+    input.form-control(type='date', name='lastUpdate', value='#{sequence.lastUpdate}')
+
+  div.form-group
+    label.control-label Version
+    input.form-control(type='text', name='version', value='#{sequence.version}')
+
+  div.form-group
+    label.control-label Information
+    textarea.form-control(type='text', rows='3', name='info') #{sequence.info}
+
+  div.form-group
+    button.btn.btn-primary.btn-block(type='submit') Save and exit
