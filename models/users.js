@@ -1,13 +1,10 @@
 var mongoose = require('mongoose');
 
-//Creamos un nuevo esquema para los usuarios
-var usersSchema = new mongoose.Schema({
-    name : String,
-    surname : String,
-    user : String,
-    email : String,
-    password : String
+// create a new schema for users
+var userSchema = new mongoose.Schema({
+  name : String,
+  password : String
 });
 
-//Exportamos este nuevo esquema de usuarios denominándolo 'users'
-module.exports = mongoose.model('users', usersSchema);
+// export the schema
+module.exports = mongoose.model('user', userSchema);

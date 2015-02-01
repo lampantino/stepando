@@ -1,18 +1,7 @@
 doctype html
 html
   head
-    meta(charset='UTF-8')
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    //JQuery
-    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-    //Bootstrap
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
-    //Angularjs
-    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js')
   body
-    div.container
-      include navbar
-      block content
-      include footer
+    block content
